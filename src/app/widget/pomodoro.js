@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-//import {RippleButton} from 'react-ripple-effect';
+// import {RippleButton} from 'react-ripple-effect';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   if (!Notification) {
-    alert('Desktop notifications not available in your browser. Try Chromium.');
+    // alert('Desktop notifications not available in your browser. Try Chromium.');
+    console.error('Desktop notifications not available in your browser. Try Chromium.');
     return;
   }
 
@@ -13,21 +14,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function notifyMe() {
-  if (Notification.permission !== "granted")
-    Notification.requestPermission();
-  else {
+  if (Notification.permission === "granted") {
     navigator.serviceWorker.register('sw.js');
-    navigator.serviceWorker.ready.then(function(registration) {
+    navigator.serviceWorker.ready.then(registration => {
       registration.showNotification('Notification with ServiceWorker');
     });
-    var notification = new Notification('Notification title', {
+    const notification = new Notification('Notification title', {
       icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
       body: "Hey there! You've been notified!"
     });
-
     notification.onclick = function () {
       window.open("http://stackoverflow.com/a/13328397/1269037");
     };
+  } else {
+    Notification.requestPermission();
   }
 }
 
