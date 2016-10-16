@@ -5,7 +5,7 @@ export class TimerWidget extends Component {
     super();
     this.state = {time: 25, running: false, buttonName: 'Start'};
   }
-  action() {
+  handleClick() {
     if (this.state.running) {
       clearInterval(this.interval);
       this.reset();
@@ -32,7 +32,7 @@ export class TimerWidget extends Component {
     return (
       <div>
         <div id="countdown">{time}</div>
-        <button onClick={this.action.bind(this)}>{buttonName}</button>
+        <button onClick={this.handleClick}>{buttonName}</button>
       </div>
     );
   }

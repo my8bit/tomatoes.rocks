@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {TimerWidget} from './app/hello';
+import {TimerWidget} from './app/widget/pomodoro';
 
 import './index.scss';
 
