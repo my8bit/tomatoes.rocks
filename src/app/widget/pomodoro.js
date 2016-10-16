@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import Ink from 'react-ink';
+
 // import {RippleButton} from 'react-ripple-effect';
+// import Ripples from 'react-ripples';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!Notification) {
@@ -70,7 +73,9 @@ export class TimerWidget extends Component {
     return (
       <div>
         <div className={animation} id="countdown">{time}</div>
-        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}</button>
+          <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
+          <Ink />
+          </button>
       </div>
     );
   }
