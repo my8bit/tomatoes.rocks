@@ -1,0 +1,21 @@
+button {
+  background-color: lightgrey;
+  border: none;
+  padding: 1em;
+  border-radius: 3px;
+  width: 7em;
+}
+
+button:hover {
+  // background: lightyellow;
+}
+
+#countdown {
+  text-align: center;
+  font-size: 5em;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+}
