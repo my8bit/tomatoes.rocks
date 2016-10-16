@@ -2,7 +2,8 @@
   "dependencies": {
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-router": "^2.4.0"
+    "react-router": "^2.4.0",
+    "webpack": "2.1.0-beta.8"
   },
   "devDependencies": {
     "react-addons-test-utils": "^15.0.1",
@@ -25,7 +26,6 @@
     "phantomjs-prebuilt": "^2.1.6",
     "karma-webpack": "^1.7.0",
     "isparta-loader": "^2.0.0",
-    "webpack": "2.1.0-beta.8",
     "html-webpack-plugin": "^2.9.0",
     "style-loader": "^0.13.0",
     "css-loader": "^0.23.1",
