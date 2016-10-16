@@ -73,9 +73,9 @@ export class TimerWidget extends Component {
     return (
       <div>
         <div className={animation} id="countdown">{time}</div>
-          <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
-          <Ink />
-          </button>
+        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
+          <Ink/>
+        </button>
       </div>
     );
   }
