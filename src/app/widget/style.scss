@@ -3,7 +3,7 @@
   // background-color: rgb(255, 171, 64);
   border: none;
   padding: 1em;
-  font-size: 4em;
+  font-size: 3em;
   position: absolute;
   left: 0;
   width: 100%;
@@ -60,7 +60,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
   position:relative;
   top: 0;
   // color: #DBE3FF;
-  // font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: white;
   text-align: center;
   font-size: 15em;
@@ -83,9 +83,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 }
 
 #container {
-  height: 62vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
+}
+
+@media all and (orientation:landscape) {
+  /* Styles for Landscape screen */
+  .button {
+      font-size: 1.2em;
+  }
+  #container {
+    height: 78vh;
+  }
 }
