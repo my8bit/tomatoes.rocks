@@ -15,7 +15,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css|scss|sass)$/,
         loaders: [
           'style',
           'css',
@@ -28,7 +28,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: [
           'react-hot',
-          'babel'
+          'babel-loader?presets[]=react,presets[]=es2015'
         ]
       }
     ]
