@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Authlify from 'authlify-js'
+import Authlify from 'authlify-js';
 
 const authlify = new Authlify({
   APIUrl: 'https://authlify.netlify.com'
