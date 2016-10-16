@@ -4,6 +4,7 @@ export class TimerWidget extends Component {
   constructor() {
     super();
     this.state = {time: 25, running: false, buttonName: 'Start'};
+    this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
     if (this.state.running) {
