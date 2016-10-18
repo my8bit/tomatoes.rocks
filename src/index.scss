@@ -1,6 +1,49 @@
 @import 'app/widget/style';
-@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400:700');
 
 body {
-    background-color: #6E1C4F;
+    font-family: 'Roboto', sans-serif;
+}
+
+section { 
+  /*background-color: #6E1C4F;*/
+  /*width: 100%;*/
+  /*padding: 0 7%;*/
+  /*display: table;*/
+  margin: 0;
+  padding: 0;
+  /*max-width: none;*/
+  /*background-color: #373B44;*/
+  height: 100vh;
+  position: relative;
+}
+.main {
+  /*background-color: #6E1C4F;*/
+  background: rgb(255,93,177); /* Old browsers */
+  background: linear-gradient(to bottom,  rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.about {
+  paddding: 1em;
+  height: 100vh;
+  background-color: ivory;
+}
+
+.description {
+  margin: 0;
+  padding: 1em;
+}
+footer {
+  font-size: small;
+  color: rgba(102, 51, 153, 0.8);
+  text-shadow: 1px 1px 1px black;
+  width: 100%;
+  background-color: #212020;
+  color: white;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-info {
+  padding: 1em;
 }

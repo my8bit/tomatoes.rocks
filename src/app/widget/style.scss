@@ -8,7 +8,6 @@
   left: 0;
   width: 100%;
   bottom: 0;
-  font-family: 'Roboto', sans-serif;
 
 color: rgba(102,51,153, .8);
     text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
@@ -37,12 +36,6 @@ html, body {
 body {
   margin: 0;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5db1+0,ef017c+100;Pink+3D+%231 */
-background: rgb(255,93,177); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(255,93,177,1) 0%, rgba(239,1,124,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', endColorstr='#ef017c',GradientType=0 ); /* IE6-9 */
-
 }
 
 @-webkit-keyframes fade-in{

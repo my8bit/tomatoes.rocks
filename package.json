@@ -62,6 +62,7 @@
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",
+    "start": "gulp serve",
     "test:auto": "gulp test:auto"
   },
   "eslintConfig": {
