@@ -1,57 +1,12 @@
 import React, {Component} from 'react';
 // import Ink from 'react-ink';
 import moment from 'moment';
-
 // import {RippleButton} from 'react-ripple-effect';
 // import Ripples from 'react-ripples';
+import {notifyMe} from '../workers/notification';
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (!Notification) {
-    // alert('Desktop notifications not available in your browser. Try Chromium.');
-    console.error('Desktop notifications not available in your browser. Try Chromium.');
-    return;
-  }
+const duration25 = 1500000;
 
-  if (Notification.permission !== "granted") {
-    Notification.requestPermission();
-  }
-});
-
-function notifyMe() {
-  if (Notification.permission === "granted") {
-/*
-
-navigator.serviceWorker.register("static/sw.js").then((e) => {console.log(e.showNotification("Pomodoro done!", {
-                    vibrate: 200,
-                    icon: "static/favicon-196x196.png",
-                    body: "Congrats! You finished yor pomodoro!"
-                }))})
-*/
-
-    navigator.serviceWorker.register("static/sw.js").then(registration => {
-      registration.showNotification('Pomodoro done!', {
-        vibrate: 200,
-        icon: 'static/favicon-196x196.png',
-        body: "Congrats! You finished yor pomodoro!"
-      });
-      // registration.onnotificationclick(() => window.open("http://stackoverflow.com/a/13328397/1269037"));
-    });
-    /*
-    const notification = new Notification('Pomodoro done!', {
-      icon: 'static/favicon-196x196.png',
-      body: "Congrats! You finished yor pomodoro!"
-    });
-    notification.onclick = function () {
-      window.open("http://stackoverflow.com/a/13328397/1269037");
-    };
-    */
-  } else {
-    Notification.requestPermission();
-  }
-}
-
-// const duration25 = 1500000;
-const duration25 = 10000;
 const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
