@@ -4,6 +4,7 @@
   border: none;
   padding: 1em;
   font-size: 3em;
+  font-weight: 700;
   position: absolute;
   left: 0;
   width: 100%;
@@ -50,14 +51,15 @@ body {
 }
 
 #countdown {
-  font-weight: 700;
+
   position:relative;
   top: 0;
   // color: #DBE3FF;
-  font-family: 'Roboto', sans-serif;
+  //font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   color: white;
   text-align: center;
-  font-size: 15em;
+  font-size: 32vw;
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -73,7 +75,7 @@ body {
 }
 
 .animation {
-  -webkit-animation: fade-in 1s infinite;
+  //-webkit-animation: fade-in 1s infinite;
 }
 
 #container {
@@ -87,9 +89,12 @@ body {
 @media all and (orientation:landscape) {
   /* Styles for Landscape screen */
   .button {
-      font-size: 1.2em;
+    font-size: 1.2em;
   }
   #container {
     height: 78vh;
+  }
+  #countdown {
+    //font-size: 7em;
   }
 }

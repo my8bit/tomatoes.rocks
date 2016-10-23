@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Ink from 'react-ink';
+import moment from 'moment';
 
 // import {RippleButton} from 'react-ripple-effect';
 // import Ripples from 'react-ripples';
@@ -18,13 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function notifyMe() {
   if (Notification.permission === "granted") {
-    navigator.serviceWorker.register('sw.js');
+    navigator.serviceWorker.register("sw.js");
     navigator.serviceWorker.ready.then(registration => {
-      registration.showNotification('Notification with ServiceWorker');
+      registration.showNotification('Pomodoro done!', {
+        vibrate: 200,
+        icon: 'static/favicon-196x196.png',
+        body: "Congrats! You finished yor pomodoro!"
+      });
+      // registration.onnotificationclick(() => window.open("http://stackoverflow.com/a/13328397/1269037"));
     });
-    const notification = new Notification('Notification title', {
-      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-      body: "Hey there! You've been notified!"
+    const notification = new Notification('Pomodoro done!', {
+      icon: 'static/favicon-196x196.png',
+      body: "Congrats! You finished yor pomodoro!"
     });
     notification.onclick = function () {
       window.open("http://stackoverflow.com/a/13328397/1269037");
@@ -34,10 +40,13 @@ function notifyMe() {
   }
 }
 
+const duration25 = 1500000;
+const docTitle = document.getElementsByTagName('title')[0];
+
 export class TimerWidget extends Component {
   constructor() {
     super();
-    this.state = {time: 25, running: false, buttonName: 'Start'};
+    this.state = {time: duration25, running: false, buttonName: 'Start'};
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
@@ -49,8 +58,9 @@ export class TimerWidget extends Component {
     }
   }
   reset() {
+    docTitle.textContent = "Tomatoes (pomodoro) work timer";
     clearInterval(this.interval);
-    this.setState({animation: '', time: 25, running: false, buttonName: 'Start'});
+    this.setState({animation: '', time: duration25, running: false, buttonName: 'Start'});
   }
   start() {
     this.setState({animation: 'animation', running: true, buttonName: 'Reset'});
@@ -59,7 +69,7 @@ export class TimerWidget extends Component {
     this.interval = setInterval(this.changeTime.bind(this), 1000);
   }
   changeTime() {
-    const time = this.state.time - 1;
+    const time = this.state.time - 1000;
     if (time === 0) {
       notifyMe();
       this.reset();
@@ -68,11 +78,14 @@ export class TimerWidget extends Component {
     }
   }
   render() {
-    let {time, buttonName} = this.state;
+    let {time, buttonName, running} = this.state;
+    const duration = moment.duration(time);
+    const resultTime = duration.minutes() +  ':' + (duration.seconds().toString().length < 2 ? '0' + duration.seconds() : duration.seconds());
+    if (running) docTitle.textContent = resultTime;
     const animation = this.state.animation;
     return (
       <div>
-        <div className={animation} id="countdown">{time}</div>
+        <div className={animation} id="countdown">{resultTime}</div>
         <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
           <Ink/>
         </button>
