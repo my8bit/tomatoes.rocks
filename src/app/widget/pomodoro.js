@@ -80,8 +80,16 @@ export class TimerWidget extends Component {
   render() {
     let {time, buttonName, running} = this.state;
     const duration = moment.duration(time);
-    const resultTime = duration.minutes() +  ':' + (duration.seconds().toString().length < 2 ? '0' + duration.seconds() : duration.seconds());
-    if (running) docTitle.textContent = resultTime;
+    let durationSec = "";
+    if (duration.seconds().toString().length < 2) {
+      durationSec = `0${duration.seconds()}`;
+    } else {
+      durationSec = duration.seconds();
+    }
+    const resultTime = `${duration.minutes()}:${durationSec}`;
+    if (running) {
+      docTitle.textContent = resultTime;
+    }
     const animation = this.state.animation;
     return (
       <div>
