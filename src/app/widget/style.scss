@@ -38,12 +38,12 @@ body {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5db1+0,ef017c+100;Pink+3D+%231 */
 }
 
-@-webkit-keyframes fade-in{
-  from{
+@-webkit-keyframes fade-in {
+  0% {
     opacity: 1;
     top: 0;
   }
-  to{
+  100% {
     opacity: 0;
     top: -.05em;
   }
@@ -73,7 +73,7 @@ body {
 }
 
 .animation {
-  -webkit-animation:fade-in 1s infinite;
+  -webkit-animation: fade-in 1s infinite;
 }
 
 #container {
