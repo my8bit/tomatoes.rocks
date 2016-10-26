@@ -1,5 +1,6 @@
 @import 'app/widget/style';
 @import url('https://fonts.googleapis.com/css?family=Roboto:400:700');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -18,11 +19,13 @@ section {
   position: relative;
 }
 .main {
+  font-family: 'PT Sans Narrow', sans-serif;
   /*background-color: #6E1C4F;*/
   background: rgb(255,93,177); /* Old browsers */
-  background: linear-gradient(to bottom,  rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  /*background: linear-gradient(to bottom,  rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .about {
+  font-family: 'Roboto', sans-serif;
   paddding: 1em;
   height: 100vh;
   background-color: ivory;
