@@ -16,7 +16,7 @@ module.exports = {
         loader: 'eslint'
       }
     ],
-
+    devtools: 'inline-source-map',
     loaders: [
       {
         test: /.json$/,
