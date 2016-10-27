@@ -28,7 +28,7 @@ navigator.serviceWorker.register("static/sw.js").then((e) => {console.log(e.show
                 }))})
 */
 
-    navigator.serviceWorker.register("static/sw.js").ready.then(registration => {
+    navigator.serviceWorker.register("static/sw.js").then(registration => {
       registration.showNotification('Pomodoro done!', {
         vibrate: 200,
         icon: 'static/favicon-196x196.png',
