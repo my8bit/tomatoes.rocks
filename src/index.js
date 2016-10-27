@@ -7,24 +7,6 @@ import {TimerWidget} from './app/widget/pomodoro';
 import './index.scss';
 // Offline.install();
 
-/*
-      <section class="main">
-        <div id="container-timer"></div>
-      </section>
-      <section class="about">
-        <p class="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</p>
-        <footer>
-        <!--
-        <div>
-          Form me on github
-        </div>
-        -->
-        <div class="footer-info">
-          This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.
-        </div>
-        </footer>
-      </section>
-*/
 class ColorPicker extends Component {
   constructor(props) {
     super(props);
@@ -46,18 +28,16 @@ class ColorPicker extends Component {
     const {color} = this.state;
 
     return (
-      <p className="description">Please select background color:
-        <form>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === '#ff5db1'} type="radio" name="gender" value="#ff5db1"/> <span style={{backgroundColor: "#ff5db1"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'beige'} type="radio" name="gender" value="beige"/> <span style={{backgroundColor: "beige"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'black'} type="radio" name="gender" value="black"/> <span style={{backgroundColor: "black"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'burlywood'} type="radio" name="gender" value="burlywood"/> <span style={{backgroundColor: "burlywood"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'tomato'} type="radio" name="gender" value="tomato"/> <span style={{backgroundColor: "tomato"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'tan'} type="radio" name="gender" value="tan"/> <span style={{backgroundColor: "tan"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'slategray'} type="radio" name="gender" value="slategray"/> <span style={{backgroundColor: "slategray"}} className="color-box"></span> </div>
-          <div className="color-container"><input onChange={this.handleChange} checked={color === 'peachpuff'} type="radio" name="gender" value="peachpuff"/> <span style={{backgroundColor: "peachpuff"}} className="color-box"></span> </div>
-        </form>
-      </p>
+      <form>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === '#ff5db1'} type="radio" name="gender" value="#ff5db1"/> <span style={{backgroundColor: "#ff5db1"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'beige'} type="radio" name="gender" value="beige"/> <span style={{backgroundColor: "beige"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'black'} type="radio" name="gender" value="black"/> <span style={{backgroundColor: "black"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'burlywood'} type="radio" name="gender" value="burlywood"/> <span style={{backgroundColor: "burlywood"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'tomato'} type="radio" name="gender" value="tomato"/> <span style={{backgroundColor: "tomato"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'tan'} type="radio" name="gender" value="tan"/> <span style={{backgroundColor: "tan"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'slategray'} type="radio" name="gender" value="slategray"/> <span style={{backgroundColor: "slategray"}} className="color-box"></span> </div>
+        <div className="color-container"><input onChange={this.handleChange} checked={color === 'peachpuff'} type="radio" name="gender" value="peachpuff"/> <span style={{backgroundColor: "peachpuff"}} className="color-box"></span> </div>
+      </form>
     );
   }
 }
@@ -66,14 +46,16 @@ const color = cookie.load('color') || 'tomato';
 
 ReactDOM.render(
   <div>
-    <section className="main" style={{backgroundColor: color}}>
+    <section id="home" className="main" style={{backgroundColor: color}}>
       <div id="container-timer">
         <TimerWidget/>
       </div>
     </section>
-    <section className="about">
-      <p className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</p>
-      <ColorPicker/>
+    <section id="about" className="about">
+      <div className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</div>
+      <div className="description">Please select background color:
+        <ColorPicker/>
+      </div>
       <footer>
         <div className="footer-info">
           <p>This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.</p>

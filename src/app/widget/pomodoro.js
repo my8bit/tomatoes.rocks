@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Ink from 'react-ink';
+// import Ink from 'react-ink';
 import moment from 'moment';
 
 // import {RippleButton} from 'react-ripple-effect';
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function notifyMe() {
   if (Notification.permission === "granted") {
-    navigator.serviceWorker.register("sw.js");
+    navigator.serviceWorker.register("static/sw.js");
     navigator.serviceWorker.ready.then(registration => {
       registration.showNotification('Pomodoro done!', {
         vibrate: 200,
@@ -28,6 +28,7 @@ function notifyMe() {
       });
       // registration.onnotificationclick(() => window.open("http://stackoverflow.com/a/13328397/1269037"));
     });
+    /*
     const notification = new Notification('Pomodoro done!', {
       icon: 'static/favicon-196x196.png',
       body: "Congrats! You finished yor pomodoro!"
@@ -35,12 +36,14 @@ function notifyMe() {
     notification.onclick = function () {
       window.open("http://stackoverflow.com/a/13328397/1269037");
     };
+    */
   } else {
     Notification.requestPermission();
   }
 }
 
-const duration25 = 1500000;
+// const duration25 = 1500000;
+const duration25 = 1000;
 const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
@@ -91,11 +94,11 @@ export class TimerWidget extends Component {
       docTitle.textContent = resultTime;
     }
     const animation = this.state.animation;
+    // TODO add           <Ink/>
     return (
       <div id="container">
         <div className={animation} id="countdown">{resultTime}</div>
-        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
-          <Ink/>
+        <button style={{position: "fixed"}} className="button" autoFocus onClick={this.handleClick}>{buttonName}
         </button>
       </div>
     );
