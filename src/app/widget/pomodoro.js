@@ -17,11 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-navigator.serviceWorker.register("static/sw.js");
-
 function notifyMe() {
   if (Notification.permission === "granted") {
-    navigator.serviceWorker.ready.then(registration => {
+/*
+
+navigator.serviceWorker.register("static/sw.js").then((e) => {console.log(e.showNotification("Pomodoro done!", {
+                    vibrate: 200,
+                    icon: "static/favicon-196x196.png",
+                    body: "Congrats! You finished yor pomodoro!"
+                }))})
+*/
+
+    navigator.serviceWorker.register("static/sw.js").ready.then(registration => {
       registration.showNotification('Pomodoro done!', {
         vibrate: 200,
         icon: 'static/favicon-196x196.png',
