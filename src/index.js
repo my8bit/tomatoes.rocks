@@ -6,6 +6,8 @@ import {TimerWidget} from './app/widget/pomodoro';
 // import Offline from 'offline-plugin/runtime';
 import './index.scss';
 // Offline.install();
+import firebase from 'firebase';
+firebase.initializeApp({});
 
 class ColorPicker extends Component {
   constructor(props) {
@@ -55,6 +57,7 @@ ReactDOM.render(
       <div className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</div>
       <div className="description">Please select background color:
         <ColorPicker/>
+        <a className="sign"><img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"/></a>
       </div>
       <footer>
         <div className="footer-info">
