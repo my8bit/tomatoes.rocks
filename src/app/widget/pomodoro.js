@@ -17,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+navigator.serviceWorker.register("static/sw.js");
+
 function notifyMe() {
   if (Notification.permission === "granted") {
-    navigator.serviceWorker.register("static/sw.js");
     navigator.serviceWorker.ready.then(registration => {
       registration.showNotification('Pomodoro done!', {
         vibrate: 200,
@@ -43,7 +44,7 @@ function notifyMe() {
 }
 
 // const duration25 = 1500000;
-const duration25 = 1000;
+const duration25 = 10000;
 const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
