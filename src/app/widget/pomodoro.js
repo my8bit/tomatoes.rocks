@@ -6,7 +6,6 @@ import moment from 'moment';
 import {notifyMe} from '../workers/notification';
 
 const duration25 = 1500000;
-
 const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
@@ -61,7 +60,11 @@ export class TimerWidget extends Component {
     return (
       <div id="container">
         <div className={animation} id="countdown">{resultTime}</div>
+<<<<<<< HEAD
         <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
+=======
+        <button style={{position: "fixed"}} className="button" autoFocus onClick={this.handleClick}>{buttonName}
+>>>>>>> b76c3b6... service worker experiment
         </button>
       </div>
     );
