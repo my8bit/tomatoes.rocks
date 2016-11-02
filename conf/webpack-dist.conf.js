@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const OfflinePlugin = require('offline-plugin');
+// const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   module: {
@@ -55,11 +55,11 @@ module.exports = {
       path: path.join(__dirname, '../node_modules')
     }]),
     new ExtractTextPlugin('/index-[contenthash].css'),
-    new OfflinePlugin({
+    //new OfflinePlugin({
       //ServiceWorker: {
       //  output: 'static'
       //}
-    })
+    //})
   ],
   postcss: () => [autoprefixer],
   output: {
