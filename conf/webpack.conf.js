@@ -1,13 +1,20 @@
 const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
-// const OfflinePlugin = require('offline-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      }
+    ],
     loaders: [
       {
         test: /.json$/,
@@ -25,7 +32,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
           'react-hot',
@@ -41,8 +48,8 @@ module.exports = {
       template: conf.path.src('index.html'),
       inject: true
     }),
-    new webpack.HotModuleReplacementPlugin() // ,
-    // new OfflinePlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new OfflinePlugin()
   ],
   postcss: () => [autoprefixer],
   debug: true,

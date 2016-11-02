@@ -7,6 +7,7 @@
     "react": "^15.0.1",
     "react-cookie": "^0.4.8",
     "react-dom": "^15.0.1",
+    "react-helmet": "^3.1.0",
     "react-ink": "^5.1.1",
     "react-ripple-effect": "^1.0.4",
     "react-ripples": "^0.2.1",
@@ -52,6 +53,7 @@
     "offline-plugin": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.6",
     "postcss-loader": "^0.8.0",
+    "pre-push": "^0.1.1",
     "react-addons-test-utils": "^15.0.1",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.1.2",
@@ -69,8 +71,17 @@
     "start": "gulp serve",
     "test:auto": "gulp test:auto"
   },
+  "pre-push": [
+    "build"
+  ],
   "eslintConfig": {
     "root": true,
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ]
+    },
     "env": {
       "browser": true,
       "jasmine": true

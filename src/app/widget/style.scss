@@ -10,8 +10,8 @@
   width: 100%;
   bottom: 0;
 
-color: rgba(102,51,153, .8);
-    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+  color: rgba(102,51,153, .8);
+  text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
 
 
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffe8+0,d6dbbf+100;Wax+3D+%231 */
@@ -92,8 +92,7 @@ body {
     font-size: 1.5em;
   }
   #container-timer {
-    height: 78vh;
-
+    /*height: 78vh;*/
   }
   #countdown {
     //font-size: 7em;

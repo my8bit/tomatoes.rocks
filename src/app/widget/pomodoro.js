@@ -5,13 +5,13 @@ import moment from 'moment';
 // import Ripples from 'react-ripples';
 import {notifyMe} from '../workers/notification';
 
-const duration25 = 1500000;
+const time = 1500000;
 const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
   constructor() {
     super();
-    this.state = {time: duration25, running: false, buttonName: 'Start'};
+    this.state = {time, running: false, buttonName: 'START'};
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
@@ -23,12 +23,12 @@ export class TimerWidget extends Component {
     }
   }
   reset() {
-    docTitle.textContent = "Tomatoes (pomodoro) work timer";
+    docTitle.textContent = 'Tomatoes (pomodoro) work timer';
     clearInterval(this.interval);
-    this.setState({animation: '', time: duration25, running: false, buttonName: 'Start'});
+    this.setState({animation: '', time, running: false, buttonName: 'START'});
   }
   start() {
-    this.setState({animation: 'animation', running: true, buttonName: 'Reset'});
+    this.setState({animation: 'animation', running: true, buttonName: 'RESET'});
   }
   timer() {
     this.interval = setInterval(this.changeTime.bind(this), 1000);
@@ -45,7 +45,7 @@ export class TimerWidget extends Component {
   render() {
     let {time, buttonName, running} = this.state;
     const duration = moment.duration(time);
-    let durationSec = "";
+    let durationSec = '';
     if (duration.seconds().toString().length < 2) {
       durationSec = `0${duration.seconds()}`;
     } else {
@@ -56,16 +56,11 @@ export class TimerWidget extends Component {
       docTitle.textContent = resultTime;
     }
     const animation = this.state.animation;
-    // TODO add           <Ink/>
+    // TODO add <Ink/>
     return (
       <div id="container">
         <div className={animation} id="countdown">{resultTime}</div>
-<<<<<<< HEAD
-        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}
-=======
-        <button style={{position: "fixed"}} className="button" autoFocus onClick={this.handleClick}>{buttonName}
->>>>>>> b76c3b6... service worker experiment
-        </button>
+        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}</button>
       </div>
     );
   }

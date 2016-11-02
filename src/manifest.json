@@ -1,0 +1,26 @@
+{
+  "name": "Tomatoes (pomodoro) work timer",
+  "icons": [
+    {
+      "src": "static/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "density": 0.75
+    },
+    {
+      "src": "static/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": 1.0
+    },
+    {
+      "src": "static/favicon-196x196.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "density": 2.0
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
