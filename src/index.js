@@ -1,15 +1,14 @@
 import Offline from 'offline-plugin/runtime';
 Offline.install();
-// TODO https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
-// TODO https://developer.chrome.com/multidevice/android/installtohomescreen
-// TODO https://mobiforge.com/design-development/taking-web-offline-service-workers
+// TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
+// TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
+// TODO: https://mobiforge.com/design-development/taking-web-offline-service-workers
 
-// import Helmet from 'react-helmet';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import cookie from 'react-cookie';
 import {Home} from './app/layout/home';
 import {ColorPicker} from './app/widget/color-picker';
+import {colors} from './config';
 
 import './index.scss';
 // import firebase from 'firebase';
@@ -18,7 +17,7 @@ import './index.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    const color = cookie.load('color') || 'tomato';
+    const color = localStorage.getItem('color') || colors[0]; // TODO: check if there are localstorage
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       color
@@ -29,7 +28,7 @@ class App extends Component {
     this.setState({
       color
     });
-    cookie.save('color', color);
+    localStorage.setItem('color', color);
   }
   render() {
     const {color} = this.state;
@@ -44,7 +43,6 @@ class App extends Component {
           <footer>
             <div className="footer-info">
               <p>This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.</p>
-              <p>This website uses cookies to ensure you get the best experience on our website.</p>
             </div>
           </footer>
         </section>

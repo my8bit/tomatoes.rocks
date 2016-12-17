@@ -1,41 +1,47 @@
 import React, {Component} from 'react';
-// import Ink from 'react-ink';
+import Helmet from 'react-helmet';
 import moment from 'moment';
+import 'moment-duration-format';
+import {notifyMe} from '../workers/notification';
+import {timerOptions, textContent} from '../../config';
 // import {RippleButton} from 'react-ripple-effect';
 // import Ripples from 'react-ripples';
-import {notifyMe} from '../workers/notification';
+// import Ink from 'react-ink';
 
-const time = 1500000;
-const docTitle = document.getElementsByTagName('title')[0];
+const {time, buttonStatus, timerInterval} = timerOptions;
+const {START, STOP} = buttonStatus;
+// const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
   constructor() {
     super();
-    this.state = {time, running: false, buttonName: 'START'};
+    this.state = Object.assign({}, timerOptions, {buttonName: buttonStatus.START});
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    if (this.state.running) {
+    const {running} = this.state;
+    if (running) {
       this.reset();
     } else {
-      this.interval = setInterval(this.changeTime.bind(this), 1000);
+      this.interval = setInterval(this.changeTime.bind(this), timerInterval);
       this.start();
     }
   }
   reset() {
-    docTitle.textContent = 'Tomatoes (pomodoro) work timer';
+    // docTitle.textContent = textContent;
     clearInterval(this.interval);
-    this.setState({animation: '', time, running: false, buttonName: 'START'});
+    this.setState({animation: false, time, running: false, buttonName: START});
   }
   start() {
-    this.setState({animation: 'animation', running: true, buttonName: 'RESET'});
+    this.setState({animation: true, running: true, buttonName: STOP});
   }
   timer() {
-    this.interval = setInterval(this.changeTime.bind(this), 1000);
+    this.interval = setInterval(this.changeTime.bind(this), timerInterval);
   }
   changeTime() {
-    const time = this.state.time - 1000;
-    if (time === 0) {
+    let {time} = this.state;
+    time -= timerInterval;
+    if (time <= 0) {
       notifyMe();
       this.reset();
     } else {
@@ -43,24 +49,17 @@ export class TimerWidget extends Component {
     }
   }
   render() {
-    let {time, buttonName, running} = this.state;
-    const duration = moment.duration(time);
-    let durationSec = '';
-    if (duration.seconds().toString().length < 2) {
-      durationSec = `0${duration.seconds()}`;
-    } else {
-      durationSec = duration.seconds();
-    }
-    const resultTime = `${duration.minutes()}:${durationSec}`;
-    if (running) {
-      docTitle.textContent = resultTime;
-    }
-    const animation = this.state.animation;
-    // TODO add <Ink/>
+    const {time, animation, buttonName, running} = this.state;
+    const resultTime = moment.duration(time, 'ms').format('mm:ss');
+    // if (running) {
+      // docTitle.textContent = resultTime;
+    // }
+    // <Ink/>
     return (
       <div id="container">
-        <div className={animation} id="countdown">{resultTime}</div>
-        <button className="button" autoFocus onClick={this.handleClick}>{buttonName}</button>
+        <Helmet title={running ? resultTime : textContent}/>
+        <div className={animation ? 'animation' : ''} id="countdown">{resultTime}</div>
+        <button className="button" autoFocus onClick={this.handleClick}>{buttonName.toUpperCase()}</button>
       </div>
     );
   }

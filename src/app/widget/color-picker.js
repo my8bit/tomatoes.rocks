@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {colors} from '../../config';
 
 export class ColorPicker extends Component {
   constructor(props) {
@@ -13,28 +14,20 @@ export class ColorPicker extends Component {
   }
   render() {
     const {color} = this.state;
-    const colorRadioOptions = [
-      'beige',
-      'black',
-      'burlywood',
-      'tomato',
-      'tan',
-      'lightblue',
-      'lightgreen'
-    ].map((currentColor, idx) => {
+    const options = colors.map((currentColor, idx) => {
       return (
         <div key={idx} className="color-container">
           <input
             onChange={this.handleChange}
             checked={color === currentColor}
             type="radio"
-            name="gender"
+            name="color"
             value={currentColor}
             />
           <span style={{backgroundColor: currentColor}} className="color-box"></span>
         </div>
       );
     });
-    return <form>{colorRadioOptions}</form>;
+    return <form>{options}</form>;
   }
 }
