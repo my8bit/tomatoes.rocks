@@ -3,6 +3,7 @@
     "authlify-js": "^0.5.2",
     "firebase": "^3.5.2",
     "moment": "^2.15.1",
+    "moment-duration-format": "^1.3.0",
     "paper-ripple": "^0.2.0",
     "react": "^15.0.1",
     "react-cookie": "^0.4.8",
