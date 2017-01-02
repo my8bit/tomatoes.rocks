@@ -10,9 +10,11 @@
     "react-dom": "^15.0.1",
     "react-helmet": "^3.1.0",
     "react-ink": "^5.1.1",
+    "react-redux": "^5.0.1",
     "react-ripple-effect": "^1.0.4",
     "react-ripples": "^0.2.1",
-    "react-router": "^2.4.0"
+    "react-router": "^2.4.0",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.2",

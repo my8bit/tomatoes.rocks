@@ -61,6 +61,6 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
-    `./${conf.path.src('index')}`
+    `./${conf.path.src('index.jsx')}`
   ]
 };

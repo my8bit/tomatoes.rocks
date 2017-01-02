@@ -12,7 +12,7 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint'
       }
@@ -29,7 +29,7 @@ module.exports = {
         loaders: ExtractTextPlugin.extract('style', 'css?minimize!sass', 'postcss')
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
           'babel'
@@ -54,20 +54,20 @@ module.exports = {
       name: 'vendor',
       path: path.join(__dirname, '../node_modules')
     }]),
-    new ExtractTextPlugin('/index-[contenthash].css'),
-    //new OfflinePlugin({
-      //ServiceWorker: {
-      //  output: 'static'
-      //}
-    //})
+    new ExtractTextPlugin('/index-[contenthash].css') // ,
+    // new OfflinePlugin({
+      // ServiceWorker: {
+      //   output: 'static'
+      // }
+    // })
   ],
   postcss: () => [autoprefixer],
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
-    //filename: '[name].js'
+    // filename: '[name].js'
     filename: '[name]-[hash].js'
   },
   entry: {
-    app: `./${conf.path.src('index')}`
+    app: `./${conf.path.src('index.jsx')}`
   }
 };

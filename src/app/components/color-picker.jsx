@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 import {colors} from '../../config';
+import {connect} from 'react-redux';
 
 export class ColorPicker extends Component {
   constructor(props) {
     super(props);
-    const {color} = props;
+    this.props = props;
     this.handleChange = this.handleChange.bind(this);
-    this.state = {color};
   }
+
   handleChange(event) {
-    const color = event.target.value;
-    this.setState({color});
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'CHANGE_BACKGROUND',
+      color: event.target.value
+    })
   }
+
   render() {
-    const {color} = this.state;
+    const {color} = this.props;
     const options = colors.map((currentColor, idx) => {
       return (
         <div key={idx} className="color-container">
@@ -31,3 +36,10 @@ export class ColorPicker extends Component {
     return <form>{options}</form>;
   }
 }
+
+const mapStateToProps = store => {
+  const {color} = store.representationReducer;
+  return {color};
+};
+
+export const ColorPickerCmp = connect(mapStateToProps)(ColorPicker);

@@ -10,7 +10,6 @@ import {timerOptions, textContent} from '../../config';
 
 const {time, buttonStatus, timerInterval} = timerOptions;
 const {START, STOP} = buttonStatus;
-// const docTitle = document.getElementsByTagName('title')[0];
 
 export class TimerWidget extends Component {
   constructor() {
@@ -28,7 +27,6 @@ export class TimerWidget extends Component {
     }
   }
   reset() {
-    // docTitle.textContent = textContent;
     clearInterval(this.interval);
     this.setState({animation: false, time, running: false, buttonName: START});
   }

@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {TimerWidget} from '../widget/pomodoro';
+import {TimerWidget} from '../components/pomodoro.jsx';
+import {connect} from 'react-redux';
 
 export class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
   render() {
     const {color} = this.props;
     return (
@@ -20,3 +16,10 @@ export class Home extends Component {
 }
 
 Home.propTypes = {color: React.PropTypes.string.isRequired};
+
+const mapStateToProps = store => {
+  const {color} = store.representationReducer;
+  return {color};
+};
+
+export const HomeCmp = connect(mapStateToProps)(Home);
