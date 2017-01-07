@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TimerWidget} from '../components/pomodoro.jsx';
+import {Timer} from '../components/pomodoro.jsx';
 import {connect} from 'react-redux';
 
 export class Home extends Component {
@@ -8,7 +8,7 @@ export class Home extends Component {
     return (
       <section id="home" className="main" style={{backgroundColor: color}}>
         <div id="container-timer">
-          <TimerWidget/>
+          <Timer/>
         </div>
       </section>
     );

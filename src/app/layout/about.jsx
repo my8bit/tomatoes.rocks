@@ -3,7 +3,7 @@ import {ColorPickerCmp} from '../components/color-picker.jsx';
 
 export class AboutCmp extends Component {
   render() {
-    return  (
+    return (
       <section id="about" className="about">
         <div className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</div>
         <div className="description">Please select background color:

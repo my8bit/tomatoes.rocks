@@ -1,12 +1,13 @@
 {
   "timerOptions": {
     "time": 1500000,
-    "timerInterval": 1000,
+    "interval": 1000,
     "running": false,
     "buttonStatus": {
       "START": "start",
       "STOP": "stop"
-    }
+    },
+    "animation": false
   },
   "notification": {
     "options": {

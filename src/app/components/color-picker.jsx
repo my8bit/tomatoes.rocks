@@ -14,7 +14,7 @@ export class ColorPicker extends Component {
     dispatch({
       type: 'CHANGE_BACKGROUND',
       color: event.target.value
-    })
+    });
   }
 
   render() {
@@ -23,19 +23,25 @@ export class ColorPicker extends Component {
       return (
         <div key={idx} className="color-container">
           <input
+            className="input-color"
             onChange={this.handleChange}
             checked={color === currentColor}
             type="radio"
             name="color"
+            style={{backgroundColor: currentColor}}
             value={currentColor}
             />
-          <span style={{backgroundColor: currentColor}} className="color-box"></span>
         </div>
       );
     });
-    return <form>{options}</form>;
+    return <form className="picker-form">{options}</form>;
   }
 }
+
+ColorPicker.propTypes = {
+  color: React.PropTypes.string.isRequired,
+  dispatch: React.PropTypes.func.isRequired
+};
 
 const mapStateToProps = store => {
   const {color} = store.representationReducer;

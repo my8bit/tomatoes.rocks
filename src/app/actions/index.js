@@ -3,3 +3,9 @@ export const increaseTime = () => {
     type: 'INCREASE'
   };
 };
+
+export const getMoviesAction = () => dispatch => {
+  dispatch({
+    type: 'SET_POSTER'
+  });
+};
