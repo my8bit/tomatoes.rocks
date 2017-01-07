@@ -56,12 +56,19 @@ class TimerWidget extends Component {
   }
 
   render() {
-    const {startTime} = this.props;
+    const {startTime, color} = this.props;
     const currentTime = this.formatDate();
     // <Ink/>
     return (
       <div id="container">
-        <Helmet title={startTime ? currentTime : textContent}/>
+        <Helmet
+          title={startTime ? currentTime : textContent}
+          meta={[
+            {name: 'theme-color', content: color},
+            {name: 'msapplication-navbutton-color', content: color},
+            {name: 'apple-mobile-web-app-status-bar-style', content: color}
+          ]}
+          />
         <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
         <button
           autoFocus
@@ -80,12 +87,14 @@ TimerWidget.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   interval: React.PropTypes.number.isRequired,
   time: React.PropTypes.number.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  dispatch: React.PropTypes.func.isRequired,
+  color: React.PropTypes.string.isRequired
 };
 
 const mapStateToProps = store => {
   const {time, startTime, interval} = store.timerReducer;
-  return {time, startTime, interval};
+  const {color} = store.representationReducer;
+  return {time, startTime, interval, color};
 };
 
 export const Timer = connect(mapStateToProps)(TimerWidget);
