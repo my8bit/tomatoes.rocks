@@ -1,17 +1,21 @@
 .button {
-  background-color: #DBE3FF;
+  background-color: initial;
   // background-color: rgb(255, 171, 64);
   border: none;
-  padding: 1em;
-  font-size: 3em;
+  cursor: pointer;
+  outline: none;
+  //padding: 1em;
+  /*height: 25vh;*/
+  font-size: 8vh;
   font-weight: 700;
-  position: absolute;
+  /*position: absolute;
   left: 0;
-  width: 100%;
   bottom: 0;
-
-  color: rgba(102,51,153, .8);
-  text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+  width: 100%;
+  */
+  //color: rgba(102,51,153, .8);
+  color: white;
+  //text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
 
 
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffe8+0,d6dbbf+100;Wax+3D+%231 */
@@ -52,14 +56,17 @@ body {
 
 #countdown {
   //letter-spacing: 0.04em;
-  position:relative;
-  top: 0;
+  //position:relative;
+  //top: 0;
   // color: #DBE3FF;
   //font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: white;
-  text-align: center;
+  margin-top: 20vh;
+  margin-bottom: 27vh;
+  //text-align: center;
   font-size: 25vh;
+  /*height: 75vh;*/
   /*
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
@@ -80,7 +87,14 @@ body {
   -webkit-animation: fade-in 1s infinite;
 }
 
-#container-timer {
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
   height: 70vh;
   display: flex;
   justify-content: center;
@@ -91,12 +105,14 @@ body {
 @media all and (orientation:landscape) {
   /* Styles for Landscape screen */
   .button {
-    font-size: 1.5em;
+    //font-size: 2em;
   }
-  #container-timer {
+  #container {
     /*height: 78vh;*/
   }
   #countdown {
+    font-size: 32vh;
+    margin-bottom: 14vh;
     //font-size: 7em;
   }
 }

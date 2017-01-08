@@ -7,9 +7,18 @@ export class Home extends Component {
     const {color} = this.props;
     return (
       <section id="home" className="main" style={{backgroundColor: color}}>
-        <div id="container-timer">
-          <Timer/>
-        </div>
+        {/*
+        <button
+          onClick={
+            function () {
+              document.getElementById('app').webkitRequestFullScreen();
+            }
+          }
+          >
+          FullScreen
+        </button>
+        */}
+        <Timer/>
       </section>
     );
   }

@@ -1,6 +1,6 @@
 import {colors, timerOptions} from '../../config';
 
-const {time, interval} = timerOptions;
+const {time} = timerOptions;
 const savedColor = localStorage.getItem('color') || colors[0]; // TODO: check if there are localstorage
 
 const getColor = color => {
@@ -19,7 +19,7 @@ export const representationReducer = (state = {color: savedColor}, action) => {
 
 const startTime = 0;
 
-export const timerReducer = (state = {time, startTime, interval}, action) => {
+export const timerReducer = (state = {time, startTime}, action) => {
   switch (action.type) {
     case 'STOP':
       return Object.assign({}, state, {

@@ -7,4 +7,5 @@ const reducers = combineReducers({
   timerReducer
 });
 
+// export const store = createStore(reducers, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 export const store = createStore(reducers, applyMiddleware(thunk));
