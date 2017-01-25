@@ -1,6 +1,12 @@
 {
-  "name": "Tomatoes (pomodoro) work timer",
+  "name": "Tomatoes.Work aka Pomodoro timer",
+  "short_name": "Tomatoes.Work",
   "icons": [
+    {
+      "src": "static/mstile-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
     {
       "src": "static/favicon-32x32.png",
       "sizes": "32x32",
@@ -20,7 +26,14 @@
       "density": 2.0
     }
   ],
-  "start_url": "index.html",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.tatkovlab.pomodoro"
+    }
+  ],
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "any"
 }
