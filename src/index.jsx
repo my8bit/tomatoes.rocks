@@ -11,7 +11,7 @@ import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
 
 import {HomeCmp} from './app/layout/home.jsx';
-import {AboutCmp} from './app/layout/about.jsx';
+// import {AboutCmp} from './app/layout/about.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import {formatDate} from './app/libs/timer';
@@ -40,7 +40,7 @@ class Main extends Component {
           ]}
           />
         <HomeCmp/>
-        <AboutCmp/>
+        {/* <AboutCmp/> */}
       </main>
     );
   }

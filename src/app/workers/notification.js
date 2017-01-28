@@ -16,8 +16,8 @@ export const notifyMe = () => {
         registration.showNotification(title, options);
       });
     } else {
-      const notification = new Notification(title, options);
-      notification.addEventListener('click', () => {
+      const browserNotification = new Notification(title, options);
+      browserNotification.addEventListener('click', () => {
         console.log('this is actually clicked');
       });
     }

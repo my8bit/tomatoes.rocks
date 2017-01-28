@@ -5,7 +5,7 @@ import {timerOptions} from '../../config';
 import {getTimer, formatDate} from '../libs/timer';
 // import {RippleButton} from 'react-ripple-effect';
 // import Ripples from 'react-ripples';
-// import Ink from 'react-ink';
+import Ink from 'react-ink';
 
 const {buttonStatus, animation, interval} = timerOptions;
 const {START, STOP} = buttonStatus;
@@ -18,7 +18,7 @@ class TimerWidget extends Component {
 
   handleClick() {
     const {dispatch, startTime} = this.props;
-    const type = startTime ? 'STOP' : 'START';
+    const type = startTime ? 'RESET' : 'START';
     dispatch({
       type,
       startTime: startTime ? 0 : (new Date()).getTime()
@@ -29,9 +29,9 @@ class TimerWidget extends Component {
     this.interval = setInterval(this.forceUpdate.bind(this), interval || 1000);
   }
 
-  componentWillUpdate() {
+  componentWillUpdate(state) {
     const {dispatch, time, startTime} = this.props;
-    if (getTimer(time, startTime) < 0) {
+    if (getTimer(time, startTime) < 0 && state.startTime !== 0) {
       dispatch({
         type: 'STOP'
       });
@@ -52,10 +52,12 @@ class TimerWidget extends Component {
         <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
         <button
           autoFocus
+          style={{position: 'relative'}}
           className="button"
           onClick={this.handleClick}
           >
           {(startTime ? STOP : START).toUpperCase()}
+          <Ink/>
         </button>
       </div>
     );
