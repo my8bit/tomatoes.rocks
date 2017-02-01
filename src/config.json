@@ -9,6 +9,7 @@
     },
     "animation": false
   },
+  "background_color": "#ff6347",
   "notification": {
     "options": {
       "vibrate": 200,
