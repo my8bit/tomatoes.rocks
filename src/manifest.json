@@ -33,6 +33,7 @@
       "id": "com.tatkovlab.pomodoro"
     }
   ],
+  "background_color": "#ff6347",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "any"
