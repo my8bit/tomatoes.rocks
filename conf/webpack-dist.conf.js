@@ -7,6 +7,7 @@ const SplitByPathPlugin = require('webpack-split-by-path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const OfflinePlugin = require('offline-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   module: {
@@ -40,6 +41,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
+    new CopyWebpackPlugin([{from: path.resolve(__dirname, './src/_redirects'), to: '_redirects'}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: true
