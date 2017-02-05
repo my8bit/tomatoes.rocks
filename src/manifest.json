@@ -1,5 +1,5 @@
 {
-  "name": "Tomatoes.Work aka Pomodoro timer",
+  "name": "Tomatoes.Work",
   "short_name": "Tomatoes.Work",
   "icons": [
     {
@@ -26,15 +26,8 @@
       "density": 2.0
     }
   ],
-  "prefer_related_applications": true,
-  "related_applications": [
-    {
-      "platform": "play",
-      "id": "com.tatkovlab.pomodoro"
-    }
-  ],
   "background_color": "#ff6347",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "any"
 }
