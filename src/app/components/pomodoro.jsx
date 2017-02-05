@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {notifyMe} from '../workers/notification';
 import {timerOptions} from '../../config';
 import {getTimer, formatDate} from '../libs/timer';
-// import {RippleButton} from 'react-ripple-effect';
-// import Ripples from 'react-ripples';
 import Ink from 'react-ink';
 
 const {buttonStatus, animation, interval} = timerOptions;
@@ -63,8 +61,7 @@ class TimerWidget extends Component {
     );
   }
 }
-// <button autoFocus onClick={this.handleClick}>{buttonName}</button>
-// <RippleButton onClick={this.handleClick} className="button">{buttonName}</RippleButton>
+
 TimerWidget.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   time: React.PropTypes.number.isRequired,

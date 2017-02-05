@@ -17,8 +17,11 @@ export const representationReducer = (state = {color: savedColor}, action) => {
   }
 };
 
-export const timerReducer = (state = {time, startTime: 0, isBreak: false}, action) => {
-  console.log('state.isBreak', state.isBreak, 'action.type', action.type);
+export const timerReducer = (state = {
+  time,
+  startTime: parseInt(localStorage.getItem('startTime'), 10) || 0,
+  isBreak: false
+}, action) => {
   switch (action.type) {
     case 'STOP':
       return Object.assign({}, state, {
@@ -33,6 +36,7 @@ export const timerReducer = (state = {time, startTime: 0, isBreak: false}, actio
         isBreak: false
       });
     case 'START':
+      localStorage.setItem('startTime', action.startTime);
       return Object.assign({}, state, {
         startTime: action.startTime
       });
