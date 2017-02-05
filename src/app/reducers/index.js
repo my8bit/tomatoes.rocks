@@ -24,12 +24,14 @@ export const timerReducer = (state = {
 }, action) => {
   switch (action.type) {
     case 'STOP':
+      localStorage.setItem('startTime', 0);
       return Object.assign({}, state, {
         startTime: 0,
         time: state.isBreak ? breakTime : time,
         isBreak: !state.isBreak
       });
     case 'RESET':
+      localStorage.setItem('startTime', 0);
       return Object.assign({}, state, {
         startTime: 0,
         time,

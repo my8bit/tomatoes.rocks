@@ -1,6 +1,6 @@
 import {notification} from '../../config';
 const serviceWorker = window.navigator.serviceWorker;
-const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
+const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js').then((a, b, c) => console.log(a, b, c));
 
 if (Notification) {
   Notification.requestPermission();

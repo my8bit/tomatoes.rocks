@@ -13,6 +13,9 @@ class TimerWidget extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.update = this.forceUpdate.bind(this);
+    navigator.serviceWorker.addEventListener('message', event => {
+      console.log(event, 'THIS LOG FROM CLIENT');
+    });
   }
 
   componentDidMount() {

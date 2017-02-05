@@ -1,7 +1,7 @@
 {
   "timerOptions": {
-    "time": 1500000,
-    "breakTime": 250000,
+    "time": 15000,
+    "breakTime": 2500,
     "interval": 1000,
     "running": false,
     "buttonStatus": {
@@ -12,6 +12,10 @@
   },
   "notification": {
     "options": {
+      "actions": [
+        {"action": "breakTime", "title": "Make a break"},
+        {"action": "cancel", "title": "Cancel"}
+      ],
       "vibrate": 200,
       "icon": "static/favicon-196x196.png",
       "body": "Congrats! You finished yor pomodoro!"
