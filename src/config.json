@@ -1,7 +1,7 @@
 {
   "timerOptions": {
-    "time": 15000,
-    "breakTime": 2500,
+    "time": 1500000,
+    "breakTime": 250000,
     "interval": 1000,
     "running": false,
     "buttonStatus": {
