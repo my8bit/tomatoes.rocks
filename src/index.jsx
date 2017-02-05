@@ -15,7 +15,7 @@ import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
-import {formatDate} from './app/libs/timer';
+import {formatDate, addToInterval, removeFromInterval} from './app/libs/timer';
 import './index.scss';
 // import firebase from 'firebase';
 // firebase.initializeApp({});
@@ -34,11 +34,22 @@ class SidebarList extends Component {
 const appContainer = document.getElementById('app');
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.update = this.forceUpdate.bind(this);
+  }
+
+  componentDidMount() {
+    addToInterval(this.update);
+  }
+
+  componentWillUnmount() {
+    removeFromInterval(this.update);
+  }
+
   render() {
     const {color, time, startTime, children} = this.props;
     const currentTime = formatDate(time, startTime);
-
-    // TODO: move interval to libs timer to be able to add interval functions callbacks into queue
     return (
       <main>
         <Helmet

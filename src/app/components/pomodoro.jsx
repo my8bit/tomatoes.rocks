@@ -2,16 +2,25 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {notifyMe} from '../workers/notification';
 import {timerOptions} from '../../config';
-import {getTimer, formatDate} from '../libs/timer';
+import {getTimer, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
 import Ink from 'react-ink';
 
-const {buttonStatus, animation, interval} = timerOptions;
+const {buttonStatus, animation} = timerOptions;
 const {START, STOP} = buttonStatus;
 
 class TimerWidget extends Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
+    this.update = this.forceUpdate.bind(this);
+  }
+
+  componentDidMount() {
+    addToInterval(this.update);
+  }
+
+  componentWillUnmount() {
+    removeFromInterval(this.update);
   }
 
   handleClick() {
@@ -23,10 +32,6 @@ class TimerWidget extends Component {
     });
   }
 
-  componentDidMount() {
-    this.interval = setInterval(this.forceUpdate.bind(this), interval || 1000);
-  }
-
   componentWillUpdate(state) {
     const {dispatch, time, startTime} = this.props;
     if (getTimer(time, startTime) < 0 && state.startTime !== 0) {
@@ -35,10 +40,6 @@ class TimerWidget extends Component {
       });
       notifyMe();
     }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   render() {
