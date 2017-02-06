@@ -82,8 +82,7 @@ class Main extends Component {
             {name: 'msapplication-TileColor', content: color},
             {name: 'theme-color', content: color},
             {name: 'msapplication-navbutton-color', content: color},
-            {name: 'apple-mobile-web-app-status-bar-style', content: color},
-            {name: 'trustpilot-one-time-domain-verification-id', content: 'FqfCL087ruKHOACfas9scNprYDZwrATjGCzp2f9r'}
+            {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
         <SidebarList/>
