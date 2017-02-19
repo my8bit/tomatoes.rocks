@@ -28,6 +28,6 @@
   ],
   "background_color": "#ff6347",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "any"
 }
