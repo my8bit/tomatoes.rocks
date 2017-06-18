@@ -1,6 +1,6 @@
 import moment from 'moment';
 import 'moment-duration-format';
-import {timerOptions} from '../../config';
+import {timerOptions} from 'config';
 
 const {interval} = timerOptions;
 
@@ -9,7 +9,7 @@ export const getTimer = (time, startTime) => {
 };
 
 export const formatDate = (time, startTime) => {
-  return moment.duration(getTimer(time, startTime), 'ms').format('mm:ss');
+  return moment.duration(getTimer(time, startTime), 'ms').format('mm:ss', {trim: false});
 };
 
 let fnArray = [];

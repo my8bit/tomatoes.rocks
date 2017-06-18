@@ -1,4 +1,5 @@
-import {notification} from '../../config';
+import {notification} from 'config';
+
 const serviceWorker = window.navigator.serviceWorker;
 const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
 
@@ -14,6 +15,7 @@ export const notifyMe = () => {
     if (registerPromise) {
       registerPromise.then(registration => {
         registration.showNotification(title, options);
+        serviceWorkerRequest(registration, 'h1');
       });
     } else {
       const browserNotification = new Notification(title, options);
@@ -24,3 +26,21 @@ export const notifyMe = () => {
   }
 };
 
+function serviceWorkerRequest(wrkr, message) {
+  if ('serviceWorker' in navigator) {
+    if (!wrkr) {
+      return Promise.reject('No service worker controller.');
+    }
+    return new Promise((resolve, reject) => {
+      const messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = event => {
+        if (event.data.error) {
+          reject(event.data.error);
+        } else {
+          resolve(event.data);
+        }
+      };
+      wrkr.active.postMessage(message, [messageChannel.port2]);
+    });
+  }
+}

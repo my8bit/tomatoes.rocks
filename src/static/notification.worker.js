@@ -1,8 +1,9 @@
 /* global clients */
+
 const messageToAll = msg => {
   self.clients.matchAll().then(allClients => {
     allClients.forEach(client => {
-      messageToClient(client, msg).then(m => console.log("SW Received Message: "+m));
+      messageToClient(client, msg).then(m => console.log(`SW Received Message: ${m}`));
     });
   });
 };
@@ -22,24 +23,41 @@ function messageToClient(client, msg) {
   });
 }
 
-self.onnotificationclick = event => {
-  // TODO window is not defined
-  // window.open('http://www.mozilla.org', '_blank');
-  console.log('On notification click: ', event.action, clients);
-  messageToAll(event.action);
+const sendMessageToClient = (client, msg) => {
+  return new Promise((resolve, reject) => {
+    const msgChan = new MessageChannel();
+
+    msgChan.port1.onmessage = event => {
+      if (event.data.error) {
+        reject(event.data.error);
+      } else {
+        resolve(event.data);
+      }
+    };
+
+    client.postMessage(`SW Says: ${msg}`, [msgChan.port2]);
+  });
 };
 
-/*
-
-self.addEventListener('notificationclick', event => {
-  console.log('On notification click: ', event);
-  switch (event.action) {
-    case 'breakTime':
-      console.log('breakTime');
-      break;
-    default:
-      return;
-  }
+self.addEventListener("message", function(event) {
+  // event.source.postMessage("Responding to " + event.data);
+  self.clients.matchAll().then(all => all.forEach(client => {
+    client.postMessage("Responding to " + event.data);
+  }));
 });
 
- */
+self.onnotificationclick = event => {
+  // TODO window is not defined
+  console.log('On notification click: ', event.action, clients);
+  console.log(clients, event);
+  self.clients.matchAll().then(all => all.forEach(client => {
+    client.postMessage(`Responding to ${event.data}`);
+  }));
+};
+
+self.addEventListener('message', event => {
+  const sender = (event.ports && event.ports[0]) || event.source;
+  sender.postMessage('Here are your queued notifications!');
+  s = sender;
+});
+

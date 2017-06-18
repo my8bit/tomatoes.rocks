@@ -4,6 +4,7 @@ import {notifyMe} from '../workers/notification';
 import {timerOptions} from '../../config';
 import {getTimer, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
 import Ink from 'react-ink';
+import Swipe from 'react-easy-swipe';
 
 const {buttonStatus, animation} = timerOptions;
 const {START, STOP} = buttonStatus;
@@ -13,9 +14,6 @@ class TimerWidget extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.update = this.forceUpdate.bind(this);
-    navigator.serviceWorker.addEventListener('message', event => {
-      console.log(event, 'THIS LOG FROM CLIENT');
-    });
   }
 
   componentDidMount() {
@@ -45,23 +43,57 @@ class TimerWidget extends Component {
     }
   }
 
+  handleOnSwipeRight() {
+    // TODO: refactor
+    document.getElementById('nav-trigger').checked = true;
+  }
+
+  handleOnSwipeLeft() {
+    // TODO: refactor
+    document.getElementById('nav-trigger').checked = false;
+  }
+
+  handleOnSwipeEnd() {
+    // console.log(document.getElementById('home').offsetLeft);
+    // if (document.getElementById('home').offsetLeft > 100) {
+    //   document.getElementById('home').style.left = '200px';
+    // } else {
+    //   document.getElementById('home').style.left = '0px';
+    // }
+  }
+
+  handleOnSwipeMove() {
+    // const position = Math.round(e.x);
+    // const currentLeft = document.getElementById('home').offsetLeft;
+    // console.log(e);
+    // if (currentLeft + position < 200 && currentLeft + position > 0) {
+    //   document.getElementById('home').style.left = `${currentLeft + position}px`;
+    // }
+  }
+
   render() {
     const {startTime, time} = this.props;
     const currentTime = formatDate(time, startTime);
-    // <Ink/>
     return (
-      <div className="container">
-        <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
-        <button
-          autoFocus
-          style={{position: 'relative'}}
-          className="button"
-          onClick={this.handleClick}
-          >
-          {(startTime ? STOP : START).toUpperCase()}
-          <Ink/>
-        </button>
-      </div>
+      <Swipe
+        onSwipeRight={this.handleOnSwipeRight}
+        onSwipeLeft={this.handleOnSwipeLeft}
+        onSwipeMove={this.handleOnSwipeMove}
+        onSwipeEnd={this.handleOnSwipeEnd}
+        >
+        <div className="container">
+          <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
+          <button
+            autoFocus
+            style={{position: 'relative'}}
+            className="button"
+            onClick={this.handleClick}
+            >
+            {(startTime ? STOP : START).toUpperCase()}
+            <Ink/>
+          </button>
+        </div>
+      </Swipe>
     );
   }
 }

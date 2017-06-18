@@ -1,7 +1,7 @@
 {
   "timerOptions": {
-    "time": 1500000,
-    "breakTime": 250000,
+    "time": 15000,
+    "breakTime": 2500,
     "interval": 1000,
     "running": false,
     "buttonStatus": {
@@ -10,7 +10,6 @@
     },
     "animation": false
   },
-  "fullScreen": false,
   "notification": {
     "options": {
       "actions": [
@@ -32,7 +31,7 @@
   "textContent": "Tomatoes (pomodoro) work timer",
   "colors": [
       "#ff6347",
-      "#333131",
+      "#000000",
       "#90ee90"
     ]
 }

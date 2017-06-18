@@ -1,14 +1,31 @@
 import React, {Component} from 'react';
 import {ColorPickerCmp} from '../components/color-picker.jsx';
+import {fullScreen} from '../../config.json';
 
 export class AboutCmp extends Component {
   render() {
+    const wPac = window.wPac || [];
+    wPac.push({widget: 'Rating', id: 3784});
     return (
       <section id="about" className="about site-wrap">
         <div className="menu-background"></div>
         <div className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</div>
-        <div className="description">Please select background color:
+        <div className="description">
+          <h4>Please select background color:</h4>
           <ColorPickerCmp/>
+        </div>
+        <div className="description">
+          {fullScreen && <button
+            onClick={function () {
+              document.getElementById('app').webkitRequestFullScreen();
+            }}
+            >
+            FullScreen
+          </button>}
+        </div>
+        <div className="description">
+          <h4>Rate us!</h4>
+          <div id="wpac-rating"></div>
         </div>
         <footer>
           <div className="footer-info">

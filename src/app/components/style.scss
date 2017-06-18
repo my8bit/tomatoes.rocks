@@ -1,47 +1,15 @@
+$counter-size: 9em;
+$button-size: $counter-size / 4;
+
 .button {
   background-color: initial;
-  // background-color: rgb(255, 171, 64);
   border: none;
   cursor: pointer;
   padding: .5em 1em .5em 1em;
   outline: none;
-  //padding: 1em;
-  /*height: 25vh;*/
-  font-size: 8vh;
+  font-size: $button-size;
   font-weight: 700;
-  /*position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  */
-  //color: rgba(102,51,153, .8);
   color: white;
-  //text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
-
-
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffe8+0,d6dbbf+100;Wax+3D+%231 */
-  //background: rgb(254,255,232); /* Old browsers */
-  //background: -moz-linear-gradient(top,  rgba(254,255,232,1) 0%, rgba(214,219,191,1) 100%); /* FF3.6-15 */
-  //background: -webkit-linear-gradient(top,  rgba(254,255,232,1) 0%,rgba(214,219,191,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  //background: linear-gradient(to bottom,  rgba(254,255,232,1) 0%,rgba(214,219,191,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
-
-
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
-  //background: rgb(255,255,255); /* Old browsers */
-  //background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
-  //background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  //background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
-
-}
-
-html, body {
-  height: 100%;
-}
-body {
-  margin: 0;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5db1+0,ef017c+100;Pink+3D+%231 */
 }
 
 @-webkit-keyframes fade-in {
@@ -56,18 +24,11 @@ body {
 }
 
 #countdown {
-  letter-spacing: 3pt;
-  //position:relative;
-  //top: 0;
-  // color: #DBE3FF;
-  //font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: white;
-  margin-top: 20vh;
-  margin-bottom: 27vh;
-  //text-align: center;
-  font-size: 25vh;
-  /*height: 75vh;*/
+  //margin-top: 20vh;
+  //margin-bottom: 20vh;
+  font-size: $counter-size;
   /*
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
@@ -84,63 +45,30 @@ body {
                */
 }
 
-.animation {
-  -webkit-animation: fade-in 1s infinite;
-}
+// .animation {
+//   -webkit-animation: fade-in 1s infinite;
+// }
 
 .container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#container {
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-@media all and (orientation:landscape) {
-  /* Styles for Landscape screen */
-  .button {
-    //font-size: 2em;
-  }
-  #container {
-    /*height: 78vh;*/
-  }
-  #countdown {
-    font-size: 32vh;
-    margin-bottom: 14vh;
-    //font-size: 7em;
-  }
-}
-
 .color-container {
-  /*
-  border: 1px solid grey;
-
-  margin-right: 15px;
-  */
   cursor: pointer;
   display: inline-block;
 }
 
-/*
-.color-container:hover {
-  background-color: rgba(255,255,255,1);
-}
-*/
-
-.color-box {
-  position: relative;
-  top: 6px;
-  width: 70px;
-  display: inline-block;
-  height: 20px;
-}
+// .color-box {
+//   position: relative;
+//   top: 6px;
+//   width: 70px;
+//   display: inline-block;
+//   height: 20px;
+// }
 
 .sign {
   cursor: pointer;

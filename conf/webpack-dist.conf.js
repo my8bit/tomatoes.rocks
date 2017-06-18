@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, './src/_redirects'), to: '_redirects'}]),
+    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: true
@@ -67,6 +67,11 @@ module.exports = {
     */
   ],
   postcss: () => [autoprefixer],
+  resolve: {
+    alias: {
+      config: path.resolve(__dirname, `../${conf.path.src('config.json')}`)
+    }
+  },
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
     // filename: '[name].js'

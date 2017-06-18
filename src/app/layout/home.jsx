@@ -7,17 +7,6 @@ export class Home extends Component {
     const {color} = this.props;
     return (
       <section id="home" className="main site-wrap" style={{backgroundColor: color}}>
-        {/*
-        <button
-          onClick={
-            function () {
-              document.getElementById('app').webkitRequestFullScreen();
-            }
-          }
-          >
-          FullScreen
-        </button>
-        */}
         <Timer/>
       </section>
     );

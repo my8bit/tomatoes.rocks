@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
 const OfflinePlugin = require('offline-plugin');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -57,6 +56,11 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'
+  },
+  resolve: {
+    alias: {
+      config: path.resolve(__dirname, `../${conf.path.src('config.dev.json')}`)
+    }
   },
   entry: [
     'webpack/hot/dev-server',

@@ -1,4 +1,4 @@
-import {colors, timerOptions} from '../../config';
+import {colors, timerOptions} from 'config';
 
 const {time, breakTime} = timerOptions;
 const savedColor = localStorage.getItem('color') || colors[0]; // TODO: check if there are localstorage
@@ -20,11 +20,12 @@ export const representationReducer = (state = {color: savedColor}, action) => {
 export const timerReducer = (state = {
   time,
   startTime: parseInt(localStorage.getItem('startTime'), 10) || 0,
-  isBreak: false
+  isBreak: true
 }, action) => {
   switch (action.type) {
     case 'STOP':
       localStorage.setItem('startTime', 0);
+      console.log('time: state.isBreak ? breakTime : time,', state.isBreak);
       return Object.assign({}, state, {
         startTime: 0,
         time: state.isBreak ? breakTime : time,

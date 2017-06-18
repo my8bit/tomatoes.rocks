@@ -1,5 +1,6 @@
 import Offline from 'offline-plugin/runtime';
 Offline.install();
+import Ink from 'react-ink';
 
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
@@ -24,8 +25,8 @@ class SidebarList extends Component {
   render() {
     return (
       <ul className="navigation">
-        <li className="nav-item"><Link to="/">Timer</Link></li>
-        <li className="nav-item"><Link to="/settings">Settings</Link></li>
+        <li className="nav-item"><Link to="/">Timer<Ink/></Link></li>
+        <li className="nav-item"><Link to="/settings">Settings<Ink/></Link></li>
       </ul>
     );
   }
