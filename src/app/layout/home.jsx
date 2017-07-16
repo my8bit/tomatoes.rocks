@@ -6,7 +6,7 @@ export class Home extends Component {
   render() {
     const {color} = this.props;
     return (
-      <section id="home" className="main site-wrap" style={{backgroundColor: color}}>
+      <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
         <Timer/>
       </section>
     );

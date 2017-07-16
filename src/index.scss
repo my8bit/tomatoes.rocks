@@ -2,16 +2,6 @@
 @import 'app/components/style';
 @import 'app/components/nav';
 
-@font-face {
-  font-family: 'Leco-regular';
-  src: url(https://cdn.rawgit.com/hussin/timeboxed-watchface/ef650fe4/resources/fonts/leco-regular.ttf);
-}
-
-@font-face {
-  font-family: 'Konstruct';
-  src: url(https://rawgit.com/hussin/timeboxed-watchface/master/resources/fonts/konstruct.ttf);
-}
-
 $main-font: 'Roboto', sans-serif;
 $countdown-font: 'PT Sans Narrow', sans-serif;
 
@@ -33,9 +23,8 @@ main {
   overflow: hidden;
 }
 
-.main {
+.timer {
   font-family: $countdown-font;
-  background: rgb(255,93,177);
 }
 
 .about {

@@ -75,7 +75,7 @@
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",
-    "start": "gulp serve",
+    "start": "export DEVELOPMENT=false || set DEVELOPMENT=false && gulp serve",
     "test:auto": "gulp test:auto"
   },
   "pre-push": [

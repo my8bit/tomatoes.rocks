@@ -4,6 +4,9 @@ const path = require('path');
 const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
+const configFileName = `config${filenamePrefix}.json`;
+const configPath = `../${conf.path.src(configFileName)}`;
 
 module.exports = {
   module: {
@@ -59,7 +62,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      config: path.resolve(__dirname, `../${conf.path.src('config.dev.json')}`)
+      config: path.resolve(__dirname, configPath)
     }
   },
   entry: [

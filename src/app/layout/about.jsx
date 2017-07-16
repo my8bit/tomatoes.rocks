@@ -23,10 +23,6 @@ export class AboutCmp extends Component {
             FullScreen
           </button>}
         </div>
-        <div className="description">
-          <h4>Rate us!</h4>
-          <div id="wpac-rating"></div>
-        </div>
         <footer>
           <div className="footer-info">
             <p>This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.</p>
