@@ -1,6 +1,6 @@
 import {notification} from 'config';
 
-const serviceWorker = window.navigator.serviceWorker;
+const serviceWorker = window.navigator && window.navigator.serviceWorker;
 const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
 
 if (Notification) {
