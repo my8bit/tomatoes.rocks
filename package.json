@@ -68,14 +68,14 @@
     "webpack": "2.1.0-beta.8",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.2",
-    "webpack-split-by-path": "^0.0.10"
+    "webpack-split-by-path": "^1.0.0"
   },
   "scripts": {
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",
-    "start": "export DEVELOPMENT=false || set DEVELOPMENT=false && gulp serve",
+    "start": "export DEVELOPMENT=true || set DEVELOPMENT=true && gulp serve",
     "test:auto": "gulp test:auto"
   },
   "pre-push": [
