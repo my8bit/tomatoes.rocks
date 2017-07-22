@@ -39,23 +39,23 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    // new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: true
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true} // eslint-disable-line camelcase
-    }),
-    new SplitByPathPlugin([{
-      name: 'vendor',
-      path: path.join(__dirname, '../node_modules')
-    }]),
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': '"production"'
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {unused: true, dead_code: true} // eslint-disable-line camelcase
+    // }),
+    // new SplitByPathPlugin([{
+    //   name: 'vendor',
+    //   path: path.join(__dirname, '../node_modules')
+    // }]),
     new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin()
   ],
