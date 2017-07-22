@@ -58,7 +58,7 @@ module.exports = {
     }]),
     new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
-      excludes: [path.resolve(__dirname, '../src/_redirects')]
+      excludes: ['_redirects']
     })
   ],
   postcss: () => [autoprefixer],
