@@ -57,8 +57,7 @@ self.onnotificationclick = event => {
     for (let i = 0; i < clientList.length; i++) {
       const client = clientList[i];
       // TODO: remove hardcode
-      console.log('client.url', client.url);
-      if (client.url === '/' && 'focus' in client) {
+      if (client.url === 'https://www.tomatoes.work/' && 'focus' in client) {
         return client.focus();
       }
     }
