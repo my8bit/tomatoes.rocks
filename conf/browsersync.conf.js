@@ -10,7 +10,10 @@ const webpackBundler = webpack(webpackConf);
 module.exports = function () {
   return {
     // TODO: certificate error
-    // https: true,
+    https: {
+      key: 'server.key',
+      cert: 'server.crt'
+    },
     server: {
       baseDir: [
         conf.paths.tmp,
