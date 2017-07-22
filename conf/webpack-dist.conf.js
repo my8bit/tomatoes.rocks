@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     // new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
+    //new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: true
