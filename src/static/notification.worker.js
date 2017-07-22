@@ -57,7 +57,7 @@ self.onnotificationclick = event => {
     for (let i = 0; i < clientList.length; i++) {
       const client = clientList[i];
       // TODO: remove hardcode
-      if (client.url === 'https://www.tomatoes.work/' && 'focus' in client) {
+      if (client.url === 'https://deploy-preview-4--tomatoes.netlify.com/' && 'focus' in client) {
         return client.focus();
       }
     }
