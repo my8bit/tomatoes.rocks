@@ -8,7 +8,7 @@ export class AboutCmp extends Component {
     wPac.push({widget: 'Rating', id: 3784});
     return (
       <section id="about" className="about site-wrap">
-        <div className="menu-background"></div>
+        <div className="menu-background">Settings</div>
         <div className="description">Just another pomodoro timer that was inspired by Pomodoro Technique®.</div>
         <div className="description">
           <h4>Please select background color:</h4>
