@@ -46,34 +46,25 @@ self.addEventListener('message', event => {
   }));
 });
 
-self.onnotificationclick = event => {
-  // TODO window is not defined
-  console.log('On notification click: ', event.action, clients);
-  console.log(clients, event);
-
+self.addEventListener('notificationclick', event => {
+  // TODO:
+  // console.log(event.action);
   event.waitUntil(clients.matchAll({
     includeUncontrolled: true, type: 'all'
   }).then(clientList => {
     for (let i = 0; i < clientList.length; i++) {
-      const client = clientList[i];
-      // TODO: remove hardcode
-      console.log('client.url', client.url);
-      if (client.url === '/' && 'focus' in client) {
-        return client.focus();
-      }
-    }
-    if (clients.openWindow) {
-      return clients.openWindow('/');
+      clientList[i].focus();
     }
   }));
 
-  self.clients.matchAll().then(all => all.forEach(client => {
+  event.waitUntil(clients.matchAll({
+    includeUncontrolled: true, type: 'all'
+  }).then(all => all.forEach(client => {
     client.postMessage(`Responding to ${event.data}`);
-  }));
-};
+  })));
+});
 
 self.addEventListener('message', event => {
   const sender = (event.ports && event.ports[0]) || event.source;
   sender.postMessage('Here are your queued notifications!');
 });
-
