@@ -88,7 +88,9 @@ class Main extends Component {
           />
         <SidebarList/>
         <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
-        <label htmlFor="nav-trigger"></label>
+        <label htmlFor="nav-trigger">
+          <div id="close-icon"><span></span><span></span><span></span></div>
+        </label>
         {children}
       </main>
     );
