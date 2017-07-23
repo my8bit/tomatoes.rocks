@@ -13,36 +13,34 @@
   left: 0;
   z-index: 0;
   margin: 0;
-  /* non-critical appearance styles */
+  // non-critical appearance styles
   list-style: none;
   background: #333131;
 }
 
-/* Navigation Menu - List items */
+// Navigation Menu - List items
 .nav-item {
-  /* non-critical appearance styles */
+  // non-critical appearance styles
   width: 200px;
   position: relative;
-  /*border-top: 1px solid #111;*/
+  // border-top: 1px solid #111;
   border-bottom: 1px solid #000;
+  a {
+    // non-critical appearance styles
+    display: block;
+    padding: 1em 2em 1em 2em;
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: tomato;
+    /*background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);*/
+  }
 }
 
-.nav-item a {
-  /* non-critical appearance styles */
-  display: block;
-  padding: 1em 2em 1em 2em;
-  color: white;
-  font-size: 1.2em;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-item a:hover {
-  color: tomato;
-  /*background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);*/
-}
-
-/* Site Wrapper - Everything that isn't navigation */
+// Site Wrapper - Everything that isn't navigation
 .site-wrap {
   /* Critical position and size styles */
   min-height: 100%;
@@ -66,8 +64,8 @@
 label[for="nav-trigger"] {
   // critical positioning styles
   position: fixed;
-  left: 15px;
-  top: 19px;
+  left: 16px;
+  top: 16px;
   z-index: 2;
   // non-critical apperance styles
   height: 25px;
