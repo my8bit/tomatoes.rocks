@@ -57,24 +57,23 @@
 }
 
 /* Nav Trigger */
-.nav-trigger {
-  /* critical styles - hide the checkbox input */
+#nav-trigger {
+  // critical styles - hide the checkbox input
   position: absolute;
   clip: rect(0, 0, 0, 0);
 }
 
 label[for="nav-trigger"] {
-  /* critical positioning styles */
+  // critical positioning styles
   position: fixed;
-  left: 15px; top: 15px;
+  left: 15px;
+  top: 19px;
   z-index: 2;
-
-  /* non-critical apperance styles */
-  height: 30px;
+  // non-critical apperance styles
+  height: 25px;
   width: 30px;
   cursor: pointer;
-  /*TODO change color from css fill*/
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'  style='fill:white;'/><rect y='24' width='30' height='6' style='fill:white;'/><rect y='12' width='30' height='6' style='fill:white;'/></svg>");
+  // TODO: change color from css fill
   background-size: contain;
 }
 
@@ -93,7 +92,6 @@ label[for="nav-trigger"] {
   z-index: 2;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
-
 
 .picker-form {
   display: flex;
@@ -146,4 +144,52 @@ label[for="nav-trigger"] {
 @keyframes argh-my-eyes {
   0%   { opacity: 0.5; }
   50% { opacity: 1; }
+}
+
+#close-icon {
+  width: 30px;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+}
+
+// TODO: refactor, for using look
+
+#close-icon {
+  span:nth-child(1) {
+    top: 0px;
+  }
+  span:nth-child(2) {
+    top: 10px;
+  }
+  span:nth-child(3) {
+    top: 20px;
+  }
+}
+
+#nav-trigger:checked + label #close-icon {
+  span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+    left: 60px;
+  }
+  span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+  }
 }
