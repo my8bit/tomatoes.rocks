@@ -57,7 +57,9 @@ module.exports = {
       path: path.join(__dirname, '../node_modules')
     }]),
     new ExtractTextPlugin('/index-[contenthash].css'),
-    new OfflinePlugin()
+    new OfflinePlugin({
+      excludes: ['_redirects']
+    })
   ],
   postcss: () => [autoprefixer],
   resolve: {
