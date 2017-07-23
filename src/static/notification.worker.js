@@ -40,15 +40,12 @@ const sendMessageToClient = (client, msg) => {
 };
 
 self.addEventListener('message', event => {
-  // event.source.postMessage("Responding to " + event.data);
   self.clients.matchAll().then(all => all.forEach(client => {
     client.postMessage(`Responding to ${event.data}`);
   }));
 });
 
 self.addEventListener('notificationclick', event => {
-  // TODO:
-  // console.log(event.action);
   event.waitUntil(clients.matchAll({
     includeUncontrolled: true, type: 'all'
   }).then(clientList => {
@@ -56,7 +53,7 @@ self.addEventListener('notificationclick', event => {
       clientList[i].focus();
     }
   }));
-
+  
   event.waitUntil(clients.matchAll({
     includeUncontrolled: true, type: 'all'
   }).then(all => all.forEach(client => {
