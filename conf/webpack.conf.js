@@ -7,7 +7,6 @@ const autoprefixer = require('autoprefixer');
 const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
 const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
-
 module.exports = {
   module: {
     preLoaders: [
@@ -46,6 +45,14 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
+      FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+      FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+      FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+      FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID)
+    }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: true

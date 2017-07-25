@@ -1,5 +1,5 @@
-$counter-size: 9em;
-$button-size: $counter-size / 4;
+$counter-size: 7em;
+$button-size: $counter-size / 3;
 
 .button {
   background-color: initial;
@@ -8,7 +8,7 @@ $button-size: $counter-size / 4;
   padding: .5em 1em .5em 1em;
   outline: none;
   font-size: $button-size;
-  font-weight: 700;
+  font-weight: 100;
   color: white;
 }
 
@@ -24,7 +24,7 @@ $button-size: $counter-size / 4;
 }
 
 #countdown {
-  font-weight: 700;
+  font-weight: 100;
   color: white;
   //margin-top: 20vh;
   //margin-bottom: 20vh;

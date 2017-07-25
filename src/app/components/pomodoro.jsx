@@ -53,24 +53,6 @@ class TimerWidget extends Component {
     document.getElementById('nav-trigger').checked = false;
   }
 
-  handleOnSwipeEnd() {
-    // console.log(document.getElementById('home').offsetLeft);
-    // if (document.getElementById('home').offsetLeft > 100) {
-    //   document.getElementById('home').style.left = '200px';
-    // } else {
-    //   document.getElementById('home').style.left = '0px';
-    // }
-  }
-
-  handleOnSwipeMove() {
-    // const position = Math.round(e.x);
-    // const currentLeft = document.getElementById('home').offsetLeft;
-    // console.log(e);
-    // if (currentLeft + position < 200 && currentLeft + position > 0) {
-    //   document.getElementById('home').style.left = `${currentLeft + position}px`;
-    // }
-  }
-
   render() {
     const {startTime, time} = this.props;
     const currentTime = formatDate(time, startTime);
@@ -78,8 +60,6 @@ class TimerWidget extends Component {
       <Swipe
         onSwipeRight={this.handleOnSwipeRight}
         onSwipeLeft={this.handleOnSwipeLeft}
-        onSwipeMove={this.handleOnSwipeMove}
-        onSwipeEnd={this.handleOnSwipeEnd}
         >
         <div className="container">
           <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
