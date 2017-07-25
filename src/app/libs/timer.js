@@ -24,6 +24,3 @@ export const addToInterval = fn => fnArray.push(fn);
 export const removeFromInterval = fn => {
   fnArray = fnArray.filter(arrFn => arrFn !== fn);
 };
-
-window.addToInterval = addToInterval;
-window.removeFromInterval = removeFromInterval;

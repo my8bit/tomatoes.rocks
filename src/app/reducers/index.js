@@ -17,6 +17,29 @@ export const representationReducer = (state = {color: savedColor}, action) => {
   }
 };
 
+export const userReducer = (state = {name: '', photo: ''}, action) => {
+  switch (action.type) {
+    case 'AUTHORIZED':
+      return Object.assign({}, state, {
+        name: action.name,
+        photo: action.photo
+      });
+    case 'LOGOUT':
+      return Object.assign({}, state, {
+        name: ''
+      });
+    case 'LOGIN':
+      return Object.assign({}, state, {
+        name: action.name,
+        photo: action.photo
+      });
+    case 'UNAUTHORIZED':
+      return state;
+    default:
+      return state;
+  }
+};
+
 export const timerReducer = (state = {
   time,
   startTime: parseInt(localStorage.getItem('startTime'), 10) || 0,

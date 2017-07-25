@@ -1,6 +1,5 @@
 import Offline from 'offline-plugin/runtime';
 Offline.install();
-import Ink from 'react-ink';
 
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
@@ -10,93 +9,15 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
+import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import {formatDate, addToInterval, removeFromInterval} from './app/libs/timer';
 import './index.scss';
-
-import firebase from 'firebase';
-
-firebase.initializeApp({
-  apiKey: 'AIzaSyD0V9126DJnxV2bf6QD_I2jCD1ziGNOkDE',
-  authDomain: 'tomatoes-7af08.firebaseapp.com',
-  databaseURL: 'https://tomatoes-7af08.firebaseio.com',
-  projectId: 'tomatoes-7af08',
-  storageBucket: 'tomatoes-7af08.appspot.com',
-  messagingSenderId: '773528556809'
-});
-
-const provider = new firebase.auth.TwitterAuthProvider();
-const database = firebase.database();
-
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    console.log('%c User is signed in.', 'color: #39FF33;');
-    console.log(user);
-  } else {
-    console.log('%c No user is signed in.', 'color: yellow;');
-  }
-});
-
-window.writeKey = () => {
-  const userId = firebase.auth().currentUser.uid;
-  console.log(userId);
-  database.ref(`users/${userId}`).set({
-    foo: 'bar'
-  });
-};
-
-window.readKey = () => {
-  const userId = firebase.auth().currentUser.uid;
-  return database.ref(`users/${userId}`).once('value').then(snapshot => {
-    console.log(snapshot.val());
-  });
-};
-
-function writeUserData(userId, photoURL) {
-  firebase.database().ref(`users/${userId}`).set({
-    photo: photoURL
-  });
-}
-
-window.signInTwitter = () => {
-  firebase.auth().signInWithPopup(provider).then(result => {
-    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-    // You can use these server side with your app's credentials to access the Twitter API.
-    const token = result.credential.accessToken;
-    const secret = result.credential.secret;
-    // The signed-in user info.
-    const user = result.user;
-    console.log(token, secret, user);
-    writeUserData(user.uid, user.photoURL);
-  }).catch(error => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    const credential = error.credential;
-    console.log(errorCode, errorMessage, email, credential);
-  });
-};
-
-class SidebarList extends Component {
-  render() {
-    return (
-      <ul className="navigation">
-        <li className="nav-item"><Link to="/">Timer<Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Settings<Ink/></Link></li>
-      </ul>
-    );
-  }
-}
-
-const appContainer = document.getElementById('app');
 
 class Main extends Component {
   constructor(props) {
@@ -150,7 +71,7 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
-        <SidebarList/>
+        <SidebarCmp/>
         <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
@@ -164,14 +85,15 @@ class Main extends Component {
 const mapStateToProps = store => {
   const {color} = store.representationReducer;
   const {time, startTime} = store.timerReducer;
-  return {color, time, startTime};
+  return {color, time, startTime, name};
 };
 
 Main.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   time: React.PropTypes.number.isRequired,
   color: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 const App = connect(mapStateToProps)(Main);
@@ -187,5 +109,5 @@ ReactDOM.render(
       </section>
     </Router>
   </Provider>,
-  appContainer
+  document.getElementById('app')
 );
