@@ -17,6 +17,7 @@
         {"action": "breakTime", "title": "Take a break"},
         {"action": "cancel", "title": "Cancel"}
       ],
+      "requireInteraction": true,
       "vibrate": 200,
       "icon": "static/favicon-196x196.png",
       "body": "Congrats! You finished yor pomodoro!"
