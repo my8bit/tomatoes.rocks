@@ -1,6 +1,6 @@
 {
   "timerOptions": {
-    "time": 15000,
+    "time": 150000,
     "breakTime": 2500,
     "interval": 1000,
     "running": false,

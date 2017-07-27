@@ -147,16 +147,24 @@ export const loginAction = () => dispatch => {
   firebase.auth().signInWithPopup(provider).then(result => {
     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
     // You can use these server side with your app's credentials to access the Twitter API.
-    const token = result.credential.accessToken;
-    const secret = result.credential.secret;
+    // const token = result.credential.accessToken;
+    // const secret = result.credential.secret;
     // The signed-in user info.
     const user = result.user;
-    console.log(token, secret, user);
-    console.log(user.photoURL);
+    // console.log(token, secret, user);
+    // console.log(user.photoURL);
     dispatch({
       type: 'LOGIN',
       name: user.name,
       photo: user.photoURL
+    });
+    //  TODO refactor this
+    database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+      const startTime = snapshot.val().startTime;
+      dispatch({
+        type: 'AUTHORIZED',
+        startTime
+      });
     });
   }).catch(error => {
     // Handle Errors here.
