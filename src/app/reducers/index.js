@@ -28,13 +28,6 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
       return Object.assign({}, state, {
         name: ''
       });
-    case 'WRITE-TIME':
-      return Object.assign({}, state, {
-      });
-    case 'READ-TIME':
-      return Object.assign({}, state, {
-        startTime: action.startTime
-      });
     case 'LOGIN':
       return Object.assign({}, state, {
         name: action.name,
