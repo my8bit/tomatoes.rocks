@@ -87,9 +87,59 @@ export const logoutAction = () => dispatch => {
   });
 };
 
+export const timerAction = time => dispatch => {
+  const type = time ? 'RESET' : 'START';
+  const startTime = time ? 0 : (new Date()).getTime();
+
+  // localStorage.setItem('startTime', startTime);
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      database.ref(`users/${user.uid}`).set({
+        startTime
+      });
+    }
+  });
+  dispatch({
+    type,
+    startTime
+  });
+};
+
+export const saveTime = time => dispatch => {
+  const userId = firebase.auth().currentUser.uid;
+  database.ref(`users/${userId}`).set({
+    time
+  });
+  dispatch({
+    type: 'WRITE-TIME'
+  });
+};
+
+export const readTime = () => dispatch => {
+  const userId = firebase.auth().currentUser.uid;
+  return database.ref(`users/${userId}`).once('value').then(snapshot => {
+    console.log(snapshot.val());
+    dispatch({
+      type: 'READ-TIME'
+    });
+  });
+};
+
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
-    dispatch(user ? {type: 'AUTHORIZED', name: user.displayName, photo: user.photoURL} : {type: 'UNAUTHORIZED'});
+    if (user) {
+      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+        const startTime = snapshot.val().startTime;
+        dispatch(user ? {
+          type: 'AUTHORIZED',
+          name: user.displayName,
+          photo: user.photoURL,
+          startTime
+        } : {
+          type: 'UNAUTHORIZED'
+        });
+      });
+    }
   });
 };
 

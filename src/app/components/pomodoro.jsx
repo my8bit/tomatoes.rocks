@@ -5,6 +5,7 @@ import {timerOptions} from '../../config';
 import {getTimer, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
 import Ink from 'react-ink';
 import Swipe from 'react-easy-swipe';
+import {timerAction} from '../libs/firebase.auth';
 
 const {buttonStatus, animation} = timerOptions;
 const {START, STOP} = buttonStatus;
@@ -26,11 +27,7 @@ class TimerWidget extends Component {
 
   handleClick() {
     const {dispatch, startTime} = this.props;
-    const type = startTime ? 'RESET' : 'START';
-    dispatch({
-      type,
-      startTime: startTime ? 0 : (new Date()).getTime()
-    });
+    dispatch(timerAction(startTime));
   }
 
   componentWillUpdate(state) {

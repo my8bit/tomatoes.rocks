@@ -32,7 +32,7 @@
   "textContent": "Tomatoes (pomodoro) work timer",
   "colors": [
       "#ff6347",
-      "#000000",
+      "#333333",
       "#90ee90"
     ]
 }

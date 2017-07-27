@@ -28,8 +28,6 @@ class SidebarList extends Component {
 
   render() {
     const {name, photo} = this.props;
-    console.log('sidebar-sidebar-sidebar-sidebar-sidebar-sidebar');
-    console.log(photo);
     return (
       <ul className="navigation">
         {name ?
@@ -49,8 +47,8 @@ class SidebarList extends Component {
           <li className="nav-item" onClick={this.handleLogin}>
             <div className="logout">Login <i className="fa fa-sign-in right" aria-hidden="true"></i><Ink/></div>
           </li>}
-        <li className="nav-item"><Link to="/">Timer<Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Settings<Ink/></Link></li>
+        <li className="nav-item"><Link to="/">Timer<i className="fa fa-clock-o right" aria-hidden="true"></i><Ink/></Link></li>
+        <li className="nav-item"><Link to="/settings">Settings<i className="fa fa-wrench right" aria-hidden="true"></i><Ink/></Link></li>
       </ul>
     );
   }
