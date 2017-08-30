@@ -34,11 +34,11 @@ class TimerWidget extends Component {
     const {dispatch, startTime, time, wasStopped} = this.props;
     if (getTimer(time, startTime) < 0 && state.startTime !== 0) {
       dispatch(stopAction());
-      if (wasStopped) {
+      //if (wasStopped) {
         notifyMe();
-      } else {
-        console.warn('timer was not stopped for some reasons');
-      }
+      //} else {
+      //  console.warn('timer was not stopped for some reasons');
+      //}
     }
   }
 
