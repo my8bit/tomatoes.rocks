@@ -1,6 +1,6 @@
 {
   "timerOptions": {
-    "time": 150000,
+    "time": 15000,
     "breakTime": 2500,
     "interval": 1000,
     "running": false,
@@ -8,7 +8,7 @@
       "START": "start",
       "STOP": "stop"
     },
-    "animation": false
+    "animation": true
   },
   "notification": {
     "options": {

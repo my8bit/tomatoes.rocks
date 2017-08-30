@@ -6,7 +6,6 @@ const SplitByPathPlugin = require('webpack-split-by-path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const OfflinePlugin = require('offline-plugin');
-// require('offline-plugin/runtime').install();
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {

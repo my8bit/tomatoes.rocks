@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-
 const webpack = require('webpack');
 const webpackConf = require('../conf/webpack.conf');
 const webpackDistConf = require('../conf/webpack-dist.conf');

@@ -8,12 +8,18 @@ const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
 const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
 module.exports = {
+  eslint: {
+    rules: {
+      'no-warning-comments': 'off',
+      'no-debugger': 'off'
+    }
+  },
   module: {
     preLoaders: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'eslint'
+        loader: 'eslint-loader'
       }
     ],
     loaders: [
@@ -46,6 +52,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
+      isProduction: !JSON.stringify(process.env.DEVELOPMENT),
       FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
       FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
       FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),

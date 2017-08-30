@@ -84,7 +84,6 @@
   "eslintConfig": {
     "root": true,
     "rules": {
-      "no-warning-comments": "off",
       "comma-dangle": [
         "error",
         "never"

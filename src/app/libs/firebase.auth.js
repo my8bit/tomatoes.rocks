@@ -6,7 +6,10 @@
           FIREBASE_MESSEGING_SENDER_ID
 */
 import firebase from 'firebase';
+import {isExpired} from '../libs/timer';
+import {timerOptions} from 'config';
 
+const {time} = timerOptions;
 const apiKey = FIREBASE_API_KEY;
 const authDomain = FIREBASE_AUTH_DOMAIN;
 const databaseURL = FIREBASE_DATABASE_URL;
@@ -26,56 +29,6 @@ firebase.initializeApp({
 const provider = new firebase.auth.TwitterAuthProvider();
 const database = firebase.database();
 
-window.writeKey = () => {
-  const userId = firebase.auth().currentUser.uid;
-  console.log(userId);
-  database.ref(`users/${userId}`).set({
-    foo: 'bar'
-  });
-};
-
-window.readKey = () => {
-  const userId = firebase.auth().currentUser.uid;
-  return database.ref(`users/${userId}`).once('value').then(snapshot => {
-    console.log(snapshot.val());
-  });
-};
-
-// function writeUserData(userId, photoURL) {
-//   firebase.database().ref(`users/${userId}`).set({
-//     photo: photoURL
-//   });
-// }
-// window.signInTwitter = () => {
-//   firebase.auth().signInWithPopup(provider).then(result => {
-//     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-//     // You can use these server side with your app's credentials to access the Twitter API.
-//     const token = result.credential.accessToken;
-//     const secret = result.credential.secret;
-//     // The signed-in user info.
-//     const user = result.user;
-//     console.log(token, secret, user);
-//     writeUserData(user.uid, user.photoURL);
-//   }).catch(error => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     const credential = error.credential;
-//     console.log(errorCode, errorMessage, email, credential);
-//   });
-// };
-// window.signOutTwitter = () => {
-//   firebase.auth().signOut().then(() => {
-//     // Sign-out successful.
-//   }).catch(error => {
-//     console.log(error);
-//     // An error happened.
-//   });
-// };
-
 export const logoutAction = () => dispatch => {
   firebase.auth().signOut().then(() => {
     dispatch({
@@ -89,55 +42,64 @@ export const logoutAction = () => dispatch => {
 
 export const timerAction = time => dispatch => {
   const type = time ? 'RESET' : 'START';
+  const wasStopped = Boolean(time);
   const startTime = time ? 0 : (new Date()).getTime();
 
   // localStorage.setItem('startTime', startTime);
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       database.ref(`users/${user.uid}`).set({
-        startTime
+        type,
+        startTime,
+        wasStopped
       });
     }
   });
-  dispatch({
-    type,
-    startTime
-  });
+  dispatch({type, startTime, wasStopped});
 };
 
-export const saveTime = time => dispatch => {
-  const userId = firebase.auth().currentUser.uid;
-  database.ref(`users/${userId}`).set({
-    time
-  });
-  dispatch({
-    type: 'WRITE-TIME'
-  });
-};
+export const stopAction = () => dispatch => {
+  const type = 'STOP';
+  const wasStopped = true;
+  const startTime = 0;
 
-export const readTime = () => dispatch => {
-  const userId = firebase.auth().currentUser.uid;
-  return database.ref(`users/${userId}`).once('value').then(snapshot => {
-    console.log(snapshot.val());
-    dispatch({
-      type: 'READ-TIME'
-    });
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      database.ref(`users/${user.uid}`).set({
+        startTime,
+        wasStopped
+      });
+    }
   });
+  dispatch({type, wasStopped});
 };
 
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-        const startTime = snapshot.val().startTime;
-        dispatch(user ? {
+        const snapshotValue = snapshot.val();
+        const {startTime, wasStopped} = snapshotValue;
+
+        dispatch(user ? { // TODO
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
-          startTime
+          startTime: isExpired({time, startTime}) ? 0 : startTime,
+          wasStopped
         } : {
           type: 'UNAUTHORIZED'
         });
+      });
+      // TODO
+      database.ref(`users/${user.uid}`).on('value', snapshot => {
+        const snapshotValue = snapshot.val();
+        const {startTime, wasStopped, type} = snapshotValue;
+
+        // console.log('startTime, wasStopped', startTime, wasStopped, type);
+        if (type) { // TODO
+          dispatch({type, startTime, wasStopped});
+        }
       });
     }
   });
@@ -151,22 +113,18 @@ export const loginAction = () => dispatch => {
     // const secret = result.credential.secret;
     // The signed-in user info.
     const user = result.user;
-    // console.log(token, secret, user);
-    // console.log(user.photoURL);
-    dispatch({
-      type: 'LOGIN',
-      name: user.name,
-      photo: user.photoURL
-    });
-    //  TODO refactor this
+
     database.ref(`users/${user.uid}`).once('value').then(snapshot => {
       const startTime = snapshot.val().startTime;
       dispatch({
         type: 'AUTHORIZED',
-        startTime
+        startTime,
+        name: user.displayName,
+        photo: user.photoURL
       });
     });
-  }).catch(error => {
+  })
+  .catch(error => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;

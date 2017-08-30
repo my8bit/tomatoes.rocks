@@ -10,6 +10,12 @@ $button-size: $counter-size / 3;
   font-size: $button-size;
   font-weight: 100;
   color: white;
+  border-radius: 5px;
+}
+
+.button:hover {
+  transition: background-color .3s linear;
+  background-color: rgba(95, 95, 95, 0.2);
 }
 
 @-webkit-keyframes fade-in {
