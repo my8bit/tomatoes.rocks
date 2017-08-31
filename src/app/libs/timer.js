@@ -13,6 +13,10 @@ export const isExpired = options => {
   return getTimer(time, startTime) < 0;
 };
 
+export const isFinished = (time, startTime, stateStartTime) => {
+  return getTimer(time, startTime) < 0 && stateStartTime !== 0;
+};
+    // if (getTimer(time, startTime) < 0 && state.startTime !== 0) {
 export const formatDate = (time, startTime) => {
   return moment.duration(getTimer(time, startTime), 'ms').format('mm:ss', {trim: false});
 };

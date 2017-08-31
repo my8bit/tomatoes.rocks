@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {notifyMe} from '../workers/notification';
 import {timerOptions} from 'config';
-import {getTimer, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
+import {isFinished, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
 import Ink from 'react-ink';
 import Swipe from 'react-easy-swipe';
 import {timerAction, stopAction} from '../libs/firebase.auth';
@@ -31,14 +31,10 @@ class TimerWidget extends Component {
   }
 
   componentWillUpdate(state) {
-    const {dispatch, startTime, time, wasStopped} = this.props;
-    if (getTimer(time, startTime) < 0 && state.startTime !== 0) {
+    const {dispatch, startTime, time} = this.props;
+    if (isFinished(time, startTime, state.startTime)) {
       dispatch(stopAction());
-      //if (wasStopped) {
-        notifyMe();
-      //} else {
-      //  console.warn('timer was not stopped for some reasons');
-      //}
+      notifyMe();
     }
   }
 
@@ -64,7 +60,9 @@ class TimerWidget extends Component {
           <div className={animation ? 'animation' : ''} id="countdown">{currentTime}</div>
           <button
             autoFocus
-            style={{position: 'relative'}}
+            style={{
+              position: 'relative'
+            }}
             className="button"
             onClick={this.handleClick}
             >
@@ -73,7 +71,7 @@ class TimerWidget extends Component {
           </button>
         </div>
       </Swipe>
-    );
+      );
   }
 }
 
@@ -86,7 +84,11 @@ TimerWidget.propTypes = {
 
 const mapStateToProps = store => {
   const {time, startTime, wasStopped} = store.timerReducer;
-  return {time, startTime, wasStopped};
+  return {
+    time,
+    startTime,
+    wasStopped
+  };
 };
 
 export const Timer = connect(mapStateToProps)(TimerWidget);
