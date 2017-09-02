@@ -4,26 +4,35 @@ import {timerOptions} from 'config';
 
 const {interval} = timerOptions;
 
-export const getTimer = (time, startTime) => {
-  return time - (startTime ? (new Date()).getTime() - startTime : 0);
+export const getRemainingTime = ({currentTimerLength, startTime}) => {
+  return currentTimerLength - (startTime ? (new Date()).getTime() - startTime : 0);
 };
 
-export const formatDate = (time, startTime) => {
-  return moment.duration(getTimer(time, startTime), 'ms').format('mm:ss', {trim: false});
+export const isExpired = ({currentTimerLength, startTime}) => {
+  return getRemainingTime({currentTimerLength, startTime}) < 0;
 };
 
-let fnArray = [];
+export const isFinished = ({currentTimerLength, startTime}) => {
+  return isExpired({currentTimerLength, startTime}) && startTime !== 0;
+};
+
+export const formatTime = ({currentTimerLength, startTime}) => {
+  return moment.duration(getRemainingTime({currentTimerLength, startTime}), 'ms')
+               .format('mm:ss', {trim: false});
+};
+
+let functionToUpdate;
 
 setInterval(() => {
-  fnArray.forEach(fn => {
-    fn();
-  });
+  if (functionToUpdate) {
+    functionToUpdate();
+  }
 }, interval || 1000);
 
-export const addToInterval = fn => fnArray.push(fn);
-export const removeFromInterval = fn => {
-  fnArray = fnArray.filter(arrFn => arrFn !== fn);
+export const startUpdate = fn => {
+  functionToUpdate = fn;
 };
 
-window.addToInterval = addToInterval;
-window.removeFromInterval = removeFromInterval;
+export const stopUpdate = () => {
+  functionToUpdate = null;
+};

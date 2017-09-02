@@ -1,6 +1,5 @@
 import Offline from 'offline-plugin/runtime';
 Offline.install();
-import Ink from 'react-ink';
 
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
@@ -10,51 +9,22 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
-
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
+import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
-import {formatDate, addToInterval, removeFromInterval} from './app/libs/timer';
+import {formatTime} from './app/libs/timer';
 import './index.scss';
-// import firebase from 'firebase';
-// firebase.initializeApp({});
-
-class SidebarList extends Component {
-  render() {
-    return (
-      <ul className="navigation">
-        <li className="nav-item"><Link to="/">Timer<Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Settings<Ink/></Link></li>
-      </ul>
-    );
-  }
-}
-
-const appContainer = document.getElementById('app');
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.update = this.forceUpdate.bind(this);
-  }
-
-  componentDidMount() {
-    addToInterval(this.update);
-  }
-
-  componentWillUnmount() {
-    removeFromInterval(this.update);
-  }
-
   render() {
-    const {color, time, startTime, children} = this.props;
-    const currentTime = formatDate(time, startTime);
+    const {color, currentTimerLength, startTime, children} = this.props;
     return (
       <main>
         <Helmet
-          title={startTime ? currentTime : textContent}
+          title={startTime ? formatTime({currentTimerLength, startTime}) : textContent}
           link={[
             {rel: 'apple-touch-icon-precomposed', href: 'static/apple-touch-icon-57x57.png', sizes: '57x57'},
             {rel: 'apple-touch-icon-precomposed', href: 'static/apple-touch-icon-114x114.png', sizes: '114x114'},
@@ -71,7 +41,7 @@ class Main extends Component {
             {rel: 'icon', type: 'image/png', href: 'static/favicon-128.png', sizes: '128x128'}
           ]}
           meta={[
-            {name: 'description', content: 'Just another tomatoes (pomodoro) timer'},
+            {name: 'description', content: 'Just another tomatoes timer'},
             {name: 'application-name', content: textContent},
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
@@ -86,7 +56,7 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
-        <SidebarList/>
+        <SidebarCmp/>
         <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
@@ -99,15 +69,16 @@ class Main extends Component {
 
 const mapStateToProps = store => {
   const {color} = store.representationReducer;
-  const {time, startTime} = store.timerReducer;
-  return {color, time, startTime};
+  const {currentTimerLength, startTime} = store.timerReducer;
+  return {color, currentTimerLength, startTime, name};
 };
 
 Main.propTypes = {
   startTime: React.PropTypes.number.isRequired,
-  time: React.PropTypes.number.isRequired,
+  currentTimerLength: React.PropTypes.number.isRequired,
   color: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 const App = connect(mapStateToProps)(Main);
@@ -123,5 +94,5 @@ ReactDOM.render(
       </section>
     </Router>
   </Provider>,
-  appContainer
+  document.getElementById('app')
 );

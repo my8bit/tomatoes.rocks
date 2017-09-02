@@ -1,6 +1,6 @@
 {
   "timerOptions": {
-    "time": 15000,
+    "currentTimerLength": 5000,
     "breakTime": 2500,
     "interval": 1000,
     "running": false,
@@ -8,7 +8,7 @@
       "START": "start",
       "STOP": "stop"
     },
-    "animation": false
+    "animation": true
   },
   "notification": {
     "options": {
@@ -32,7 +32,7 @@
   "textContent": "Tomatoes (pomodoro) work timer",
   "colors": [
       "#ff6347",
-      "#000000",
+      "#333333",
       "#90ee90"
     ]
 }

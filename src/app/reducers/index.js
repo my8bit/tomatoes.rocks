@@ -1,7 +1,7 @@
 import {colors, timerOptions} from 'config';
 
-const {time, breakTime} = timerOptions;
-const savedColor = localStorage.getItem('color') || colors[0]; // TODO: check if there are localstorage
+const {currentTimerLength, breakTime} = timerOptions;
+const savedColor = /* localStorage.getItem('color') || */ colors[1]; // TODO: check if there are localstorage
 
 const getColor = color => {
   localStorage.setItem('color', color);
@@ -17,29 +17,59 @@ export const representationReducer = (state = {color: savedColor}, action) => {
   }
 };
 
+export const userReducer = (state = {name: '', photo: ''}, action) => {
+  switch (action.type) {
+    case 'AUTHORIZED':
+      return Object.assign({}, state, {
+        name: action.name,
+        photo: action.photo
+      });
+    case 'LOGOUT':
+      return Object.assign({}, state, {
+        name: ''
+      });
+    case 'LOGIN':
+      return Object.assign({}, state, {
+        name: action.name,
+        photo: action.photo
+      });
+    case 'UNAUTHORIZED':
+      return state;
+    default:
+      return state;
+  }
+};
+
 export const timerReducer = (state = {
-  time,
-  startTime: parseInt(localStorage.getItem('startTime'), 10) || 0,
-  isBreak: true
+  currentTimerLength,
+  startTime: 0,
+  wasStopped: false,
+  isBreak: false
 }, action) => {
   switch (action.type) {
-    case 'STOP':
-      localStorage.setItem('startTime', 0);
-      console.log('time: state.isBreak ? breakTime : time,', state.isBreak);
+    case 'AUTHORIZED':
+      return Object.assign({}, state, {
+        startTime: action.startTime,
+        wasStopped: action.wasStopped
+      });
+    case 'FINISH':
+      // localStorage.setItem('startTime', 0);
+      // console.log('time: state.isBreak ? breakTime : time,', state.isBreak);
       return Object.assign({}, state, {
         startTime: 0,
-        time: state.isBreak ? breakTime : time,
+        wasStopped: action.wasStopped,
+        currentTimerLength: state.isBreak ? currentTimerLength : breakTime,
         isBreak: !state.isBreak
       });
     case 'RESET':
-      localStorage.setItem('startTime', 0);
+      // localStorage.setItem('startTime', 0);
       return Object.assign({}, state, {
         startTime: 0,
-        time,
+        currentTimerLength,
         isBreak: false
       });
     case 'START':
-      localStorage.setItem('startTime', action.startTime);
+      // localStorage.setItem('startTime', action.startTime);
       return Object.assign({}, state, {
         startTime: action.startTime
       });

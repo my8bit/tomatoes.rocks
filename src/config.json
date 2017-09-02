@@ -1,6 +1,6 @@
 {
   "timerOptions": {
-    "time": 1500000,
+    "currentTimerLength": 1500000,
     "breakTime": 300000,
     "interval": 1000,
     "running": false,

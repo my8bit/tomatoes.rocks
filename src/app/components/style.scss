@@ -1,15 +1,22 @@
-$counter-size: 9em;
-$button-size: $counter-size / 4;
+$counter-size: 7em;
+$button-size: $counter-size / 3;
 
 .button {
+  position: relative;
   background-color: initial;
   border: none;
   cursor: pointer;
   padding: .5em 1em .5em 1em;
   outline: none;
   font-size: $button-size;
-  font-weight: 700;
+  font-weight: 100;
   color: white;
+  border-radius: 5px;
+}
+
+.button:hover {
+  transition: background-color .3s linear;
+  background-color: rgba(95, 95, 95, 0.2);
 }
 
 @-webkit-keyframes fade-in {
@@ -24,7 +31,7 @@ $button-size: $counter-size / 4;
 }
 
 #countdown {
-  font-weight: 700;
+  font-weight: 100;
   color: white;
   //margin-top: 20vh;
   //margin-bottom: 20vh;

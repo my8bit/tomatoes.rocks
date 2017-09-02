@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 export class ColorPicker extends Component {
   constructor(props) {
     super(props);
-    this.props = props;
     this.handleChange = this.handleChange.bind(this);
   }
 

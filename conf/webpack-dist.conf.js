@@ -6,7 +6,6 @@ const SplitByPathPlugin = require('webpack-split-by-path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const OfflinePlugin = require('offline-plugin');
-// require('offline-plugin/runtime').install();
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -47,7 +46,12 @@ module.exports = {
       inject: true
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+      FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
+      FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+      FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+      FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+      FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID)
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {unused: true, dead_code: true} // eslint-disable-line camelcase

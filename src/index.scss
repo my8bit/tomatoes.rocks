@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400:700|PT+Sans+Narrow');
 @import 'app/components/style';
 @import 'app/components/nav';
 
-$main-font: 'Roboto', sans-serif;
-$countdown-font: 'PT Sans Narrow', sans-serif;
+$main-font: 'Helvetica Neue', 'Roboto', sans-serif;
 
 html, body {
   height: 100%;
@@ -23,10 +21,6 @@ main {
   overflow: hidden;
 }
 
-.timer {
-  font-family: $countdown-font;
-}
-
 .about {
   height: 100vh;
   background-color: ivory;
@@ -40,9 +34,14 @@ main {
 .left {
   margin-left: 3em;
 }
+
 .menu-background {
   background: #333131;
-  height: 4em;
+  height: 3em;
+  color: white;
+  line-height: 3em;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 footer {
