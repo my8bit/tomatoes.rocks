@@ -26,6 +26,10 @@ class SidebarList extends Component {
     dispatch(logoutAction());
   }
 
+  menuItem(name, icon, link) {
+    return <li className="nav-item"><Link to={link}>{name}<i className={`fa ${icon} right`} aria-hidden="true"></i><Ink/></Link></li>;
+  }
+
   render() {
     const {name, photo} = this.props;
     return (
@@ -47,8 +51,8 @@ class SidebarList extends Component {
           <li className="nav-item" onClick={this.handleLogin}>
             <div className="logout">Sign in with Twitter <i className="fa fa-twitter right" aria-hidden="true"></i><Ink/></div>
           </li>}
-        <li className="nav-item"><Link to="/">Timer<i className="fa fa-clock-o right" aria-hidden="true"></i><Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Settings<i className="fa fa-wrench right" aria-hidden="true"></i><Ink/></Link></li>
+        {this.menuItem('Timer', 'fa-clock-o', '/')}
+        {this.menuItem('Settings', 'fa-wrench', '/settings')}
       </ul>
     );
   }
