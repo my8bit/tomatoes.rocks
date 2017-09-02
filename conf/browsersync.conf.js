@@ -30,17 +30,17 @@ module.exports = () => {
     open: false
   };
   const https = process.env.TOMATOES_SERVER_KEY &&
-              process.env.TOMATOES_SERVER_CRT ? {
-                https: {
-                  key: path.resolve(process.env.TOMATOES_SERVER_KEY),
-                  cert: path.resolve(process.env.TOMATOES_SERVER_CRT)
-                }
-              } : {};
+                process.env.TOMATOES_SERVER_CRT ? {
+                  https: {
+                    key: path.resolve(process.env.TOMATOES_SERVER_KEY),
+                    cert: path.resolve(process.env.TOMATOES_SERVER_CRT)
+                  }
+                } : {};
 
   const address = process.env.PORT &&
-                process.env.IP ? {
-                  port: process.env.PORT,
-                  host: process.env.IP
-                } : {};
+                  process.env.IP ? {
+                    port: process.env.PORT,
+                    host: process.env.IP
+                  } : {};
   return Object.assign(options, https, address);
 };

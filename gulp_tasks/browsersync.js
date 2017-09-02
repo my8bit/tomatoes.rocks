@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const spa = require('browser-sync-spa');
-
 const browserSyncConf = require('../conf/browsersync.conf');
 const browserSyncDistConf = require('../conf/browsersync-dist.conf');
 

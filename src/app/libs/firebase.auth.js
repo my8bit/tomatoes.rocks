@@ -6,10 +6,11 @@
           FIREBASE_MESSEGING_SENDER_ID
 */
 import firebase from 'firebase';
-import {isExpired} from '../libs/timer';
+import {isExpired, isFinished} from '../libs/timer';
 import {timerOptions} from 'config';
+import {notifyMe} from '../workers/notification';
 
-const {time} = timerOptions;
+const {currentTimerLength} = timerOptions;
 const apiKey = FIREBASE_API_KEY;
 const authDomain = FIREBASE_AUTH_DOMAIN;
 const databaseURL = FIREBASE_DATABASE_URL;
@@ -40,38 +41,42 @@ export const logoutAction = () => dispatch => {
   });
 };
 
-export const timerAction = time => dispatch => {
-  const type = time ? 'RESET' : 'START';
-  const wasStopped = Boolean(time);
-  const startTime = time ? 0 : (new Date()).getTime();
+export const timerAction = ({startTime}) => dispatch => {
+  const type = startTime ? 'RESET' : 'START';
+  const wasStopped = Boolean(startTime);
+  const newStartTime = startTime ? 0 : (new Date()).getTime();
 
-  // localStorage.setItem('startTime', startTime);
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       database.ref(`users/${user.uid}`).set({
         type,
-        startTime,
+        startTime: newStartTime,
         wasStopped
       });
     }
   });
-  dispatch({type, startTime, wasStopped});
+  dispatch({type, startTime: newStartTime, wasStopped});
 };
 
-export const stopAction = () => dispatch => {
-  const type = 'STOP';
+export const stopAction = options => dispatch => {
+  const type = 'FINISH';
   const wasStopped = true;
-  const startTime = 0;
+  const {currentTimerLength, startTime} = options;
 
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).set({
-        startTime,
-        wasStopped
-      });
-    }
-  });
-  dispatch({type, wasStopped});
+  if (isFinished({currentTimerLength, startTime})) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('stopAction');
+        database.ref(`users/${user.uid}`).set({
+          type,
+          // startTime,
+          wasStopped
+        });
+      }
+    });
+    dispatch({type, startTime: 0, wasStopped});
+    notifyMe();
+  }
 };
 
 export const checkAuth = () => dispatch => {
@@ -79,28 +84,31 @@ export const checkAuth = () => dispatch => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value').then(snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime, wasStopped} = snapshotValue;
+        const {startTime} = snapshotValue;
 
         dispatch(user ? { // TODO
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
-          startTime: isExpired({time, startTime}) ? 0 : startTime,
-          wasStopped
+          startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
           type: 'UNAUTHORIZED'
         });
       });
       // TODO
-      database.ref(`users/${user.uid}`).on('value', snapshot => {
-        const snapshotValue = snapshot.val();
-        const {startTime, wasStopped, type} = snapshotValue;
+      // database.ref(`users/${user.uid}`).on('value', snapshot => {
+        // const snapshotValue = snapshot.val();
+        // const {startTime, wasStopped, type} = snapshotValue;
 
         // console.log('startTime, wasStopped', startTime, wasStopped, type);
-        if (type) { // TODO
-          dispatch({type, startTime, wasStopped});
-        }
-      });
+        // if (type) { // TODO
+          // dispatch({
+          //   type,
+          //   startTime: isExpired({time, startTime}) ? 0 : startTime,
+          //   wasStopped
+          // });
+        // }
+      // });
     }
   });
 };
@@ -118,7 +126,7 @@ export const loginAction = () => dispatch => {
       const startTime = snapshot.val().startTime;
       dispatch({
         type: 'AUTHORIZED',
-        startTime,
+        startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
         name: user.displayName,
         photo: user.photoURL
       });

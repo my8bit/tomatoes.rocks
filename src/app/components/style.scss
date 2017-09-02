@@ -2,6 +2,7 @@ $counter-size: 7em;
 $button-size: $counter-size / 3;
 
 .button {
+  position: relative;
   background-color: initial;
   border: none;
   cursor: pointer;

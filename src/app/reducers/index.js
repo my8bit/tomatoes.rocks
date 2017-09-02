@@ -1,6 +1,6 @@
 import {colors, timerOptions} from 'config';
 
-const {time, breakTime} = timerOptions;
+const {currentTimerLength, breakTime} = timerOptions;
 const savedColor = /* localStorage.getItem('color') || */ colors[1]; // TODO: check if there are localstorage
 
 const getColor = color => {
@@ -41,32 +41,31 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
 };
 
 export const timerReducer = (state = {
-  time,
-  startTime: /* parseInt(localStorage.getItem('startTime'), 10) || */ 0,
+  currentTimerLength,
+  startTime: 0,
   wasStopped: false,
-  isBreak: true
+  isBreak: false
 }, action) => {
   switch (action.type) {
     case 'AUTHORIZED':
-      // TODO fix the bug - blinking of outated value
       return Object.assign({}, state, {
         startTime: action.startTime,
         wasStopped: action.wasStopped
       });
-    case 'STOP':
+    case 'FINISH':
       // localStorage.setItem('startTime', 0);
       // console.log('time: state.isBreak ? breakTime : time,', state.isBreak);
       return Object.assign({}, state, {
         startTime: 0,
         wasStopped: action.wasStopped,
-        time: state.isBreak ? breakTime : time,
+        currentTimerLength: state.isBreak ? currentTimerLength : breakTime,
         isBreak: !state.isBreak
       });
     case 'RESET':
       // localStorage.setItem('startTime', 0);
       return Object.assign({}, state, {
         startTime: 0,
-        time,
+        currentTimerLength,
         isBreak: false
       });
     case 'START':
