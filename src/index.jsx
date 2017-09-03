@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {WindowResizeListener} from 'react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
@@ -18,7 +19,26 @@ import {store} from './app/store';
 import {formatTime} from './app/libs/timer';
 import './index.scss';
 
+WindowResizeListener.DEBOUNCE_TIME = 200;
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isGoing: false};
+    this.handleChecked = this.handleChecked.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+  }
+  handleResize(windowSize) {
+    this.setState({
+      isGoing: windowSize.windowWidth > 900
+    });
+  }
+
+  handleChecked() {
+    console.log('check');
+    this.setState({
+      isGoing: !this.state.isGoing
+    });
+  }
   render() {
     const {color, currentTimerLength, startTime, children} = this.props;
     return (
@@ -57,7 +77,8 @@ class Main extends Component {
           ]}
           />
         <SidebarCmp/>
-        <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+        <WindowResizeListener onResize={this.handleResize}/>
+        <input type="checkbox" id="nav-trigger" checked={this.state.isGoing} onChange={this.handleChecked} className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
