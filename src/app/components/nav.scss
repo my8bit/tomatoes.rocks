@@ -127,6 +127,10 @@ label[for="nav-trigger"] {
   transition: left 0.2s;
 }
 
+.container {
+  transition: margin-right 0.2s;
+}
+
 .nav-trigger:checked + label {
   left: $sidebar-width + 15px;
   z-index: 3;
@@ -136,6 +140,12 @@ label[for="nav-trigger"] {
   left: $sidebar-width;
   z-index: 2;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+@media screen and (min-width: 900px) {
+  .nav-trigger:checked ~ .site-wrap .container {
+    margin-right: $sidebar-width * 2;
+  }
 }
 
 .picker-form {
