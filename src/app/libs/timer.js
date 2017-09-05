@@ -21,18 +21,14 @@ export const formatTime = ({currentTimerLength, startTime}) => {
                .format('mm:ss', {trim: false});
 };
 
-let functionToUpdate;
+let functions = [];
 
 setInterval(() => {
-  if (functionToUpdate) {
-    functionToUpdate();
-  }
+  functions.forEach(fn => fn());
 }, interval || 1000);
 
-export const startUpdate = fn => {
-  functionToUpdate = fn;
-};
+export const startUpdate = fn => functions.push(fn);
 
-export const stopUpdate = () => {
-  functionToUpdate = null;
+export const stopUpdate = fn => {
+  functions = functions.filter(fns => fns !== fn);
 };

@@ -16,7 +16,7 @@ import {AboutCmp} from './app/layout/about.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
-import {formatTime} from './app/libs/timer';
+import {formatTime, startUpdate, stopUpdate} from './app/libs/timer';
 import './index.scss';
 
 WindowResizeListener.DEBOUNCE_TIME = 200;
@@ -26,7 +26,17 @@ class Main extends Component {
     this.state = {isGoing: false};
     this.handleChecked = this.handleChecked.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.update = this.forceUpdate.bind(this);
   }
+
+  componentDidMount() {
+    startUpdate(this.update);
+  }
+
+  componentWillUnmount() {
+    stopUpdate(this.update);
+  }
+
   handleResize(windowSize) {
     this.setState({
       isGoing: windowSize.windowWidth > 900
