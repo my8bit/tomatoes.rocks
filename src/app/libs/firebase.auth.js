@@ -66,10 +66,9 @@ export const stopAction = options => dispatch => {
   if (isFinished({currentTimerLength, startTime})) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log('stopAction');
         database.ref(`users/${user.uid}`).set({
           type,
-          // startTime,
+          // startTime, // TODO  const {startTime = 0} = snapshotValue;
           wasStopped
         });
       }
@@ -84,7 +83,7 @@ export const checkAuth = () => dispatch => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value').then(snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime} = snapshotValue;
+        const {startTime = 0} = snapshotValue;
 
         dispatch(user ? { // TODO
           type: 'AUTHORIZED',

@@ -1,28 +1,13 @@
 import React, {Component} from 'react';
 import {Timer} from '../components/pomodoro.jsx';
 import {connect} from 'react-redux';
-import Swipe from 'react-easy-swipe';
 
 export class Home extends Component {
-  handleOnSwipeRight() {
-    // TODO: refactor
-    document.getElementById('nav-trigger').checked = true;
-  }
-
-  handleOnSwipeLeft() {
-    // TODO: refactor
-    document.getElementById('nav-trigger').checked = false;
-  }
   render() {
     const {color} = this.props;
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
-        <Swipe
-          onSwipeRight={this.handleOnSwipeRight}
-          onSwipeLeft={this.handleOnSwipeLeft}
-          >
-          <Timer/>
-        </Swipe>
+        <Timer/>
       </section>
     );
   }

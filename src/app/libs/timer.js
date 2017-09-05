@@ -5,7 +5,8 @@ import {timerOptions} from 'config';
 const {interval} = timerOptions;
 
 export const getRemainingTime = ({currentTimerLength, startTime}) => {
-  return currentTimerLength - (startTime ? (new Date()).getTime() - startTime : 0);
+  return currentTimerLength -
+    (startTime ? (new Date()).getTime() - startTime : 0);
 };
 
 export const isExpired = ({currentTimerLength, startTime}) => {
@@ -17,8 +18,9 @@ export const isFinished = ({currentTimerLength, startTime}) => {
 };
 
 export const formatTime = ({currentTimerLength, startTime}) => {
-  return moment.duration(getRemainingTime({currentTimerLength, startTime}), 'ms')
-               .format('mm:ss', {trim: false});
+  return moment
+    .duration(getRemainingTime({currentTimerLength, startTime}), 'ms')
+    .format('mm:ss', {trim: false});
 };
 
 let functions = [];

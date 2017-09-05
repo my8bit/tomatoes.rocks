@@ -4,6 +4,7 @@ Offline.install();
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
 // TODO: https://mobiforge.com/design-development/taking-web-offline-service-workers
+import Swipe from 'react-easy-swipe';
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -23,9 +24,11 @@ WindowResizeListener.DEBOUNCE_TIME = 200;
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {isGoing: false};
+    this.state = {isSideBarOpen: false};
     this.handleChecked = this.handleChecked.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.handleSwipeRight = this.handleSwipeRight.bind(this);
+    this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
     this.update = this.forceUpdate.bind(this);
   }
 
@@ -38,17 +41,21 @@ class Main extends Component {
   }
 
   handleResize(windowSize) {
-    this.setState({
-      isGoing: windowSize.windowWidth > 900
-    });
+    this.setState({isSideBarOpen: windowSize.windowWidth > 900});
+  }
+
+  handleSwipeRight() {
+    this.setState({isSideBarOpen: true});
+  }
+
+  handleSwipeLeft() {
+    this.setState({isSideBarOpen: false});
   }
 
   handleChecked() {
-    console.log('check');
-    this.setState({
-      isGoing: !this.state.isGoing
-    });
+    this.setState({isSideBarOpen: !this.state.isSideBarOpen});
   }
+
   render() {
     const {color, currentTimerLength, startTime, children} = this.props;
     return (
@@ -71,7 +78,7 @@ class Main extends Component {
             {rel: 'icon', type: 'image/png', href: 'static/favicon-128.png', sizes: '128x128'}
           ]}
           meta={[
-            {name: 'description', content: 'Just another tomatoes timer'},
+            {name: 'description', content: textContent},
             {name: 'application-name', content: textContent},
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
@@ -88,11 +95,17 @@ class Main extends Component {
           />
         <SidebarCmp/>
         <WindowResizeListener onResize={this.handleResize}/>
-        <input type="checkbox" id="nav-trigger" checked={this.state.isGoing} onChange={this.handleChecked} className="nav-trigger"/>
+        <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
-        {children}
+        <Swipe
+          className="swipe-container"
+          onSwipeRight={this.handleSwipeRight}
+          onSwipeLeft={this.handleSwipeLeft}
+          >
+          {children}
+        </Swipe>
       </main>
     );
   }
