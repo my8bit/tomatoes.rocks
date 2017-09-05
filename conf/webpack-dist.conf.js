@@ -43,6 +43,14 @@ module.exports = {
     new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        html5: true,
+        minifyCSS: true,
+        removeComments: true,
+        removeEmptyAttributes: true
+      },
       inject: true
     }),
     new webpack.DefinePlugin({
@@ -53,8 +61,16 @@ module.exports = {
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
       FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID)
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true} // eslint-disable-line camelcase
+      compress: {
+        unused: true,
+        dead_code: true// eslint-disable-line camelcase
+      }
     }),
     new SplitByPathPlugin([{
       name: 'vendor',
