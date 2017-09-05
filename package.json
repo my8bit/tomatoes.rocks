@@ -75,7 +75,7 @@
   },
   "scripts": {
     "build": "gulp",
-    "postbuild": "lighthouse https://timer.tomatoes.work/ --output-path=./dist/report.html",
+    "lighthouse": "lighthouse https://timer.tomatoes.work/ --output-path=./dist/report.html",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "jest": "jest",
