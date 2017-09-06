@@ -60,7 +60,7 @@ export const timerAction = ({startTime}) => dispatch => {
         if (type === 'START') {
           hipChatTrigger('xa', hipchatToken);
         }
-        if (type === 'STOP') {
+        if (type === 'RESET') {
           hipChatTrigger('chat', hipchatToken);
         }
       });
