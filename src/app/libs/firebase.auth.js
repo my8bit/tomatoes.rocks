@@ -112,13 +112,13 @@ export const checkAuth = () => dispatch => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value').then(snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime = 0} = snapshotValue;
+        const {startTime = 0, hipchatToken} = snapshotValue;
 
         dispatch(user ? { // TODO
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
-          hipchatToken: snapshotValue.hipchatToken,
+          hipchatToken,
           startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
           type: 'UNAUTHORIZED'
@@ -152,13 +152,14 @@ export const loginAction = () => dispatch => {
     const user = result.user;
 
     database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-      const startTime = snapshot.val().startTime;
+      const snapshotValue = snapshot.val();
+      const {startTime, hipchatToken} = snapshotValue;
       dispatch({
         type: 'AUTHORIZED',
         startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
         name: user.displayName,
         photo: user.photoURL,
-        hipchatToken: user.hipchatToken
+        hipchatToken
       });
     });
   })
