@@ -8,10 +8,18 @@ const getColor = color => {
   return {color};
 };
 
-export const representationReducer = (state = {color: savedColor}, action) => {
+export const representationReducer = (state = {color: savedColor, hipchatToken: ''}, action) => {
   switch (action.type) {
+    case 'AUTHORIZED':
+      return Object.assign({}, state, {
+        hipchatToken: action.hipchatToken
+      });
     case 'CHANGE_BACKGROUND':
-      return getColor(action.color);
+      return Object.assign({}, state, getColor(action.color));
+    case 'SAVE_HIPCHAT_TOKEN':
+      return Object.assign({}, state, {
+        hipchatToken: action.hipchatToken
+      });
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ColorPickerCmp} from '../components/color-picker.jsx';
+import {HipChatIntegration} from '../components/hipchat-input.jsx';
 
 export class AboutCmp extends Component {
   render() {
@@ -9,6 +10,9 @@ export class AboutCmp extends Component {
         <div className="description">
           <h4>Please select background color:</h4>
           <ColorPickerCmp/>
+        </div>
+        <div className="description">
+          <HipChatIntegration/>
         </div>
       </section>
     );
