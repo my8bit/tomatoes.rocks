@@ -14,6 +14,10 @@ export const representationReducer = (state = {color: savedColor, hipchatToken: 
       return Object.assign({}, state, {
         hipchatToken: action.hipchatToken
       });
+    case 'UNAUTHORIZED':
+      return Object.assign({}, state, {
+        hipchatToken: action.hipchatToken
+      });
     case 'CHANGE_BACKGROUND':
       return Object.assign({}, state, getColor(action.color));
     case 'SAVE_HIPCHAT_TOKEN':

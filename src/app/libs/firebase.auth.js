@@ -64,6 +64,13 @@ export const timerAction = ({startTime}) => dispatch => {
           hipChatTrigger('chat', hipchatToken);
         }
       });
+    } else {
+      if (type === 'START') {
+        hipChatTrigger('xa', localStorage.getItem('hipchatToken'));
+      }
+      if (type === 'RESET') {
+        hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
+      }
     }
   });
   dispatch({type, startTime: newStartTime, wasStopped});
@@ -87,6 +94,8 @@ export const stopAction = options => dispatch => {
           const {hipchatToken} = snapshotValue;
           hipChatTrigger('chat', hipchatToken);
         });
+      } else {
+        hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
       }
     });
     dispatch({type, startTime: 0, wasStopped});
@@ -104,6 +113,7 @@ export const hipChatSaveToken = hipchatToken => dispatch => {
       database.ref(`users/${user.uid}`).update({hipchatToken});
     }
   });
+  localStorage.setItem('hipchatToken', hipchatToken);
   dispatch({type, hipchatToken});
 };
 
@@ -121,7 +131,8 @@ export const checkAuth = () => dispatch => {
           hipchatToken,
           startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
-          type: 'UNAUTHORIZED'
+          type: 'UNAUTHORIZED',
+          hipchatToken: localStorage.getItem('hipchatToken')
         });
       });
       // TODO
