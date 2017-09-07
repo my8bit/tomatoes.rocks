@@ -3,14 +3,14 @@ import {notification} from 'config';
 const serviceWorker = window.navigator && window.navigator.serviceWorker;
 const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
 
-if (Notification) {
+if (window.Notification) {
   Notification.requestPermission();
 } else {
   console.error('Desktop notifications not available in your browser.');
 }
 
 export const notifyMe = () => {
-  if (Notification && Notification.permission === 'granted') {
+  if (window.Notification && window.Notification.permission === 'granted') {
     const {options, title} = notification;
     if (registerPromise) {
       registerPromise.then(registration => {
