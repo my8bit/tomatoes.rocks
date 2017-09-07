@@ -58,7 +58,7 @@ export const timerAction = ({startTime}) => dispatch => {
         const snapshotValue = snapshot.val();
         const {hipchatToken} = snapshotValue;
         if (type === 'START') {
-          hipChatTrigger('xa', hipchatToken);
+          hipChatTrigger('dnd', hipchatToken);
         }
         if (type === 'RESET') {
           hipChatTrigger('chat', hipchatToken);
@@ -66,7 +66,7 @@ export const timerAction = ({startTime}) => dispatch => {
       });
     } else {
       if (type === 'START') {
-        hipChatTrigger('xa', localStorage.getItem('hipchatToken'));
+        hipChatTrigger('dnd', localStorage.getItem('hipchatToken'));
       }
       if (type === 'RESET') {
         hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
