@@ -73,7 +73,7 @@ class Main extends Component {
           />
         <SidebarCmp/>
         <WindowResizeListener onResize={this.handleResize}/>
-        <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
+        <input aria-label="open menu" type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
