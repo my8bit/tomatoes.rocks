@@ -43,6 +43,9 @@ export const logoutAction = () => dispatch => {
 };
 
 export const timerAction = ({startTime}) => dispatch => {
+  if (window.Notification) {
+    window.Notification.requestPermission();
+  }
   const type = startTime ? 'RESET' : 'START';
   const wasStopped = Boolean(startTime);
   const newStartTime = startTime ? 0 : (new Date()).getTime();

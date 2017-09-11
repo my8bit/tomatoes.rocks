@@ -32,8 +32,7 @@ $button-size: $counter-size / 3;
 
 #countdown {
   font-weight: 100;
-  color: white;
-  //margin-top: 20vh;
+  color: white; //margin-top: 20vh;
   //margin-bottom: 20vh;
   font-size: $counter-size;
   /*
@@ -55,7 +54,6 @@ $button-size: $counter-size / 3;
 // .animation {
 //   -webkit-animation: fade-in 1s infinite;
 // }
-
 .container {
   height: 100vh;
   display: flex;
@@ -69,6 +67,18 @@ $button-size: $counter-size / 3;
   display: inline-block;
 }
 
+noscript {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(51, 49, 49);
+  font-size: $button-size;
+  font-weight: 100;
+  color: white;
+}
+
 // .color-box {
 //   position: relative;
 //   top: 6px;
@@ -76,7 +86,6 @@ $button-size: $counter-size / 3;
 //   display: inline-block;
 //   height: 20px;
 // }
-
 .sign {
   cursor: pointer;
   margin: 1em 0 1em 0;
