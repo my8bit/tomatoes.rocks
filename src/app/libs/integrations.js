@@ -11,8 +11,8 @@ export const ifttTrigger = () => {
     mode: 'no-cors',
     cache: 'default'
   };
-  const ifttKey = IFTT_KEY || window.iftt;
-  const triggerName = TRIGGER_NAME || window.triggerName;
+  const ifttKey = IFTT_KEY || window.iftt || localStorage.getItem('iftt');
+  const triggerName = TRIGGER_NAME || window.triggerName || localStorage.getItem('triggerName');
   if (triggerName && ifttKey) {
     fetch(`https://maker.ifttt.com/trigger/${triggerName}/with/key/${ifttKey}`, myInit);
   }
