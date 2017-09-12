@@ -8,7 +8,9 @@ const getColor = color => {
   return {color};
 };
 
-export const representationReducer = (state = {color: savedColor, hipchatToken: ''}, action) => {
+const hipchatToken = localStorage.getItem('hipchatToken') || '';
+
+export const representationReducer = (state = {color: savedColor, hipchatToken}, action) => {
   switch (action.type) {
     case 'AUTHORIZED':
       return Object.assign({}, state, {
