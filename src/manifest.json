@@ -23,9 +23,16 @@
       "sizes": "196x196",
       "type": "image/png",
       "density": 2.0
+    },
+    {
+      "src": "static/mstile-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": 1.0
     }
   ],
   "background_color": "#ff6347",
+  "theme_color": "#ff6347",
   "start_url": "/",
   "display": "fullscreen",
   "orientation": "any"
