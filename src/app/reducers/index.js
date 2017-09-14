@@ -35,7 +35,13 @@ export const representationReducer = (state = {color: savedColor, hipchatToken},
 export const settingsReducer = (state = {settings}, action) => {
   switch (action.type) {
     case 'SETTING_CHANGED':
-      return state;
+      return Object.assign({}, state, {settings: settings.map((setting, idx) => {
+        // if (action.id === idx) {
+        //   console.log(setting, idx);
+        // }
+        // return setting;
+        return (action.id === idx) ? Object.assign({}, setting, {value: action.value}) : setting;
+      })});
     default:
       return state;
   }

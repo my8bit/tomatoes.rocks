@@ -1,5 +1,6 @@
-export const changeAction = setting => dispatch => {
+export const changeAction = (value, id) => dispatch => {
   const type = 'SETTING_CHANGED';
+  // const setting = {value, id};
   // localStorage.setItem('hipchatToken', hipchatToken);
-  dispatch({type, setting});
+  dispatch({type, value, id});
 };

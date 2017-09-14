@@ -14,31 +14,32 @@ export class Settings extends Component {
 
   handleChange(e) {
     const {dispatch} = this.props;
-    console.log(e.target.value);
-    dispatch(changeAction(e.target.value));
+    const {target: {type, value, checked, id}} = e;
+    const settingValue = type === 'checkbox' ? checked : value;
+    dispatch(changeAction(settingValue, parseInt(id, 10)));
   }
 
-  getInput(setting) {
-    const {value, type} = setting;
+  getInput(setting, idx) {
+    const {value, type, name} = setting;
 
     switch (type) {
       case 'checkbox':
         return (
           <div className="rkmd-checkbox">
             <label className="input-checkbox checkbox-lightBlue">
-              <input type="checkbox" id="checkbox-1" defaultChecked={value} defaultValue={value}/>
+              <input type="checkbox" id={idx} defaultValue={value}/>
               <span className="checkbox"></span>
             </label>
-            <label htmlFor="checkbox-1" className="label">Checkbox</label>
+            <label htmlFor={idx} className="label">{name}</label>
           </div>
         );
       case 'input':
         return (
           <div className="group">
-            <input type="text" defaultValue={value} required/>
+            <input type="text" id={idx} defaultValue={value} required/>
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label>Your HipChat OAuth2 token, your name, and email separated by comma</label>
+            <label>{name}</label>
           </div>
         );
       default:
@@ -58,7 +59,7 @@ export class Settings extends Component {
           {settings.map((setting, idx) => {
             return (
               <div key={idx} className="description">
-                {this.getInput(setting)}
+                {this.getInput(setting, idx)}
               </div>
             );
           })}
