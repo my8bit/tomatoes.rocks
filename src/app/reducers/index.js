@@ -1,5 +1,6 @@
-import {colors, timerOptions} from 'config';
+import {colors, settings, timerOptions} from 'config';
 
+console.log(settings);
 const {currentTimerLength, breakTime} = timerOptions;
 const savedColor = /* localStorage.getItem('color') || */ colors[1]; // TODO: check if there are localstorage
 
@@ -26,6 +27,15 @@ export const representationReducer = (state = {color: savedColor, hipchatToken},
       return Object.assign({}, state, {
         hipchatToken: action.hipchatToken
       });
+    default:
+      return state;
+  }
+};
+
+export const settingsReducer = (state = {settings}, action) => {
+  switch (action.type) {
+    case 'SETTING_CHANGED':
+      return state;
     default:
       return state;
   }

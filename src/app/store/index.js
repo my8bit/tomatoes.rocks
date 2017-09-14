@@ -1,9 +1,10 @@
-import {representationReducer, timerReducer, userReducer} from '../reducers';
+import {representationReducer, settingsReducer, timerReducer, userReducer} from '../reducers';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 
 const reducers = combineReducers({
   representationReducer,
+  settingsReducer,
   timerReducer,
   userReducer
 });

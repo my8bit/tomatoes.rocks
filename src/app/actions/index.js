@@ -1,11 +1,5 @@
-export const increaseTime = () => {
-  return {
-    type: 'INCREASE'
-  };
-};
-
-export const getMoviesAction = () => dispatch => {
-  dispatch({
-    type: 'SET_POSTER'
-  });
+export const changeAction = setting => dispatch => {
+  const type = 'SETTING_CHANGED';
+  // localStorage.setItem('hipchatToken', hipchatToken);
+  dispatch({type, setting});
 };
