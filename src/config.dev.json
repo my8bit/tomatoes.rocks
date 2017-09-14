@@ -1,4 +1,21 @@
 {
+  "settings": [{
+    "name": "hipchatSettings",
+    "type": "input",
+    "value": "HipChat credentials"
+  }, {
+    "name": "ifttSettings",
+    "type": "input",
+    "value": "IFTT tocken"
+  }, {
+    "name": "colorSettings",
+    "type": "color-picker",
+    "value": ""
+  }, {
+    "name": "notificationSettings",
+    "type": "checkbox",
+    "value": true
+  }],
   "timerOptions": {
     "currentTimerLength": 5000,
     "breakTime": 2500,

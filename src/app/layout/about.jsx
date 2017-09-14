@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import {ColorPickerCmp} from '../components/color-picker.jsx';
-import {HipChatIntegration} from '../components/hipchat-input.jsx';
+import {settings} from 'config';
+
+console.log(settings);
 
 export class AboutCmp extends Component {
+  getInput(setting) {
+    return <input value={setting.value}/>;
+  }
   render() {
     return (
       <section id="about" className="about site-wrap">
@@ -11,9 +16,13 @@ export class AboutCmp extends Component {
           <h4>Please select background color:</h4>
           <ColorPickerCmp/>
         </div>
-        <div className="description">
-          <HipChatIntegration/>
-        </div>
+        {settings.map((setting, idx) => {
+          return (
+            <div key={idx} className="description">
+              {this.getInput(setting)}
+            </div>
+          );
+        })}
       </section>
     );
   }
