@@ -14,6 +14,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {WindowResizeListener} from 'react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
+import {UpdatesCmp} from './app/layout/updates.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
@@ -112,6 +113,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={HomeCmp}/>
           <Route path="/settings" component={AboutCmp}/>
+          <Route path="/updates" component={UpdatesCmp}/>
         </Route>
       </section>
     </Router>

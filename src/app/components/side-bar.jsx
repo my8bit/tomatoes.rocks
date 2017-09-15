@@ -53,6 +53,7 @@ class SidebarList extends Component {
           </li>}
         {this.menuItem('Timer', 'fa-clock-o', '/')}
         {this.menuItem('Settings', 'fa-wrench', '/settings')}
+        {this.menuItem('Updates', 'fa-wrench', '/updates')}
       </ul>
     );
   }
