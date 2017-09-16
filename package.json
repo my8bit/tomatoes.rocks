@@ -17,7 +17,10 @@
     "react-router": "^2.4.0",
     "react-window-resize-listener": "^1.1.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "resolve-url-loader": "^2.1.0",
+    "roboto-fontface": "^0.8.0",
+    "webpack-roboto": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.2",
@@ -41,6 +44,7 @@
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.11.2",
     "gulp": "github:gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
     "gulp-filter": "^4.0.0",
     "gulp-hub": "github:frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4",

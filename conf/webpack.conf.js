@@ -34,9 +34,14 @@ module.exports = {
         loaders: [
           'style',
           'css',
-          'sass',
-          'postcss'
+          'resolve-url-loader',
+          'postcss',
+          'sass'
         ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=node_modules/roboto-fontface/fonts/[name].[ext]'
       },
       {
         test: /\.(js|jsx)$/,

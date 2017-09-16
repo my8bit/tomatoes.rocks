@@ -25,8 +25,12 @@ module.exports = {
         ]
       },
       {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=fonts/[name].[ext]'
+      },
+      {
         test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract('style', 'css?minimize!sass', 'postcss')
+        loaders: ExtractTextPlugin.extract('style', 'css!sass!resolve-url!sass?sourceMap', 'postcss')
       },
       {
         test: /\.(js|jsx)$/,
@@ -40,7 +44,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
+    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}, {from: path.resolve(__dirname, '../node_modules/roboto-fontface')}]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       minify: {
