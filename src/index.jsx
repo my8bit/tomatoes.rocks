@@ -1,5 +1,5 @@
-import Offline from 'offline-plugin/runtime';
-Offline.install();
+// import Offline from 'offline-plugin/runtime';
+// Offline.install();
 
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
