@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Timer} from '../components/pomodoro.jsx';
+import {Timer} from '../components/timer.jsx';
 import {connect} from 'react-redux';
 
 export class Home extends Component {
   render() {
-    const {color} = this.props;
+    const {settings} = this.props;
+    const color = settings[0].value;
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
         <Timer/>
@@ -13,11 +14,13 @@ export class Home extends Component {
   }
 }
 
-Home.propTypes = {color: React.PropTypes.string.isRequired};
+Home.propTypes = {
+  settings: React.PropTypes.array.isRequired
+};
 
 const mapStateToProps = store => {
-  const {color} = store.representationReducer;
-  return {color};
+  const {settings} = store.settingsReducer;
+  return {settings};
 };
 
 export const HomeCmp = connect(mapStateToProps)(Home);

@@ -58,7 +58,8 @@ class Main extends Component {
   }
 
   render() {
-    const {color, currentTimerLength, startTime, children} = this.props;
+    const {settings, currentTimerLength, startTime, children} = this.props;
+    const color = settings[0].value;
     return (
       <main>
         <Helmet
@@ -91,15 +92,15 @@ class Main extends Component {
 }
 
 const mapStateToProps = store => {
-  const {color} = store.representationReducer;
+  const {settings} = store.settingsReducer;
   const {currentTimerLength, startTime} = store.timerReducer;
-  return {color, currentTimerLength, startTime, name};
+  return {currentTimerLength, startTime, name, settings};
 };
 
 Main.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   currentTimerLength: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired,
+  settings: React.PropTypes.array.isRequired,
   children: React.PropTypes.element.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };

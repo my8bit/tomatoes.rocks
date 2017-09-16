@@ -1,6 +1,5 @@
 import {colors, settings, timerOptions} from 'config';
 
-console.log(settings);
 const {currentTimerLength, breakTime} = timerOptions;
 const savedColor = /* localStorage.getItem('color') || */ colors[1]; // TODO: check if there are localstorage
 

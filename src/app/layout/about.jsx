@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ColorPickerCmp} from '../components/color-picker.jsx';
+// import {ColorPickerCmp} from '../components/color-picker.jsx';
 import {changeAction} from '../actions';
 // import {changeAction} from '../libs/firebase.auth';
-// import {settings} from 'config';
+import {colors} from 'config';
 
 // console.log(settings, changeAction);
 
@@ -15,9 +15,21 @@ export class Settings extends Component {
 
   handleChange(e) {
     const {dispatch} = this.props;
-    const {target: {type, value, checked, id}} = e;
-    const settingValue = type === 'checkbox' ? checked : value;
-    dispatch(changeAction(settingValue, parseInt(id, 10)));
+    const {target: {dataset, type, value, checked, id}} = e;
+    debugger;
+    let settingValue;
+    switch (type) {
+      case 'checkbox':
+        settingValue = checked;
+        break;
+      case 'radio':
+      case 'text':
+        settingValue = value;
+        break;
+      default:
+        break;
+    }
+    dispatch(changeAction(settingValue, parseInt(id || dataset.id, 10)));
   }
 
   getInput(setting, idx) {
@@ -43,6 +55,28 @@ export class Settings extends Component {
             <label>{name}</label>
           </div>
         );
+      case 'color-picker':
+        return (
+          <form className="picker-form">
+            <label>{name}</label>
+            {colors.map((currentColor, index) => {
+              return (
+                <div key={index} className="color-container">
+                  <input
+                    className="input-color"
+                    readOnly
+                    checked={value === currentColor}
+                    type="radio"
+                    name="color"
+                    data-id={idx}
+                    style={{backgroundColor: currentColor}}
+                    value={currentColor}
+                    />
+                </div>
+              );
+            })}
+          </form>
+        );
       default:
         return '';
     }
@@ -56,10 +90,6 @@ export class Settings extends Component {
     return (
       <section id="about" className="about site-wrap">
         <div className="menu-background">Settings</div>
-        <div className="description">
-          <h4>Please select background color:</h4>
-          <ColorPickerCmp/>
-        </div>
         <div onChange={this.handleChange} className="settings-wraper">
           {settings.map((setting, idx) => {
             return (
