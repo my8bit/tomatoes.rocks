@@ -44,7 +44,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}, {from: path.resolve(__dirname, '../node_modules/roboto-fontface')}]),
+    new CopyWebpackPlugin([
+      {from: path.resolve(__dirname, '../src/_redirects')}// ,
+      // {from: path.resolve(__dirname, '../node_modules/roboto-fontface/css')},
+      // {from: path.resolve(__dirname, '../node_modules/roboto-fontface/fonts')}
+    ]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       minify: {
@@ -84,6 +88,7 @@ module.exports = {
     }]),
     new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
+      caches: ['main'],
       excludes: ['_redirects']
     })
   ],
