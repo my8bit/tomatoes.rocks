@@ -25,13 +25,23 @@ module.exports = {
         ]
       },
       {
+        test: /\.(css|scss|sass)$/,
+        loaders: [
+          'style',
+          'css',
+          'resolve-url-loader',
+          'postcss',
+          'sass'
+        ]
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=fonts/[name].[ext]'
       },
-      {
-        test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract('style', 'css!sass!resolve-url!sass?sourceMap', 'postcss')
-      },
+      // {
+      //   test: /\.(css|scss)$/,
+      //   loaders: ExtractTextPlugin.extract('style', 'css!sass!resolve-url!sass?sourceMap', 'postcss')
+      // },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -84,7 +94,7 @@ module.exports = {
       name: 'vendor',
       path: path.join(__dirname, '../node_modules')
     }]),
-    new ExtractTextPlugin('/index-[contenthash].css'),
+    // new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
       // caches: ['main'],
       excludes: ['_redirects']
