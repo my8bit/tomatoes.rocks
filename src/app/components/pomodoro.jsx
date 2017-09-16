@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {timerOptions} from 'config';
-import {formatTime, startUpdate, stopUpdate} from '../libs/timer';
+import {formatTime, startUpdate, stopUpdate, isFinished} from '../libs/timer';
 import Ink from 'react-ink';
 import {timerAction, stopAction} from '../libs/firebase.auth';
 const {buttonStatus: {START, STOP}} = timerOptions;
@@ -23,7 +23,9 @@ class TimerWidget extends Component {
 
   componentDidUpdate() {
     const {dispatch, currentTimerLength, startTime} = this.props;
-    dispatch(stopAction({currentTimerLength, startTime}));
+    if (isFinished({currentTimerLength, startTime})) {
+      dispatch(stopAction());
+    }
   }
 
   handleClick() {

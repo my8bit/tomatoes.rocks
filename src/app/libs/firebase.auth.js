@@ -6,7 +6,7 @@
           FIREBASE_MESSEGING_SENDER_ID
 */
 import firebase from 'firebase';
-import {isExpired, isFinished} from '../libs/timer';
+import {isExpired} from '../libs/timer';
 import {timerOptions} from 'config';
 import {notifyMe} from '../workers/notification';
 import {ifttTrigger, hipChatTrigger} from './integrations';
@@ -30,6 +30,8 @@ firebase.initializeApp({
 
 const provider = new firebase.auth.TwitterAuthProvider();
 const database = firebase.database();
+
+export {firebase, database, provider};
 
 export const logoutAction = () => dispatch => {
   firebase.auth().signOut().then(() => {
@@ -76,33 +78,29 @@ export const timerAction = ({startTime}) => dispatch => {
   dispatch({type, startTime: newStartTime, wasStopped});
 };
 
-export const stopAction = options => dispatch => {
+export const stopAction = () => dispatch => {
   const type = 'FINISH';
   const wasStopped = true;
-  const {currentTimerLength, startTime} = options;
 
-  if (isFinished({currentTimerLength, startTime})) {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        database.ref(`users/${user.uid}`).update({
-          type,
-          // startTime, // TODO  const {startTime = 0} = snapshotValue;
-          wasStopped
-        });
-        database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-          const snapshotValue = snapshot.val();
-          const {hipchatToken} = snapshotValue;
-          hipChatTrigger('chat', hipchatToken);
-        });
-      } else {
-        hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
-      }
-    });
-    dispatch({type, startTime: 0, wasStopped});
-
-    ifttTrigger();
-    notifyMe();
-  }
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      database.ref(`users/${user.uid}`).update({
+        type,
+        // startTime, // TODO  const {startTime = 0} = snapshotValue;
+        wasStopped
+      });
+      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+        const snapshotValue = snapshot.val();
+        const {hipchatToken} = snapshotValue;
+        hipChatTrigger('chat', hipchatToken);
+      });
+    } else {
+      hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
+    }
+  });
+  dispatch({type, startTime: 0, wasStopped});
+  ifttTrigger();
+  notifyMe();
 };
 
 export const hipChatSaveToken = hipchatToken => dispatch => {
@@ -122,13 +120,14 @@ export const checkAuth = () => dispatch => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value').then(snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime = 0, hipchatToken} = snapshotValue;
+        const {startTime = 0, hipchatToken, settings} = snapshotValue;
 
         dispatch(user ? { // TODO
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
           hipchatToken,
+          settings,
           startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
           type: 'UNAUTHORIZED',
@@ -185,3 +184,17 @@ export const loginAction = () => dispatch => {
     console.log(errorCode, errorMessage, email, credential);
   });
 };
+
+export const changeAction = (value, id) => dispatch => {
+  const type = 'SETTING_CHANGED';
+  // dispatch({type, value, id});
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      database.ref(`users/${user.uid}`).update({
+        settings: [1, 2, 3]
+      });
+    }
+    dispatch({type, value, id});
+  });
+};
+

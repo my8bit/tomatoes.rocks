@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ColorPickerCmp} from '../components/color-picker.jsx';
 import {changeAction} from '../actions';
-import {settings} from 'config';
+// import {changeAction} from '../libs/firebase.auth';
+// import {settings} from 'config';
 
-console.log(settings, changeAction);
+// console.log(settings, changeAction);
 
 export class Settings extends Component {
   constructor(props) {
@@ -48,6 +49,10 @@ export class Settings extends Component {
   }
 
   render() {
+    // debugger;
+    const {settings} = this.props;
+    // console.log('this.props.settings', this.props.settings);
+    // console.log(settings);
     return (
       <section id="about" className="about site-wrap">
         <div className="menu-background">Settings</div>

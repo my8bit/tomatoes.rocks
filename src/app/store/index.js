@@ -1,6 +1,7 @@
 import {representationReducer, settingsReducer, timerReducer, userReducer} from '../reducers';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
+import {firebase, database} from '../libs/firebase.auth';
 
 const reducers = combineReducers({
   representationReducer,
@@ -18,10 +19,22 @@ const composeEnhancers =
 
 const logger = ({getState}) => {
   return next => action => {
-    console.log('will dispatch', action);
+    // console.log('will dispatch', action);
     // Call the next dispatch method in the middleware chain.
     const returnValue = next(action);
-    console.log('state after dispatch', getState());
+    // console.log(returnValue, 'returnValue', firebase);
+    if (returnValue && returnValue.type === 'SETTING_CHANGED') {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          database.ref(`users/${user.uid}`).update({
+            settings: getState().settingsReducer.settings
+          });
+        }
+      });
+    } else if (returnValue === undefined) {
+      console.log(getState().timerReducer.startTime);
+    }
+    // console.log('state after dispatch', getState());
     // This will likely be the action itself, unless
     // a middleware further in chain changed it.
     return returnValue;

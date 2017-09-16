@@ -1,4 +1,4 @@
-export const changeAction = (value, id) => dispatch => {
+export const changeAction = (value, id) => {
   const type = 'SETTING_CHANGED';
-  dispatch({type, value, id});
+  return {type, value, id};
 };
