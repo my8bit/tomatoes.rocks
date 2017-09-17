@@ -36,7 +36,7 @@ module.exports = {
           'css',
           'resolve-url-loader',
           'postcss',
-          'sass'
+          'sass?sourceMap'
         ]
       },
       {
