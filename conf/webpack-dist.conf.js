@@ -2,8 +2,7 @@ const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const SplitByPathPlugin = require('webpack-split-by-path');
 const autoprefixer = require('autoprefixer');
 const OfflinePlugin = require('offline-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -38,10 +37,6 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=fonts/[name].[ext]'
       },
-      // {
-      //   test: /\.(css|scss)$/,
-      //   loaders: ExtractTextPlugin.extract('style', 'css!sass!resolve-url!sass?sourceMap', 'postcss')
-      // },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -90,13 +85,13 @@ module.exports = {
         dead_code: true// eslint-disable-line camelcase
       }
     }),
-    new SplitByPathPlugin([{
-      name: 'vendor',
-      path: path.join(__dirname, '../node_modules')
-    }]),
+    // new SplitByPathPlugin([{
+    //   name: 'vendor',
+    //   path: path.join(__dirname, '../node_modules')
+    // }]),
     // new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
-      // caches: ['main'],
+      AppCache: false,
       excludes: ['_redirects']
     })
   ],
