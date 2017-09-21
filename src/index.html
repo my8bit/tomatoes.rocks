@@ -33,32 +33,41 @@
 </head>
 
 <body>
-  <div id="app"></div>
-  <noscript>
-    <style>
+  <style>
     /* TODO: refactor this this */
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      noscript {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(51, 49, 49);
-        color: white;
-      }
-      noscript h1,
-      noscript h2 {
-        font-family: 'Helvetica Neue', 'Roboto', sans-serif;
-        font-weight: 100;
-      }
-    </style>
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    noscript,
+    .splash {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(51, 49, 49);
+      color: white;
+    }
+
+    noscript h1,
+    .splash h1,
+    noscript h2 {
+      font-family: 'Helvetica Neue', 'Roboto', sans-serif;
+      font-weight: 100;
+    }
+  </style>
+  <noscript>
     <h1>Tomatoes doesn't Works with JavaScript disabled :-(</h1>
     <h2>Please turn on Javascript and come back!</h2>
   </noscript>
+  <div id="app">
+    <div class="splash">
+      <h1>Tomatoes starts its Work ....</h1>
+    </div>
+  </div>
   <!--
     <script type="text/javascript">
       wpac_init = window.wpac_init || [];
