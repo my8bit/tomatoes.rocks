@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Ink from 'react-ink';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
 
@@ -27,7 +27,17 @@ class SidebarList extends Component {
   }
 
   menuItem(name, icon, link) {
-    return <li className="nav-item"><Link to={link}>{name}<i className={`fa ${icon} right`} aria-hidden="true"></i><Ink/></Link></li>;
+    console.log(link);
+    return <li className="nav-item"><Link to="/settings">settings</Link></li>;
+    // return (
+    //   <li className="nav-item">
+    //     <Link to={link}>
+    //       {name}
+    //       <i className={`fa ${icon} right`} aria-hidden="true"></i>
+    //       <Ink/>
+    //     </Link>
+    //   </li>
+    // );
   }
 
   render() {

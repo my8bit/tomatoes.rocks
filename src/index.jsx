@@ -7,11 +7,12 @@ Offline.install();
 import Swipe from 'react-easy-swipe';
 
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import {WindowResizeListener} from 'react-window-resize-listener';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+// import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
 import {UpdatesCmp} from './app/layout/updates.jsx';
@@ -22,6 +23,7 @@ import {formatTime, startUpdate, stopUpdate} from './app/libs/timer';
 import './index.scss';
 
 WindowResizeListener.DEBOUNCE_TIME = 200;
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -60,6 +62,7 @@ class Main extends Component {
   render() {
     const {settings, currentTimerLength, startTime, children} = this.props;
     const color = settings[0].value;
+    console.log(children, 'children children children children children');
     return (
       <main>
         <Helmet
@@ -73,12 +76,12 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
-        <SidebarCmp/>
         <WindowResizeListener onResize={this.handleResize}/>
         <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
+        <SidebarCmp/>
         <Swipe
           className="swipe-container"
           onSwipeRight={this.handleSwipeRight}
@@ -107,16 +110,16 @@ Main.propTypes = {
 
 const App = connect(mapStateToProps)(Main);
 
-ReactDOM.render(
+render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <section>
-        <Route path="/" component={App}>
-          <IndexRoute component={HomeCmp}/>
-          <Route path="/settings" component={AboutCmp}/>
-          <Route path="/updates" component={UpdatesCmp}/>
-        </Route>
-      </section>
+    <Router>
+      <App>
+        <div>
+          <Route exact path="/" component={HomeCmp}/>
+          <Route exact path="/settings" component={AboutCmp}/>
+          <Route exact path="/updates" component={UpdatesCmp}/>
+        </div>
+      </App>
     </Router>
   </Provider>,
   document.getElementById('app')
