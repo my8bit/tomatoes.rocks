@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-// import {ColorPickerCmp} from '../components/color-picker.jsx';
 import {changeAction} from '../actions';
-// import {changeAction} from '../libs/firebase.auth';
 import {colors} from 'config';
-
-// console.log(settings, changeAction);
 
 export class Settings extends Component {
   constructor(props) {
@@ -16,7 +12,6 @@ export class Settings extends Component {
   handleChange(e) {
     const {dispatch} = this.props;
     const {target: {dataset, type, value, checked, id}} = e;
-    debugger;
     let settingValue;
     switch (type) {
       case 'checkbox':
@@ -83,10 +78,7 @@ export class Settings extends Component {
   }
 
   render() {
-    // debugger;
     const {settings} = this.props;
-    // console.log('this.props.settings', this.props.settings);
-    // console.log(settings);
     return (
       <section id="about" className="about site-wrap">
         <div className="menu-background">Settings</div>

@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {HashRouter as Router, Route} from 'react-router-dom';
 // import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
@@ -60,9 +60,8 @@ class Main extends Component {
   }
 
   render() {
-    const {settings, currentTimerLength, startTime, children} = this.props;
+    const {settings, currentTimerLength, startTime} = this.props;
     const color = settings[0].value;
-    console.log(children, 'children children children children children');
     return (
       <main>
         <Helmet
@@ -77,18 +76,24 @@ class Main extends Component {
           ]}
           />
         <WindowResizeListener onResize={this.handleResize}/>
-        <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
-        <label htmlFor="nav-trigger">
-          <div id="close-icon"><span></span><span></span><span></span></div>
-        </label>
-        <SidebarCmp/>
-        <Swipe
-          className="swipe-container"
-          onSwipeRight={this.handleSwipeRight}
-          onSwipeLeft={this.handleSwipeLeft}
-          >
-          {children}
-        </Swipe>
+        <Router>
+          <div>
+            <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
+            <label htmlFor="nav-trigger">
+              <div id="close-icon"><span></span><span></span><span></span></div>
+            </label>
+            <Swipe
+              className="swipe-container"
+              onSwipeRight={this.handleSwipeRight}
+              onSwipeLeft={this.handleSwipeLeft}
+              >
+              <Route path="/" component={SidebarCmp}/>
+              <Route exact path="/" component={HomeCmp}/>
+              <Route exact path="/settings" component={AboutCmp}/>
+              <Route exact path="/updates" component={UpdatesCmp}/>
+            </Swipe>
+          </div>
+        </Router>
       </main>
     );
   }
@@ -104,23 +109,12 @@ Main.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   currentTimerLength: React.PropTypes.number.isRequired,
   settings: React.PropTypes.array.isRequired,
-  children: React.PropTypes.element.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };
 
 const App = connect(mapStateToProps)(Main);
 
 render(
-  <Provider store={store}>
-    <Router>
-      <App>
-        <div>
-          <Route exact path="/" component={HomeCmp}/>
-          <Route exact path="/settings" component={AboutCmp}/>
-          <Route exact path="/updates" component={UpdatesCmp}/>
-        </div>
-      </App>
-    </Router>
-  </Provider>,
+  <Provider store={store}><App/></Provider>,
   document.getElementById('app')
 );

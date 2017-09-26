@@ -27,17 +27,15 @@ class SidebarList extends Component {
   }
 
   menuItem(name, icon, link) {
-    console.log(link);
-    return <li className="nav-item"><Link to="/settings">settings</Link></li>;
-    // return (
-    //   <li className="nav-item">
-    //     <Link to={link}>
-    //       {name}
-    //       <i className={`fa ${icon} right`} aria-hidden="true"></i>
-    //       <Ink/>
-    //     </Link>
-    //   </li>
-    // );
+    return (
+      <li className="nav-item">
+        <Link to={link}>
+          {name}
+          <i className={`fa ${icon} right`} aria-hidden="true"></i>
+          <Ink/>
+        </Link>
+      </li>
+    );
   }
 
   render() {
