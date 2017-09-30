@@ -1,5 +1,7 @@
 @import 'app/components/style';
 @import 'app/components/nav';
+@import 'node_modules/roboto-fontface/css/roboto/sass/roboto-fontface-regular';
+@import 'css/fontello.css';
 
 $main-font: 'Helvetica Neue', 'Roboto', sans-serif;
 
@@ -69,10 +71,10 @@ footer {
 
 
 /* form starting stylings ------------------------------- */
-.group        {
+.group {
   position: relative;
   margin-bottom: 45px;
-  input         {
+  input {
     font-size: 18px;
     background-color: transparent;
     padding: 10px 10px 10px 5px;

@@ -57,7 +57,7 @@ class SidebarList extends Component {
             </div>
           </li> :
           <li className="nav-item" onClick={this.handleLogin}>
-            <div className="logout">Sign in with Twitter <i className="fa fa-twitter right" aria-hidden="true"></i><Ink/></div>
+            <div className="logout">Sign in with Twitter <i className="fa icon-twitter right" aria-hidden="true"></i><Ink/></div>
           </li>}
         {this.menuItem('Timer', 'fa-clock-o', '/')}
         {this.menuItem('Settings', 'fa-wrench', '/settings')}
