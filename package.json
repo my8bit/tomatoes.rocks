@@ -10,6 +10,7 @@
     "react-dom": "^15.4.2",
     "react-easy-swipe": "0.0.8",
     "react-helmet": "^3.1.0",
+    "@liveauctioneers/react-window-resize-listener": "github:LIVEauctioneers/react-window-resize-listener",
     "react-ink": "^6.2.0",
     "react-redux": "^5.0.1",
     "react-ripple-effect": "^1.0.4",
