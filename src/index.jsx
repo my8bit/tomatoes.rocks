@@ -39,9 +39,7 @@ class H extends Component {
 
   render() {
     const {settings, currentTimerLength, startTime} = this.props;
-    if (settings === undefined) {
-      debugger;
-    }
+
     const color = settings.find(el => el.name === 'Colors');
     return (
       <Helmet
