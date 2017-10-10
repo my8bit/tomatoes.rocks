@@ -10,28 +10,22 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 // import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
-import {AboutCmp} from './app/layout/about.jsx';
-import {UpdatesCmp} from './app/layout/updates.jsx';
+import {AboutCmp} from './app/layout/settings.jsx';
+import {UpdatesCmp} from './app/layout/faq.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import {formatTime, startUpdate, stopUpdate} from './app/libs/timer';
 import './index.scss';
 
-WindowResizeListener.DEBOUNCE_TIME = 200;
-
-class Main extends Component {
+class H extends Component {
   constructor(props) {
     super(props);
-    this.state = {isSideBarOpen: false};
-    this.handleChecked = this.handleChecked.bind(this);
-    this.handleResize = this.handleResize.bind(this);
-    this.handleSwipeRight = this.handleSwipeRight.bind(this);
-    this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
+    WindowResizeListener.DEBOUNCE_TIME = 200;
     this.update = this.forceUpdate.bind(this);
   }
 
@@ -41,6 +35,51 @@ class Main extends Component {
 
   componentWillUnmount() {
     stopUpdate(this.update);
+  }
+
+  render() {
+    const {settings, currentTimerLength, startTime} = this.props;
+    if (settings === undefined) {
+      debugger;
+    }
+    const color = settings.find(el => el.name === 'Colors');
+    return (
+      <Helmet
+        title={startTime ? formatTime({currentTimerLength, startTime}) : textContent}
+        meta={[
+          {name: 'description', content: textContent},
+          {name: 'application-name', content: textContent},
+          {name: 'msapplication-TileColor', content: color},
+          {name: 'theme-color', content: color},
+          {name: 'msapplication-navbutton-color', content: color},
+          {name: 'apple-mobile-web-app-status-bar-style', content: color}
+        ]}
+        />
+    );
+  }
+}
+const mapStateToProps2 = store => {
+  const {settings} = store.settingsReducer;
+  const {currentTimerLength, startTime} = store.timerReducer;
+  return {currentTimerLength, startTime, settings};
+};
+
+H.propTypes = {
+  startTime: React.PropTypes.number.isRequired,
+  currentTimerLength: React.PropTypes.number.isRequired,
+  settings: React.PropTypes.array.isRequired
+};
+
+const Hd = connect(mapStateToProps2)(H);
+
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isSideBarOpen: false};
+    this.handleChecked = this.handleChecked.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+    this.handleSwipeRight = this.handleSwipeRight.bind(this);
+    this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
   }
 
   handleResize(windowSize) {
@@ -60,21 +99,11 @@ class Main extends Component {
   }
 
   render() {
-    const {settings, currentTimerLength, startTime} = this.props;
-    const color = settings[0].value;
+    // const {settings, currentTimerLength, startTime} = this.props;
+    // const color = settings[0].value;
     return (
       <main>
-        <Helmet
-          title={startTime ? formatTime({currentTimerLength, startTime}) : textContent}
-          meta={[
-            {name: 'description', content: textContent},
-            {name: 'application-name', content: textContent},
-            {name: 'msapplication-TileColor', content: color},
-            {name: 'theme-color', content: color},
-            {name: 'msapplication-navbutton-color', content: color},
-            {name: 'apple-mobile-web-app-status-bar-style', content: color}
-          ]}
-          />
+        <Hd/>
         <WindowResizeListener onResize={this.handleResize}/>
         <Router>
           <div>
@@ -90,7 +119,7 @@ class Main extends Component {
               <Route path="/" component={SidebarCmp}/>
               <Route exact path="/" component={HomeCmp}/>
               <Route exact path="/settings" component={AboutCmp}/>
-              <Route exact path="/updates" component={UpdatesCmp}/>
+              <Route exact path="/faq" component={UpdatesCmp}/>
             </Swipe>
           </div>
         </Router>

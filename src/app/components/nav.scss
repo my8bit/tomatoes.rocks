@@ -104,7 +104,10 @@ $sidebar-width: 230px;
 
 .settings-wraper,
 .updates-wrapper {
-  margin-top: 3em;
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Nav Trigger */
@@ -142,15 +145,23 @@ label[for="nav-trigger"] {
   z-index: 3;
 }
 
-#nav-trigger:checked ~ .swipe-container .site-wrap {
+#nav-trigger:checked ~ div .site-wrap {
   left: $sidebar-width;
   z-index: 2;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
 
 @media screen and (min-width: 900px) {
-  .nav-trigger:checked ~ .swipe-container .site-wrap .container {
-    margin-right: $sidebar-width * 2;
+  .nav-trigger:checked ~ .swipe-container {
+    .site-wrap {
+      .container {
+        margin-right: $sidebar-width * 2;
+      }
+      .settings-wraper,
+      .updates-wrapper {
+        margin-right: $sidebar-width;
+      }
+    }
   }
 }
 
@@ -158,6 +169,12 @@ label[for="nav-trigger"] {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  position: relative;
+  label {
+    position: absolute;
+    top: -20px;
+    color: #999;
+  }
 }
 
 .input-color {

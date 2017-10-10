@@ -1,18 +1,18 @@
 {
   "settings": [{
-    "name": "colorSettings",
+    "name": "Colors",
     "type": "color-picker",
     "value": "red"
   }, {
-    "name": "hipchatSettings",
+    "name": "HipChat Settings",
     "type": "input",
-    "value": "HipChat credentials"
+    "value": ""
   }, {
-    "name": "ifttSettings",
+    "name": "IFTT Settings",
     "type": "input",
-    "value": "IFTT tocken"
+    "value": ""
   }, {
-    "name": "notificationSettings",
+    "name": "Notification Settings",
     "type": "checkbox",
     "value": true
   }],
@@ -24,8 +24,7 @@
     "buttonStatus": {
       "START": "start",
       "STOP": "stop"
-    },
-    "animation": true
+    }
   },
   "notification": {
     "options": {
@@ -50,6 +49,6 @@
   "colors": [
       "#ff6347",
       "#333333",
-      "#90ee90"
+      "#352f28"
     ]
 }

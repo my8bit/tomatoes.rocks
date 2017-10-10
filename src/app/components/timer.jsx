@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {timerOptions} from 'config';
 import {formatTime, startUpdate, stopUpdate, isFinished} from '../libs/timer';
 import Ink from 'react-ink';
-import {timerAction, stopAction} from '../libs/firebase.auth';
+import {timerAction, stopAction} from '../actions';
+
 const {buttonStatus: {START, STOP}} = timerOptions;
 
 class TimerWidget extends Component {
@@ -30,7 +31,7 @@ class TimerWidget extends Component {
 
   handleClick() {
     const {dispatch, startTime} = this.props;
-    dispatch(timerAction({startTime}));
+    dispatch(timerAction(startTime));
   }
 
   render() {
@@ -53,14 +54,13 @@ class TimerWidget extends Component {
 
 TimerWidget.propTypes = {
   startTime: React.PropTypes.number.isRequired,
-  wasStopped: React.PropTypes.bool,
   currentTimerLength: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {
-  const {currentTimerLength, startTime, wasStopped} = store.timerReducer;
-  return {currentTimerLength, startTime, wasStopped};
+  const {currentTimerLength, startTime} = store.timerReducer;
+  return {currentTimerLength, startTime};
 };
 
 export const Timer = connect(mapStateToProps)(TimerWidget);

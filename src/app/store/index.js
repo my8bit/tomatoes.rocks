@@ -1,10 +1,9 @@
-import {representationReducer, settingsReducer, timerReducer, userReducer} from '../reducers';
+import {settingsReducer, timerReducer, userReducer} from '../reducers';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {firebase, database} from '../libs/firebase.auth';
 
 const reducers = combineReducers({
-  representationReducer,
   settingsReducer,
   timerReducer,
   userReducer
@@ -22,7 +21,25 @@ const logger = ({getState}) => {
     // console.log('will dispatch', action);
     // Call the next dispatch method in the middleware chain.
     const returnValue = next(action);
+    // console.log('returnValue', returnValue);
+    // const {startTime} = returnValue;
     // console.log(returnValue, 'returnValue', firebase);
+    //
+
+    if (returnValue) {
+      const settings = getState().settingsReducer.settings;
+      const startTime = getState().timerReducer.startTime;
+
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          database.ref(`users/${user.uid}`).update({
+            settings,
+            startTime
+          });
+        }
+      });
+    }
+/*
     if (returnValue && returnValue.type === 'SETTING_CHANGED') {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -31,9 +48,34 @@ const logger = ({getState}) => {
           });
         }
       });
-    } else if (returnValue === undefined) {
-      console.log(getState().timerReducer.startTime);
     }
+
+    if (returnValue && returnValue.type === 'FINISH') {
+      const {type} = returnValue;
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          database.ref(`users/${user.uid}`).update({
+            type
+          });
+        }
+      });
+    }
+
+    if (returnValue && (returnValue.type === 'START' || returnValue.type === 'RESET')) {
+      const {type, startTime} = returnValue;
+      console.log('type, startTime', type, startTime);
+      console.log(' getState() => type, startTime', getState());
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          database.ref(`users/${user.uid}`).update({
+            type,
+            startTime
+          });
+        }
+      });
+    }
+*/
+
     // console.log('state after dispatch', getState());
     // This will likely be the action itself, unless
     // a middleware further in chain changed it.

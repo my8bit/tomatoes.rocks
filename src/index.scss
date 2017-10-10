@@ -30,7 +30,7 @@ main {
 
 .description {
   margin: 0;
-  padding: 1em;
+  min-width: 300px;
 }
 
 .left {
@@ -43,6 +43,7 @@ main {
   background: #333131;
   height: 3em;
   color: white;
+  z-index: 1;
   line-height: 3em;
   font-size: 1.2em;
   text-align: center;
@@ -72,14 +73,15 @@ footer {
 
 /* form starting stylings ------------------------------- */
 .group {
+  padding: 1em;
   position: relative;
-  margin-bottom: 45px;
+  margin-top: 18px;
   input {
     font-size: 18px;
     background-color: transparent;
     padding: 10px 10px 10px 5px;
     display: block;
-    width: 325px;
+    width: 275px;
     border: none;
     border-bottom: 1px solid #757575;
   }
@@ -101,13 +103,12 @@ footer {
 
   /* active state */
   input:focus ~ label, input:valid ~ label    {
-    top:-20px;
-    font-size:14px;
-    color:#5264AE;
+    top: -20px;
+    font-size: 16px;
   }
 
   /* BOTTOM BARS ================================= */
-  .bar  { position:relative; display:block; width: 340px; }
+  .bar  { position:relative; display:block; width: 300px; }
   .bar:before, .bar:after   {
     content:'';
     height:2px;
@@ -188,10 +189,12 @@ footer {
       & + .checkbox:before {
         position: absolute;
         left: 4px;
-        bottom: 8px;
+        bottom: 10px;
         width: 18px;
         height: 18px;
+        /*
         font-family: 'Material Icons';
+        */
         font-weight: normal;
         font-style: normal;
         font-size: 24px;
@@ -218,9 +221,9 @@ footer {
         z-index: 1;
       }
 
-      & + .checkbox:before { content: "\e835"; color: #717171; }
+      & + .checkbox:before { content: "❟"; color: #717171; }
 
-      &:checked + .checkbox:before { content: "\e834"; }
+      &:checked + .checkbox:before { content: "✖"; }
 
       &:active:not(:disabled) + .checkbox:before { transform: scale3d(0.88, 0.88, 1); }
 

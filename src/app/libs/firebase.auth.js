@@ -8,8 +8,6 @@
 import firebase from 'firebase';
 import {isExpired} from '../libs/timer';
 import {timerOptions} from 'config';
-import {notifyMe} from '../workers/notification';
-import {ifttTrigger, hipChatTrigger} from './integrations';
 
 const {currentTimerLength} = timerOptions;
 const apiKey = FIREBASE_API_KEY;
@@ -44,118 +42,30 @@ export const logoutAction = () => dispatch => {
   });
 };
 
-export const timerAction = ({startTime}) => dispatch => {
-  if (window.Notification) {
-    window.Notification.requestPermission();
-  }
-  const type = startTime ? 'RESET' : 'START';
-  const wasStopped = Boolean(startTime);
-  const newStartTime = startTime ? 0 : (new Date()).getTime();
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).update({
-        type,
-        startTime: newStartTime,
-        wasStopped
-      });
-      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-        const snapshotValue = snapshot.val();
-        const {hipchatToken} = snapshotValue;
-        if (type === 'START') {
-          hipChatTrigger('dnd', hipchatToken);
-        }
-        if (type === 'RESET') {
-          hipChatTrigger('chat', hipchatToken);
-        }
-      });
-    } else {
-      if (type === 'START') {
-        hipChatTrigger('dnd', localStorage.getItem('hipchatToken'));
-      }
-      if (type === 'RESET') {
-        hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
-      }
-    }
-  });
-  dispatch({type, startTime: newStartTime, wasStopped});
-};
-
-export const stopAction = () => dispatch => {
-  const type = 'FINISH';
-  const wasStopped = true;
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).update({
-        type,
-        // startTime, // TODO  const {startTime = 0} = snapshotValue;
-        wasStopped
-      });
-      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-        const snapshotValue = snapshot.val();
-        const {hipchatToken} = snapshotValue;
-        hipChatTrigger('chat', hipchatToken);
-      });
-    } else {
-      hipChatTrigger('chat', localStorage.getItem('hipchatToken'));
-    }
-  });
-  dispatch({type, startTime: 0, wasStopped});
-  ifttTrigger();
-  notifyMe();
-};
-
-export const hipChatSaveToken = hipchatToken => dispatch => {
-  const type = 'SAVE_HIPCHAT_TOKEN';
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).update({hipchatToken});
-    }
-  });
-  localStorage.setItem('hipchatToken', hipchatToken);
-  dispatch({type, hipchatToken});
-};
-
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+      // database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+      database.ref(`users/${user.uid}`).on('value', snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime = 0, hipchatToken, settings} = snapshotValue;
-
+        const {startTime = 0, settings} = snapshotValue;
+        console.log(settings, 'settings');
         dispatch(user ? { // TODO
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
-          hipchatToken,
-          settings,
+          settings: [].concat(settings),
           startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
-          type: 'UNAUTHORIZED',
-          hipchatToken: localStorage.getItem('hipchatToken')
+          type: 'UNAUTHORIZED'
         });
       });
-      // TODO
-      // database.ref(`users/${user.uid}`).on('value', snapshot => {
-        // const snapshotValue = snapshot.val();
-        // const {startTime, wasStopped, type} = snapshotValue;
-
-        // console.log('startTime, wasStopped', startTime, wasStopped, type);
-        // if (type) { // TODO
-          // dispatch({
-          //   type,
-          //   startTime: isExpired({time, startTime}) ? 0 : startTime,
-          //   wasStopped
-          // });
-        // }
-      // });
     }
   });
 };
 
 export const loginAction = () => dispatch => {
+  console.log('firebase.auth().signInWithPopup');
   firebase.auth().signInWithPopup(provider).then(result => {
     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
     // You can use these server side with your app's credentials to access the Twitter API.
@@ -166,14 +76,14 @@ export const loginAction = () => dispatch => {
 
     database.ref(`users/${user.uid}`).once('value').then(snapshot => {
       const snapshotValue = snapshot.val();
-      const {startTime, hipchatToken} = snapshotValue;
-      dispatch({
-        type: 'AUTHORIZED',
-        startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
-        name: user.displayName,
-        photo: user.photoURL,
-        hipchatToken
-      });
+      const {startTime} = snapshotValue;
+      console.log(startTime, snapshotValue, dispatch);
+      // dispatch({
+      //   type: 'AUTHORIZED',
+      //   startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
+      //   name: user.displayName,
+      //   photo: user.photoURL
+      // });
     });
   })
   .catch(error => {
@@ -187,17 +97,3 @@ export const loginAction = () => dispatch => {
     console.log(errorCode, errorMessage, email, credential);
   });
 };
-
-export const changeAction = (value, id) => dispatch => {
-  const type = 'SETTING_CHANGED';
-  // dispatch({type, value, id});
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).update({
-        settings: [1, 2, 3]
-      });
-    }
-    dispatch({type, value, id});
-  });
-};
-
