@@ -65,6 +65,7 @@
     "karma-phantomjs-shim": "^1.1.2",
     "karma-webpack": "^1.7.0",
     "lighthouse": "^2.4.0",
+    "lighthouse-ci": "github:ebidel/lighthouse-ci",
     "node-sass": "^3.4.2",
     "offline-plugin": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.6",
