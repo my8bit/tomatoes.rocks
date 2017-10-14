@@ -36,6 +36,8 @@ const logger = ({getState}) => {
             settings,
             startTime
           });
+        } else {
+          localStorage.setItem('settings', JSON.stringify(settings));
         }
       });
     }

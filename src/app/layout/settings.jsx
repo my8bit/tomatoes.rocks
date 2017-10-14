@@ -29,13 +29,13 @@ export class Settings extends Component {
 
   getInput(setting, idx) {
     const {value, type, name} = setting;
-
+    // TODO: remove dummy onChange by ignore this rule
     switch (type) {
       case 'checkbox':
         return (
           <div className="rkmd-checkbox">
             <label className="input-checkbox checkbox-lightBlue">
-              <input type="checkbox" id={idx} defaultValue={value}/>
+              <input checked={value} type="checkbox" id={idx} onChange={function () {}} value={value}/>
               <span className="checkbox"></span>
             </label>
             <label htmlFor={idx} className="label">{name}</label>
@@ -79,7 +79,6 @@ export class Settings extends Component {
 
   render() {
     const {settings} = this.props;
-    console.log('render serttings', settings);
     return (
       <section id="about" className="about site-wrap">
         <div className="menu-background">Settings</div>

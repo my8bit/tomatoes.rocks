@@ -1,4 +1,8 @@
 
-.icon-stopwatch:before { content: '\e800'; } /* '' */
-.icon-cog:before { content: '\e802'; } /* '' */
+.icon-help-circled:before { content: '\e800'; } /* '' */
+.icon-wrench:before { content: '\e801'; } /* '' */
+.icon-stopwatch:before { content: '\e802'; } /* '' */
+.icon-logout:before { content: '\e803'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+.icon-chat-empty:before { content: '\f0e6'; } /* '' */

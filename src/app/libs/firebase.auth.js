@@ -45,12 +45,10 @@ export const logoutAction = () => dispatch => {
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      // database.ref(`users/${user.uid}`).once('value').then(snapshot => {
       database.ref(`users/${user.uid}`).on('value', snapshot => {
         const snapshotValue = snapshot.val();
         const {startTime = 0, settings} = snapshotValue;
-        console.log(settings, 'settings');
-        dispatch(user ? { // TODO
+        dispatch(user ? {
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
@@ -60,12 +58,16 @@ export const checkAuth = () => dispatch => {
           type: 'UNAUTHORIZED'
         });
       });
+    } else {
+      dispatch({
+        type: 'SETTINGS_UPDATED',
+        settings: JSON.parse(localStorage.getItem('settings'))
+      });
     }
   });
 };
 
 export const loginAction = () => dispatch => {
-  console.log('firebase.auth().signInWithPopup');
   firebase.auth().signInWithPopup(provider).then(result => {
     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
     // You can use these server side with your app's credentials to access the Twitter API.

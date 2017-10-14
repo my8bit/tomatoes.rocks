@@ -51,7 +51,7 @@ class SidebarList extends Component {
                   {name}
                 </div>
                 <div className="user-status">
-                  Logout <i className="fa fa-sign-out right" aria-hidden="true"></i><Ink/>
+                  Logout <i className="fa icon-logout right" aria-hidden="true"></i>
                 </div>
               </div>
             </div>
@@ -59,9 +59,9 @@ class SidebarList extends Component {
           <li className="nav-item" onClick={this.handleLogin}>
             <div className="logout">Sign in with Twitter <i className="fa icon-twitter right" aria-hidden="true"></i><Ink/></div>
           </li>}
-        {this.menuItem('Timer', 'fa-clock-o', '/')}
-        {this.menuItem('Settings', 'fa-wrench', '/settings')}
-        {this.menuItem('F.A.Q.', 'fa-wrench', '/faq')}
+        {this.menuItem('Timer', 'icon-stopwatch', '/')}
+        {this.menuItem('Settings', 'icon-wrench', '/settings')}
+        {this.menuItem('F.A.Q.', 'icon-help-circled', '/faq')}
       </ul>
     );
   }

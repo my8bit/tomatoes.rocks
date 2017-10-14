@@ -29,6 +29,7 @@ main {
 }
 
 .description {
+  padding: 1em;
   margin: 0;
   min-width: 300px;
 }
@@ -94,8 +95,7 @@ footer {
     font-weight:normal;
     position:absolute;
     pointer-events:none;
-    left:5px;
-    top:10px;
+    top: 30px;
     transition:0.2s ease all;
     -moz-transition:0.2s ease all;
     -webkit-transition:0.2s ease all;
@@ -103,7 +103,7 @@ footer {
 
   /* active state */
   input:focus ~ label, input:valid ~ label    {
-    top: -20px;
+    top: 0px;
     font-size: 16px;
   }
 
@@ -167,6 +167,7 @@ footer {
 
 
 .rkmd-checkbox {
+  padding: 2em 1em 1em 1em;
   .input-checkbox {
     position: relative;
     display: inline-block;

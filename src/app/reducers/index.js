@@ -3,9 +3,8 @@ import {settings, timerOptions} from 'config';
 const {currentTimerLength, breakTime} = timerOptions;
 
 export const settingsReducer = (state = {settings}, action) => {
-  console.log('action.settings', action.settings);
-  console.log('[].concat(action.settings)', [].concat(action.settings));
   switch (action.type) {
+    case 'SETTINGS_UPDATED':
     case 'AUTHORIZED':
       return Object.assign({}, state, {
         settings: [].concat(action.settings)
