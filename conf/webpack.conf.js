@@ -48,7 +48,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: [
           'react-hot',
-          'babel-loader?presets[]=react,presets[]=es2015'
+          'babel-loader?presets[]=react,presets[]=env'
         ]
       }
     ]
