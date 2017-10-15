@@ -37,11 +37,13 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
   }
 };
 
-export const timerReducer = (state = {
+const timerInitialState = {
   currentTimerLength,
   startTime: 0,
   isBreak: false
-}, action) => {
+};
+
+export const timerReducer = (state = timerInitialState, action) => {
   switch (action.type) {
     case 'AUTHORIZED':
       return Object.assign({}, state, {
