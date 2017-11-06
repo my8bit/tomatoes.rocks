@@ -1,57 +1,15 @@
 import React, {PureComponent} from 'react';
 
 const posts = [{
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  title: 'What problem solves timer.tomatoes.work?',
+  body: 'This is online time tracker manager that can be used for Pomodoro',
   link: {
     href: 'http://google.com',
     content: 'find if here'
   }
 }, {
-  title: 'two header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  link: {
-    href: 'http://google.com',
-    content: 'find if here'
-  }
-}, {
-  title: 'one header',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  title: 'What is Pomodoro?',
+  body: 'More information aout thehnique you can find in link below. Pomodoro Technique® and Pomodoro® are registered trademarks of Francesco Cirillo. ',
   link: {
     href: 'http://google.com',
     content: 'find if here'

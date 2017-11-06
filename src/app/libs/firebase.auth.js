@@ -7,7 +7,7 @@
 */
 import firebase from 'firebase';
 import {isExpired} from '../libs/timer';
-import {timerOptions} from 'config';
+import {settings, timerOptions} from 'config';
 
 const {currentTimerLength} = timerOptions;
 const apiKey = FIREBASE_API_KEY;
@@ -61,7 +61,7 @@ export const checkAuth = () => dispatch => {
     } else {
       dispatch({
         type: 'SETTINGS_UPDATED',
-        settings: JSON.parse(localStorage.getItem('settings'))
+        settings: JSON.parse(localStorage.getItem('settings')) || settings
       });
     }
   });

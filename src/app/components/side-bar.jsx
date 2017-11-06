@@ -61,7 +61,7 @@ class SidebarList extends Component {
           </li>}
         {this.menuItem('Timer', 'icon-stopwatch', '/')}
         {this.menuItem('Settings', 'icon-wrench', '/settings')}
-        {this.menuItem('F.A.Q.', 'icon-help-circled', '/faq')}
+        {/* this.menuItem('F.A.Q.', 'icon-help-circled', '/faq') */}
       </ul>
     );
   }
