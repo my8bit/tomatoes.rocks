@@ -1,5 +1,5 @@
 import {notifyMe} from '../workers/notification';
-import {ifttTrigger} from '../libs/integrations';
+import {ifttTrigger, hipChatTrigger} from '../libs/integrations';
 
 export const changeAction = (value, id) => {
   const type = 'SETTING_CHANGED';
@@ -11,6 +11,12 @@ export const timerAction = time => {
     window.Notification.requestPermission();
   }
   const type = time ? 'RESET' : 'START';
+  if (type === 'START') {
+    hipChatTrigger('dnd');
+  }
+  if (type === 'RESET') {
+    hipChatTrigger('chat');
+  }
   const startTime = time ? 0 : (new Date()).getTime();
   return {type, startTime};
 };
@@ -19,6 +25,7 @@ export const stopAction = () => {
   const type = 'FINISH';
   const startTime = 0;
   ifttTrigger();
+  hipChatTrigger('chat');
   notifyMe();
   return {type, startTime};
 };
