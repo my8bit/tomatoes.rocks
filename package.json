@@ -66,6 +66,7 @@
   },
   "scripts": {
     "build": "gulp",
+    "postbuild": "echo $DEPLOY_PRIME_URL; echo $DEPLOY_URL",
     "lighthouse": "lighthouse https://timer.tomatoes.work/ --output-path=./dist/report.html",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
