@@ -3,14 +3,8 @@ import {notification} from 'config';
 const serviceWorker = window.navigator && window.navigator.serviceWorker;
 const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
 
-if (Notification) {
-  Notification.requestPermission();
-} else {
-  console.error('Desktop notifications not available in your browser.');
-}
-
 export const notifyMe = () => {
-  if (Notification && Notification.permission === 'granted') {
+  if (window.Notification && window.Notification.permission === 'granted') {
     const {options, title} = notification;
     if (registerPromise) {
       registerPromise.then(registration => {
@@ -18,16 +12,18 @@ export const notifyMe = () => {
         serviceWorkerRequest(registration, 'h1');
       });
     } else {
-      const browserNotification = new Notification(title, options);
+      const browserNotification = new window.Notification(title, options);
       browserNotification.addEventListener('click', () => {
         console.log('this is actually clicked');
       });
     }
+  } else {
+    console.error('Desktop notifications not available in your browser.');
   }
 };
 
 function serviceWorkerRequest(wrkr, message) {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in window.navigator) {
     if (!wrkr) {
       return Promise.reject('No service worker controller.');
     }

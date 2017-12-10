@@ -34,16 +34,21 @@ module.exports = {
         loaders: [
           'style',
           'css',
-          'sass',
-          'postcss'
+          'resolve-url-loader',
+          'postcss',
+          'sass?sourceMap'
         ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=node_modules/roboto-fontface/fonts/[name].[ext]'
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
           'react-hot',
-          'babel-loader?presets[]=react,presets[]=es2015'
+          'babel-loader?presets[]=react,presets[]=env'
         ]
       }
     ]
@@ -58,7 +63,9 @@ module.exports = {
       FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
       FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
-      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID)
+      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID),
+      IFTT_KEY: JSON.stringify(process.env.IFTT_KEY),
+      TRIGGER_NAME: JSON.stringify(process.env.TRIGGER_NAME)
     }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),

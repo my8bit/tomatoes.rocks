@@ -1,5 +1,7 @@
 @import 'app/components/style';
 @import 'app/components/nav';
+@import 'node_modules/roboto-fontface/css/roboto/sass/roboto-fontface-regular';
+@import 'css/fontello.css';
 
 $main-font: 'Helvetica Neue', 'Roboto', sans-serif;
 
@@ -27,8 +29,10 @@ main {
 }
 
 .description {
-  margin: 0;
   padding: 1em;
+  margin: 0;
+  max-width: 600px;
+  min-width: 300px;
 }
 
 .left {
@@ -36,9 +40,12 @@ main {
 }
 
 .menu-background {
+  width: 100%;
+  position: fixed;
   background: #333131;
   height: 3em;
   color: white;
+  z-index: 1;
   line-height: 3em;
   font-size: 1.2em;
   text-align: center;
@@ -56,4 +63,186 @@ footer {
 
 .footer-info {
   padding: 1em;
+}
+
+
+
+
+
+
+
+
+
+/* form starting stylings ------------------------------- */
+.group {
+  padding: 1em;
+  position: relative;
+  margin-top: 18px;
+  input {
+    font-size: 18px;
+    background-color: transparent;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 275px;
+    border: none;
+    border-bottom: 1px solid #757575;
+  }
+  input:focus     { outline:none; }
+
+  /* LABEL ======================================= */
+  label          {
+    color:#999;
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    top: 30px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+  }
+
+  /* active state */
+  input:focus ~ label, input:valid ~ label    {
+    top: 0px;
+    font-size: 16px;
+  }
+
+  /* BOTTOM BARS ================================= */
+  .bar  { position:relative; display:block; width: 300px; }
+  .bar:before, .bar:after   {
+    content:'';
+    height:2px;
+    width:0;
+    bottom:1px;
+    position:absolute;
+    background:#5264AE;
+    transition:0.2s ease all;
+  }
+
+  .bar:before {
+    left:50%;
+  }
+
+  .bar:after {
+    right:50%;
+  }
+
+  /* active state */
+  input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+  }
+
+  /* HIGHLIGHTER ================================== */
+  .highlight {
+    position:absolute;
+    height:60%;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+
+  /* active state */
+  input:focus ~ .highlight {
+    animation:inputHighlighter 0.3s ease;
+  }
+
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to  { width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to  { width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to  { width:0; background:transparent; }
+  }
+}
+
+
+
+
+.rkmd-checkbox {
+  padding: 2em 1em 1em 1em;
+  .input-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: -9px;
+
+    input[type="checkbox"] {
+      visibility: hidden;
+      position: absolute;
+      left: 7px;
+      bottom: 7px;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      cursor: pointer;
+      opacity: 0;
+
+      & + .checkbox:before {
+        position: absolute;
+        left: 4px;
+        bottom: 10px;
+        width: 18px;
+        height: 18px;
+        /*
+        font-family: 'Material Icons';
+        */
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        vertical-align: -6px;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+
+        transition: all .2s ease;
+        z-index: 1;
+      }
+
+      & + .checkbox:before { content: "❟"; color: #717171; }
+
+      &:checked + .checkbox:before { content: "✖"; }
+
+      &:active:not(:disabled) + .checkbox:before { transform: scale3d(0.88, 0.88, 1); }
+
+      &:disabled + .checkbox:before { color: rgba(0,0,0,0.157) !important; }
+    }
+  }
+
+  &.checkbox-light {
+    label, .label { color: #FFF; }
+    input[type="checkbox"] + .checkbox:before { color: #FFF; }
+    input[type="checkbox"]:disabled + .checkbox:before { color: #5d5d5d !important; }
+
+    &.checkbox-rotate {
+      input[type="checkbox"] + .checkbox:before { border-color: #FFF; }
+      input[type="checkbox"]:disabled + .checkbox:before { border-color: #5d5d5d !important; }
+    }
+  }
+
+  label, .label { cursor: pointer; }
 }

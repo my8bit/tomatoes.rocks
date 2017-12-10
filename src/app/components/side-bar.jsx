@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Ink from 'react-ink';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
 
@@ -27,7 +27,15 @@ class SidebarList extends Component {
   }
 
   menuItem(name, icon, link) {
-    return <li className="nav-item"><Link to={link}>{name}<i className={`fa ${icon} right`} aria-hidden="true"></i><Ink/></Link></li>;
+    return (
+      <li className="nav-item">
+        <Link to={link}>
+          {name}
+          <i className={`fa ${icon} right`} aria-hidden="true"></i>
+          <Ink/>
+        </Link>
+      </li>
+    );
   }
 
   render() {
@@ -43,16 +51,17 @@ class SidebarList extends Component {
                   {name}
                 </div>
                 <div className="user-status">
-                  Logout <i className="fa fa-sign-out right" aria-hidden="true"></i><Ink/>
+                  Logout <i className="fa icon-logout right" aria-hidden="true"></i>
                 </div>
               </div>
             </div>
           </li> :
           <li className="nav-item" onClick={this.handleLogin}>
-            <div className="logout">Sign in with Twitter <i className="fa fa-twitter right" aria-hidden="true"></i><Ink/></div>
+            <div className="logout">Sign in with Twitter <i className="fa icon-twitter right" aria-hidden="true"></i><Ink/></div>
           </li>}
-        {this.menuItem('Timer', 'fa-clock-o', '/')}
-        {this.menuItem('Settings', 'fa-wrench', '/settings')}
+        {this.menuItem('Timer', 'icon-stopwatch', '/')}
+        {this.menuItem('Settings', 'icon-wrench', '/settings')}
+        {/* this.menuItem('F.A.Q.', 'icon-help-circled', '/faq') */}
       </ul>
     );
   }

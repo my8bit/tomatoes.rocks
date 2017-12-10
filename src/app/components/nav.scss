@@ -44,7 +44,7 @@ $sidebar-width: 230px;
   }
 }
 .nav-item:last-child {
-  border-bottom: 1px solid #000;
+  // border-bottom: 1px solid #000;
 }
 .right {
   float: right;
@@ -92,6 +92,7 @@ $sidebar-width: 230px;
   /* Critical position and size styles */
   min-height: 100%;
   min-width: 100%;
+  overflow-x: auto;
   /* background-color: white;*/
   /* Needs a background or else the nav will show through */
   position: relative;
@@ -101,6 +102,17 @@ $sidebar-width: 230px;
   z-index: 1;
 }
 
+.settings-wraper,
+.updates-wrapper {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.updates-wrapper {
+  margin-top: 3em;
+}
 /* Nav Trigger */
 #nav-trigger {
   // critical styles - hide the checkbox input
@@ -136,15 +148,23 @@ label[for="nav-trigger"] {
   z-index: 3;
 }
 
-.nav-trigger:checked ~ .swipe-container .site-wrap {
+#nav-trigger:checked ~ div .site-wrap {
   left: $sidebar-width;
   z-index: 2;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
 
 @media screen and (min-width: 900px) {
-  .nav-trigger:checked ~ .swipe-container .site-wrap .container {
-    margin-right: $sidebar-width * 2;
+  .nav-trigger:checked ~ .swipe-container {
+    .site-wrap {
+      .container {
+        margin-right: $sidebar-width * 2;
+      }
+      .settings-wraper,
+      .updates-wrapper {
+        margin-right: $sidebar-width;
+      }
+    }
   }
 }
 
@@ -152,10 +172,18 @@ label[for="nav-trigger"] {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  position: relative;
+  top: 50px;
+  height: 5em;
+  label {
+    position: absolute;
+    top: -35px;
+    left: 15px;
+    color: #999;
+  }
 }
 
 .input-color {
-  margin: 3em;
   cursor: inherit;
   outline: none;
 }
@@ -163,12 +191,12 @@ label[for="nav-trigger"] {
 .input-color:before {
   position: relative;
   display: block;
-  border-radius: 50%;
+  border-radius: 5px;
   content: "";
-  width: 1em;
-  font-size: 1.5em;
-  height: 1em;
-  padding: 1em 1em 1.2em 1.2em;
+  width: .75em;
+  height: .75em;
+  font-size: 1em;
+  padding: 1em 1.6em 1.6em 1em;
   right: 1.2em;
   bottom: 1.2em;
   background-color: inherit;
@@ -176,7 +204,7 @@ label[for="nav-trigger"] {
 }
 
 .input-color:checked:before {
-  content: "✓";
+  content: "20";
 }
 
 .input-color:checked {

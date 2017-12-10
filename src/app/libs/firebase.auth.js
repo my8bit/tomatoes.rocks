@@ -6,9 +6,8 @@
           FIREBASE_MESSEGING_SENDER_ID
 */
 import firebase from 'firebase';
-import {isExpired, isFinished} from '../libs/timer';
-import {timerOptions} from 'config';
-import {notifyMe} from '../workers/notification';
+import {isExpired} from '../libs/timer';
+import {settings, timerOptions} from 'config';
 
 const {currentTimerLength} = timerOptions;
 const apiKey = FIREBASE_API_KEY;
@@ -30,6 +29,8 @@ firebase.initializeApp({
 const provider = new firebase.auth.TwitterAuthProvider();
 const database = firebase.database();
 
+export {firebase, database, provider};
+
 export const logoutAction = () => dispatch => {
   firebase.auth().signOut().then(() => {
     dispatch({
@@ -41,73 +42,27 @@ export const logoutAction = () => dispatch => {
   });
 };
 
-export const timerAction = ({startTime}) => dispatch => {
-  const type = startTime ? 'RESET' : 'START';
-  const wasStopped = Boolean(startTime);
-  const newStartTime = startTime ? 0 : (new Date()).getTime();
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      database.ref(`users/${user.uid}`).set({
-        type,
-        startTime: newStartTime,
-        wasStopped
-      });
-    }
-  });
-  dispatch({type, startTime: newStartTime, wasStopped});
-};
-
-export const stopAction = options => dispatch => {
-  const type = 'FINISH';
-  const wasStopped = true;
-  const {currentTimerLength, startTime} = options;
-
-  if (isFinished({currentTimerLength, startTime})) {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        database.ref(`users/${user.uid}`).set({
-          type,
-          // startTime, // TODO  const {startTime = 0} = snapshotValue;
-          wasStopped
-        });
-      }
-    });
-    dispatch({type, startTime: 0, wasStopped});
-    notifyMe();
-  }
-};
-
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      database.ref(`users/${user.uid}`).once('value').then(snapshot => {
+      database.ref(`users/${user.uid}`).on('value', snapshot => {
         const snapshotValue = snapshot.val();
-        const {startTime = 0} = snapshotValue;
-
-        dispatch(user ? { // TODO
+        const {startTime = 0, settings} = snapshotValue;
+        dispatch(user ? {
           type: 'AUTHORIZED',
           name: user.displayName,
           photo: user.photoURL,
+          settings: [].concat(settings),
           startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime
         } : {
           type: 'UNAUTHORIZED'
         });
       });
-      // TODO
-      // database.ref(`users/${user.uid}`).on('value', snapshot => {
-        // const snapshotValue = snapshot.val();
-        // const {startTime, wasStopped, type} = snapshotValue;
-
-        // console.log('startTime, wasStopped', startTime, wasStopped, type);
-        // if (type) { // TODO
-          // dispatch({
-          //   type,
-          //   startTime: isExpired({time, startTime}) ? 0 : startTime,
-          //   wasStopped
-          // });
-        // }
-      // });
+    } else {
+      dispatch({
+        type: 'SETTINGS_UPDATED',
+        settings: JSON.parse(localStorage.getItem('settings')) || settings
+      });
     }
   });
 };
@@ -122,13 +77,15 @@ export const loginAction = () => dispatch => {
     const user = result.user;
 
     database.ref(`users/${user.uid}`).once('value').then(snapshot => {
-      const startTime = snapshot.val().startTime;
-      dispatch({
-        type: 'AUTHORIZED',
-        startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
-        name: user.displayName,
-        photo: user.photoURL
-      });
+      const snapshotValue = snapshot.val();
+      const {startTime} = snapshotValue;
+      console.log(startTime, snapshotValue, dispatch);
+      // dispatch({
+      //   type: 'AUTHORIZED',
+      //   startTime: isExpired({currentTimerLength, startTime}) ? 0 : startTime,
+      //   name: user.displayName,
+      //   photo: user.photoURL
+      // });
     });
   })
   .catch(error => {

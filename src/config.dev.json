@@ -1,4 +1,21 @@
 {
+  "settings": [{
+    "name": "Colors",
+    "type": "color-picker",
+    "value": "red"
+  }, {
+    "name": "HipChat Settings",
+    "type": "input",
+    "value": ""
+  }, {
+    "name": "IFTT Settings",
+    "type": "input",
+    "value": ""
+  }, {
+    "name": "Notification Settings",
+    "type": "checkbox",
+    "value": true
+  }],
   "timerOptions": {
     "currentTimerLength": 5000,
     "breakTime": 2500,
@@ -7,8 +24,7 @@
     "buttonStatus": {
       "START": "start",
       "STOP": "stop"
-    },
-    "animation": true
+    }
   },
   "notification": {
     "options": {
@@ -33,6 +49,6 @@
   "colors": [
       "#ff6347",
       "#333333",
-      "#90ee90"
+      "#352f28"
     ]
 }

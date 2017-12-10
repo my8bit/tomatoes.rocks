@@ -2,8 +2,7 @@ const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const SplitByPathPlugin = require('webpack-split-by-path');
 const autoprefixer = require('autoprefixer');
 const OfflinePlugin = require('offline-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -25,8 +24,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract('style', 'css?minimize!sass', 'postcss')
+        test: /\.(css|scss|sass)$/,
+        loaders: [
+          'style',
+          'css',
+          'resolve-url-loader',
+          'postcss',
+          'sass?sourceMap'
+        ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=fonts/[name].[ext]'
       },
       {
         test: /\.(js|jsx)$/,
@@ -40,7 +49,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, '../src/_redirects')}]),
+    new CopyWebpackPlugin([
+      {from: path.resolve(__dirname, '../src/_redirects')},
+      {from: path.resolve(__dirname, '../src/static'), to: 'static'},
+      {from: path.resolve(__dirname, '../src/manifest.json')}
+    ]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       minify: {
@@ -59,7 +72,9 @@ module.exports = {
       FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
       FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
-      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID)
+      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID),
+      IFTT_KEY: JSON.stringify(process.env.IFTT_KEY),
+      TRIGGER_NAME: JSON.stringify(process.env.TRIGGER_NAME)
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -72,12 +87,13 @@ module.exports = {
         dead_code: true// eslint-disable-line camelcase
       }
     }),
-    new SplitByPathPlugin([{
-      name: 'vendor',
-      path: path.join(__dirname, '../node_modules')
-    }]),
-    new ExtractTextPlugin('/index-[contenthash].css'),
+    // new SplitByPathPlugin([{
+    //   name: 'vendor',
+    //   path: path.join(__dirname, '../node_modules')
+    // }]),
+    // new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
+      AppCache: false,
       excludes: ['_redirects']
     })
   ],
