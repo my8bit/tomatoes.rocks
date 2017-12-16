@@ -4,4 +4,5 @@ addons:
 node_js:
   - "7"
 after_success:
-  - node node_modules/lighthouse-ci/runlighthouse.js $URL
+  - npm run build
+  - npm run lighthouse

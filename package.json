@@ -52,6 +52,7 @@
     "json-loader": "^0.5.4",
     "lighthouse": "^2.4.0",
     "lighthouse-ci": "github:ebidel/lighthouse-ci",
+    "netlify-cli": "github:my8bit/netlify-cli",
     "node-sass": "^3.4.2",
     "offline-plugin": "^3.4.2",
     "postcss-loader": "^0.8.0",
@@ -78,6 +79,8 @@
     "jest:watch": "jest --watch",
     "start": "export DEVELOPMENT=true || set DEVELOPMENT=true && gulp serve",
     "test": "npm run jest",
+    "netlify:deploy": "netlify deploy -d | grep -iIohE 'https://[^[:space:]]+'",
+    "lighthouse": "node node_modules/lighthouse-ci/runlighthouse.js $(netlify deploy -d | grep -iIohE 'https://[^[:space:]]+')",
     "test:auto": "gulp test:auto"
   },
   "pre-push": [
