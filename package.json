@@ -69,18 +69,11 @@
     "build": "gulp",
     "deploy": "npm run build",
     "postdeploy": "./travis.sh",
-    "travis": "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$TRAVIS_BODY\" https://api.travis-ci.org/repo/my8bit%2Ftomatoes.work/requests",
-    "lighthouse-ci": "node node_modules/lighthouse-ci/runlighthouse.js $DEPLOY_URL",
-    "lh-ci": "node node_modules/lighthouse-ci/runlighthouse.js https://google.com --runner=wpt",
-    "lh": "lighthouse https://google.com --runner=wpt --output-path=./dist/report.html",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "jest": "jest",
     "jest:watch": "jest --watch",
     "start": "export DEVELOPMENT=true || set DEVELOPMENT=true && gulp serve",
-    "test": "npm run jest",
-    "netlify:deploy": "netlify deploy -d | grep -iIohE 'https://[^[:space:]]+'",
-    "lighthouse": "node node_modules/lighthouse-ci/runlighthouse.js $(netlify deploy -d | grep -iIohE 'https://[^[:space:]]+')",
     "test:auto": "gulp test:auto"
   },
   "pre-push": [

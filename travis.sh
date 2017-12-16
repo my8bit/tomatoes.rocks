@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# HEAD is BRANCH NAME uncomment to get branch name locally
-# this variable exist in deployement
-# HEAD=$(git rev-parse --abbrev-ref HEAD)
-
 curl -X POST \
   https://lighthouse-ci.appspot.com/run_on_chrome \
   -H 'content-type: application/json' \
@@ -21,12 +17,3 @@ curl -X POST \
       "sha": "'"$COMMIT_REF"'"
     }
   }'
-
-
-# curl -X POST \
-#   https://api.travis-ci.org/repo/my8bit%2Ftomatoes.work/requests \
-#   -H 'accept: application/json' \
-#   -H "authorization: token $TRAVIS_TOKEN" \
-#   -H 'content-type: application/json' \
-#   -H 'travis-api-version: 3' \
-#   -d '{"branch": "'"$HEAD"'", "config": {"env": {"TRAVIS_EVENT_TYPE": "pull_request", "URL": "'"$DEPLOY_PRIME_URL"'"}}}'
