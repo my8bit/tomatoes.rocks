@@ -1,6 +1,3 @@
-/* global IFTT_KEY,
-          TRIGGER_NAME
-*/
 /* eslint quote-props: [2, "as-needed"] */
 
 export const ifttTrigger = () => {
@@ -11,15 +8,28 @@ export const ifttTrigger = () => {
     mode: 'no-cors',
     cache: 'default'
   };
-  const ifttKey = IFTT_KEY || window.iftt || localStorage.getItem('iftt');
-  const triggerName = TRIGGER_NAME || window.triggerName || localStorage.getItem('triggerName');
+  const ifttSettings = JSON.parse(localStorage.getItem('settings'));
+  if (!ifttSettings) {
+    return;
+  }
+  const iftt = ifttSettings
+    .filter(options => options.name && options.name.search('IFTT') !== -1)
+    .map(setting => setting.value);
+  const triggerName = iftt[0];
+  const ifttKey = iftt[1];
   if (triggerName && ifttKey) {
     fetch(`https://maker.ifttt.com/trigger/${triggerName}/with/key/${ifttKey}`, myInit);
   }
 };
 
-export const hipChatTrigger = (status, hipchatToken) => {
-  const user = hipchatToken.split(',');
+export const hipChatTrigger = status => {
+  const hipChatSettings = JSON.parse(localStorage.getItem('settings'));
+  if (!hipChatSettings) {
+    return;
+  }
+  const user = hipChatSettings
+    .filter(options => options.name && options.name.search('HipChat') !== -1)
+    .map(setting => setting.value);
   const token = user[0];
   const name = user[1];
   const email = user[2];
@@ -39,6 +49,6 @@ export const hipChatTrigger = (status, hipchatToken) => {
   if (token && name && email) {
     fetch(`https://api.hipchat.com/v2/user/${urlEncodedName}`, myInit);
   } else {
-    console.warn('Check your HipChat credentials. Integratio won\'t work untill you fix them', user);
+    console.warn('Check your HipChat credentials. Integration won\'t work untill you fix them', hipChatSettings);
   }
 };
