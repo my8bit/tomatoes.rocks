@@ -1,6 +1,6 @@
 # HEAD is BRANCH NAME uncomment to get branch name locally
 # this variable exist in deployement
-HEAD=$(git rev-parse --abbrev-ref HEAD)
+# HEAD=$(git rev-parse --abbrev-ref HEAD)
 
 curl -X POST \
   https://api.travis-ci.org/repo/my8bit%2Ftomatoes.work/requests \
