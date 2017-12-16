@@ -2,9 +2,6 @@
 # this variable exist in deployement
 # HEAD=$(git rev-parse --abbrev-ref HEAD)
 
-PULL_REQUEST_NUMBER=grep -Eo '[0-9]{1,4}' <<< $BRANCH
-echo $PULL_REQUEST_NUMBER
-echo $COMMIT_REF
 curl -X POST \
   https://lighthouse-ci.appspot.com/run_on_chrome \
   -H 'content-type: application/json' \
@@ -18,7 +15,7 @@ curl -X POST \
     "name": "tomatoes.work"
   },
   "pr": {
-    "number": "'"$PULL_REQUEST_NUMBER"'",
+    "number": "'"$(grep -Eo '[0-9]{1,4}' <<< $BRANCH)"'",
     "sha": "'"$COMMIT_REF"'"
   }
 }'
