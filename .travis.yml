@@ -3,6 +3,5 @@ addons:
   chrome: stable
 node_js:
   - "7"
-install: true
 after_success:
   - node node_modules/lighthouse-ci/runlighthouse.js https://tomatoes.work
