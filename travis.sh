@@ -8,4 +8,4 @@ curl -X POST \
   -H "authorization: token $TRAVIS_TOKEN" \
   -H 'content-type: application/json' \
   -H 'travis-api-version: 3' \
-  -d '{"branch": "'"$HEAD"'", "config": {"env": {"TRAVIS_EVENT_TYPE": "pull_request", "URL": "DEPLOY_PRIME_URL"}}}'
+  -d '{"branch": "'"$HEAD"'", "config": {"env": {"TRAVIS_EVENT_TYPE": "pull_request", "URL": "'"$DEPLOY_PRIME_URL"'"}}}'
