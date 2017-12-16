@@ -84,7 +84,8 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
-        dead_code: true// eslint-disable-line camelcase
+        drop_console: true, // eslint-disable-line camelcase
+        dead_code: true // eslint-disable-line camelcase
       }
     }),
     // new SplitByPathPlugin([{
