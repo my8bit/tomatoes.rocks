@@ -67,10 +67,10 @@
   "scripts": {
     "build": "gulp",
     "deploy": "npm run build",
+    "postdeploy": "sh travis.sh",
     "travis": "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$TRAVIS_BODY\" https://api.travis-ci.org/repo/my8bit%2Ftomatoes.work/requests",
     "lighthouse-ci": "node node_modules/lighthouse-ci/runlighthouse.js $DEPLOY_URL",
     "lh-ci": "node node_modules/lighthouse-ci/runlighthouse.js https://google.com --runner=wpt",
-    "postdeploy": "lighthouse $DEPLOY_URL --output-path=./dist/report.html",
     "lh": "lighthouse https://google.com --runner=wpt --output-path=./dist/report.html",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
