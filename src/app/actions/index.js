@@ -3,6 +3,7 @@ import {ifttTrigger, hipChatTrigger} from '../libs/integrations';
 
 export const changeAction = (value, id) => {
   const type = 'SETTING_CHANGED';
+  console.log(value, id);
   return {type, value, id};
 };
 
