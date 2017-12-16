@@ -4,11 +4,23 @@
     "type": "color-picker",
     "value": "red"
   }, {
-    "name": "HipChat Settings",
+    "name": "HipChat Token",
     "type": "input",
     "value": ""
   }, {
-    "name": "IFTT Settings",
+    "name": "HipChat User",
+    "type": "input",
+    "value": ""
+  }, {
+    "name": "HipChat E-mail",
+    "type": "input",
+    "value": ""
+  }, {
+    "name": "IFTT Trigger Name",
+    "type": "input",
+    "value": ""
+  }, {
+    "name": "IFTT Key",
     "type": "input",
     "value": ""
   }, {
