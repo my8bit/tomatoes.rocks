@@ -1,3 +1,4 @@
+if: type = pull_request
 language: node_js
 addons:
   chrome: stable
@@ -5,4 +6,4 @@ node_js:
   - "7"
 after_success:
   - npm run build
-  - npm run lighthouse
+  - ./deploy.sh
