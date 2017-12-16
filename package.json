@@ -50,7 +50,7 @@
     "jasmine": "^2.4.1",
     "jest": "^20.0.4",
     "json-loader": "^0.5.4",
-    "lighthouse": "^2.4.0",
+    "lighthouse": "^2.7.0",
     "lighthouse-ci": "github:ebidel/lighthouse-ci",
     "netlify-cli": "github:my8bit/netlify-cli",
     "node-sass": "^3.4.2",
