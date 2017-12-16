@@ -50,14 +50,19 @@ $sidebar-width: 230px;
   float: right;
 }
 
+.logout {
+  cursor: pointer;
+}
 .logout,
 .login-container {
-  cursor: pointer;
   padding: 1em 1em 1em 1em;
   color: white;
   transition: color .5s;
   font-size: 1.2em;
   font-weight: 400;
+  .user-status {
+    cursor: pointer;
+  }
 }
 
 .logout:hover {

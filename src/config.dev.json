@@ -2,7 +2,7 @@
   "settings": [{
     "name": "Colors",
     "type": "color-picker",
-    "value": "red"
+    "value": "#795548"
   }, {
     "name": "HipChat Token",
     "type": "input",

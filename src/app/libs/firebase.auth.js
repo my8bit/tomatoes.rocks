@@ -45,7 +45,7 @@ export const logoutAction = () => dispatch => {
 export const checkAuth = () => dispatch => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      database.ref(`users/${user.uid}`).on('value', snapshot => {
+      database.ref(`users/${user.uid}`).once('value', snapshot => {
         const snapshotValue = snapshot.val();
         const {startTime = 0, settings} = snapshotValue;
         dispatch(user ? {
@@ -79,6 +79,7 @@ export const loginAction = () => dispatch => {
     database.ref(`users/${user.uid}`).once('value').then(snapshot => {
       const snapshotValue = snapshot.val();
       const {startTime} = snapshotValue;
+      console.log('loginAction');
       console.log(startTime, snapshotValue, dispatch);
       // dispatch({
       //   type: 'AUTHORIZED',

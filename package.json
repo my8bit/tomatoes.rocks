@@ -68,7 +68,7 @@
   "scripts": {
     "build": "gulp",
     "deploy": "npm run build",
-    "postdeploy": "./travis.sh",
+    "postdeploy": "./lighthouse-ci.sh",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "jest": "jest",

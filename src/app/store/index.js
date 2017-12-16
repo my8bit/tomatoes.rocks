@@ -18,26 +18,18 @@ const composeEnhancers =
 
 const logger = ({getState}) => {
   return next => action => {
-    // console.log('will dispatch', action);
     // Call the next dispatch method in the middleware chain.
     const returnValue = next(action);
-    // console.log('returnValue', returnValue);
-    // const {startTime} = returnValue;
-    // console.log(returnValue, 'returnValue', firebase);
-    //
-
     if (returnValue) {
       const settings = getState().settingsReducer.settings;
       const startTime = getState().timerReducer.startTime;
-
+      localStorage.setItem('settings', JSON.stringify(settings));
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           database.ref(`users/${user.uid}`).update({
             settings,
             startTime
           });
-        } else {
-          localStorage.setItem('settings', JSON.stringify(settings));
         }
       });
     }
