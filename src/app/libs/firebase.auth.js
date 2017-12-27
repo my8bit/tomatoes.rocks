@@ -3,7 +3,8 @@
           FIREBASE_DATABASE_URL,
           FIREBASE_PROJECT_ID,
           FIREBASE_STORAGE_BUCKET,
-          FIREBASE_MESSEGING_SENDER_ID
+          FIREBASE_MESSEGING_SENDER_ID,
+          isProduction
 */
 import firebase from 'firebase';
 import {isExpired} from '../libs/timer';
@@ -16,6 +17,10 @@ const databaseURL = FIREBASE_DATABASE_URL;
 const projectId = FIREBASE_PROJECT_ID;
 const storageBucket = FIREBASE_STORAGE_BUCKET;
 const messagingSenderId = FIREBASE_MESSEGING_SENDER_ID;
+
+if (isProduction) {
+  window.f = firebase;
+}
 
 firebase.initializeApp({
   apiKey,

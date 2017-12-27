@@ -38,9 +38,14 @@ module.exports = () => {
                 } : {};
 
   const address = process.env.PORT &&
-                  process.env.IP ? {
+                  process.env.HOST ? {
                     port: process.env.PORT,
-                    host: process.env.IP
+                    host: process.env.HOST
                   } : {};
+  console.log('*******************************************');
+  console.log(process.env.PORT);
+  console.log(process.env.HOST);
+  console.log(address);
+  console.log('*******************************************');
   return Object.assign(options, https, address);
 };
