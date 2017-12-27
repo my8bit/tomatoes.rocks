@@ -67,6 +67,7 @@ module.exports = {
       inject: true
     }),
     new webpack.DefinePlugin({
+      isProduction: JSON.stringify(process.env.DEVELOPMENT) || false,
       FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
       FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
       FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
@@ -84,7 +85,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
-        drop_console: true, // eslint-disable-line camelcase
+        // drop_console: true, // eslint-disable-line camelcase
         dead_code: true // eslint-disable-line camelcase
       }
     }),

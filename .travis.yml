@@ -1,0 +1,12 @@
+language: node_js
+addons:
+  chrome: stable
+node_js:
+  - "6"
+before_install:
+  - npm i -g npm@5.5.1
+install:
+  - npm install
+script:
+  - npm run build
+  - npm run test:remote
