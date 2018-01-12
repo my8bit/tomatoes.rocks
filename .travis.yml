@@ -10,4 +10,4 @@ install:
 script:
   - npm run build
   - npm run jest
-  - npm run test:local
+  - npm run test:remote
