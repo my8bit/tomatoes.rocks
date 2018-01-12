@@ -22,7 +22,7 @@ exports.config = {
   ],
   // Patterns to exclude.
   exclude: [
-      // 'path/to/excluded/files'
+    // 'path/to/excluded/files'
   ],
   //
   // ============
@@ -145,7 +145,7 @@ exports.config = {
     ui: 'bdd'
   },
   staticServerFolders: [
-    {mount: '/', path: './dist'}
+    {mount: '/', path: '.tmp'}
   ],
   staticServerPort: PORT,
   httpsConfig: {

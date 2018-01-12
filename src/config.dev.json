@@ -16,6 +16,10 @@
     "type": "input",
     "value": ""
   }, {
+    "name": "HipChat Status Message",
+    "type": "input",
+    "value": "123"
+  }, {
     "name": "IFTT Trigger Name",
     "type": "input",
     "value": ""

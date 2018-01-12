@@ -30,9 +30,11 @@ export const hipChatTrigger = status => {
   const user = hipChatSettings
     .filter(options => options.name && options.name.search('HipChat') !== -1)
     .map(setting => setting.value);
+
   const token = user[0];
   const name = user[1];
   const email = user[2];
+  const message = user[3];
   const joinedName = name.split(' ').join('');
   const mention_name = `${joinedName}`; // eslint-disable-line camelcase
   const urlEncodedName = encodeURIComponent(`@${mention_name}`); // eslint-disable-line camelcase
@@ -44,7 +46,7 @@ export const hipChatTrigger = status => {
     method: 'PUT',
     headers: myHeaders,
     cache: 'default',
-    body: JSON.stringify({mention_name, name, presence: {show: status}, email}) // eslint-disable-line camelcase
+    body: JSON.stringify({mention_name, name, presence: {show: status, status: message}, email}) // eslint-disable-line camelcase
   };
   if (token && name && email) {
     fetch(`https://api.hipchat.com/v2/user/${urlEncodedName}`, myInit);

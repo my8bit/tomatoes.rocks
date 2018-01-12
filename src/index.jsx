@@ -19,7 +19,8 @@ import {UpdatesCmp} from './app/layout/faq.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
-import {formatTime, startUpdate, stopUpdate} from './app/libs/timer';
+import {formatTime, startUpdate, stopUpdate, isFinished} from './app/libs/timer';
+import {stopAction} from './app/actions';
 import './index.scss';
 
 class H extends Component {
@@ -35,6 +36,13 @@ class H extends Component {
 
   componentWillUnmount() {
     stopUpdate(this.update);
+  }
+
+  componentDidUpdate() {
+    const {dispatch, currentTimerLength, startTime} = this.props;
+    if (isFinished({currentTimerLength, startTime})) {
+      dispatch(stopAction());
+    }
   }
 
   render() {
@@ -65,7 +73,8 @@ const mapStateToProps2 = store => {
 H.propTypes = {
   startTime: React.PropTypes.number.isRequired,
   currentTimerLength: React.PropTypes.number.isRequired,
-  settings: React.PropTypes.array.isRequired
+  settings: React.PropTypes.array.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 const Hd = connect(mapStateToProps2)(H);

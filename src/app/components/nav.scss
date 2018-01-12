@@ -144,6 +144,13 @@ label[for="nav-trigger"] {
   transition: left 0.2s;
 }
 
+#home {
+  // background-image: url('static/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+}
 .container {
   transition: margin-right 0.2s;
 }

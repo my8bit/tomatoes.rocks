@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {timerOptions} from 'config';
-import {formatTime, startUpdate, stopUpdate, isFinished} from '../libs/timer';
+import {formatTime, startUpdate, stopUpdate} from '../libs/timer';
 import Ink from 'react-ink';
-import {timerAction, stopAction} from '../actions';
+import {timerAction} from '../actions';
 
 const {buttonStatus: {START, STOP}} = timerOptions;
 
@@ -20,13 +20,6 @@ class TimerWidget extends Component {
 
   componentWillUnmount() {
     stopUpdate(this.update);
-  }
-
-  componentDidUpdate() {
-    const {dispatch, currentTimerLength, startTime} = this.props;
-    if (isFinished({currentTimerLength, startTime})) {
-      dispatch(stopAction());
-    }
   }
 
   handleClick() {
