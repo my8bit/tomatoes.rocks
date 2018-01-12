@@ -2,6 +2,7 @@ import moment from 'moment';
 
 const timer = require('./timer');
 const {isFinished} = timer;
+const expect = require('chai').expect;
 
 describe('isFinished tests', () => {
   test('isFinished function when timer expired 2 min ago', () => {
@@ -11,7 +12,7 @@ describe('isFinished tests', () => {
       currentTimerLength: oneMinuteTimerLength,
       startTime: twoMinAgo
     };
-    expect(isFinished(options)).toBe(true);
+    expect(isFinished(options)).to.equal(true);
   });
 
   test('isFinished function when timer just started', () => {
@@ -21,7 +22,7 @@ describe('isFinished tests', () => {
       currentTimerLength: oneMinuteTimerLength,
       startTime: now
     };
-    expect(isFinished(options)).toBe(false);
+    expect(isFinished(options)).to.equal(false);
   });
 
   test('isFinished function when timer duration is 0', () => {
@@ -31,7 +32,7 @@ describe('isFinished tests', () => {
       currentTimerLength: zeroMinuteTimerLength,
       startTime: now
     };
-    expect(isFinished(options)).toBe(false);
+    expect(isFinished(options)).to.equal(false);
   });
 
   test('isFinished function when start time is 0', () => {
@@ -41,8 +42,6 @@ describe('isFinished tests', () => {
       currentTimerLength: oneMinuteTimerLength,
       startTime: zero
     };
-    expect(isFinished(options)).toBe(false);
+    expect(isFinished(options)).to.equal(false);
   });
 });
-
-

@@ -20,7 +20,8 @@ exports.config = {
   ],
   // Patterns to exclude.
   exclude: [
-      // 'path/to/excluded/files'
+    'e2e/**/*.local.js'
+    // 'path/to/excluded/files'
   ],
   //
   // ============
