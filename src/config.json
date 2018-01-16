@@ -2,7 +2,7 @@
   "settings": [{
     "name": "Colors",
     "type": "color-picker",
-    "value": "red"
+    "value": "#ff6347"
   }, {
     "name": "HipChat Token",
     "type": "input",
@@ -15,6 +15,10 @@
     "name": "HipChat E-mail",
     "type": "input",
     "value": ""
+  }, {
+    "name": "HipChat Status Message",
+    "type": "input",
+    "value": "I'm busy doing my Pomodoro [ https://tomatoes.work ]"
   }, {
     "name": "IFTT Trigger Name",
     "type": "input",

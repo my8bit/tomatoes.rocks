@@ -41,7 +41,7 @@ class H extends Component {
   componentDidUpdate() {
     const {dispatch, currentTimerLength, startTime} = this.props;
     if (isFinished({currentTimerLength, startTime})) {
-      dispatch(stopAction());
+      dispatch(stopAction(startTime));
     }
   }
 

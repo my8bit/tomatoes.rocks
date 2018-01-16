@@ -1,4 +1,8 @@
 /* eslint quote-props: [2, "as-needed"] */
+import {getEndOfTimerFormated} from './timer';
+import {timerOptions} from 'config';
+
+const {currentTimerLength} = timerOptions;
 
 export const ifttTrigger = () => {
   const myHeaders = new Headers();
@@ -22,7 +26,7 @@ export const ifttTrigger = () => {
   }
 };
 
-export const hipChatTrigger = status => {
+export const hipChatTrigger = (status, startTime) => {
   const hipChatSettings = JSON.parse(localStorage.getItem('settings'));
   if (!hipChatSettings) {
     return;
@@ -42,11 +46,15 @@ export const hipChatTrigger = status => {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json'
   });
+  const whenTImerEnds = getEndOfTimerFormated({currentTimerLength, startTime});
+  const statusMessage = (status === 'dnd') ?
+    `${message} | My Pomodoro ends at ${whenTImerEnds}` : '';
+  console.log(statusMessage);
   const myInit = {
     method: 'PUT',
     headers: myHeaders,
     cache: 'default',
-    body: JSON.stringify({mention_name, name, presence: {show: status, status: message}, email}) // eslint-disable-line camelcase
+    body: JSON.stringify({mention_name, name, presence: {show: status, status: statusMessage}, email}) // eslint-disable-line camelcase
   };
   if (token && name && email) {
     fetch(`https://api.hipchat.com/v2/user/${urlEncodedName}`, myInit);

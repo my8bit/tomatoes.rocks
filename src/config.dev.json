@@ -18,7 +18,7 @@
   }, {
     "name": "HipChat Status Message",
     "type": "input",
-    "value": "123"
+    "value": "I'm busy doing my Pomodoro [ https://tomatoes.work ]"
   }, {
     "name": "IFTT Trigger Name",
     "type": "input",
