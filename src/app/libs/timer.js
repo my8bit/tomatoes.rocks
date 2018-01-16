@@ -9,6 +9,10 @@ export const getRemainingTime = ({currentTimerLength, startTime}) => {
     (startTime ? (new Date()).getTime() - startTime : 0);
 };
 
+export const getEndOfTimerFormated = ({currentTimerLength, startTime}) => {
+  return moment(currentTimerLength + startTime).format('HH:mm', {trim: false});
+};
+
 export const isExpired = ({currentTimerLength, startTime}) => {
   return getRemainingTime({currentTimerLength, startTime}) < 0;
 };

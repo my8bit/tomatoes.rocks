@@ -8,17 +8,17 @@ export const changeAction = (value, id) => {
 };
 
 export const timerAction = time => {
+  const startTime = time ? 0 : (new Date()).getTime();
   if (window.Notification) {
     window.Notification.requestPermission();
   }
   const type = time ? 'RESET' : 'START';
   if (type === 'START') {
-    hipChatTrigger('dnd');
+    hipChatTrigger('dnd', startTime);
   }
   if (type === 'RESET') {
-    hipChatTrigger('chat');
+    hipChatTrigger('chat', startTime);
   }
-  const startTime = time ? 0 : (new Date()).getTime();
   return {type, startTime};
 };
 
@@ -26,7 +26,7 @@ export const stopAction = () => {
   const type = 'FINISH';
   const startTime = 0;
   ifttTrigger();
-  hipChatTrigger('chat');
+  hipChatTrigger('chat', startTime);
   notifyMe();
   return {type, startTime};
 };

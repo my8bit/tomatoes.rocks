@@ -1,4 +1,5 @@
 import {settings, timerOptions} from 'config';
+import {merge} from 'lodash';
 
 const {currentTimerLength, breakTime} = timerOptions;
 
@@ -7,7 +8,7 @@ export const settingsReducer = (state = {settings}, action) => {
     case 'SETTINGS_UPDATED':
     case 'AUTHORIZED':
       return Object.assign({}, state, {
-        settings: [].concat(action.settings)
+        settings: merge([], action.settings, settings)
       });
     case 'SETTING_CHANGED':
       return Object.assign({}, state, {settings: state.settings.map(

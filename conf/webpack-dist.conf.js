@@ -84,8 +84,9 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        warnings: false,
         unused: true,
-        // drop_console: true, // eslint-disable-line camelcase
+        drop_console: true, // eslint-disable-line camelcase
         dead_code: true // eslint-disable-line camelcase
       }
     }),
