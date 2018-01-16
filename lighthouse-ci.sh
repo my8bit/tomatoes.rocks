@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEBHOOK_BODY = '{
+export WEBHOOK_BODY='{
     "testUrl": "'"$DEPLOY_PRIME_URL"'",
     "output": "json",
     "addComment": true,
