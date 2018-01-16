@@ -8,7 +8,7 @@ export const settingsReducer = (state = {settings}, action) => {
     case 'SETTINGS_UPDATED':
     case 'AUTHORIZED':
       return Object.assign({}, state, {
-        settings: merge([], action.settings, settings)
+        settings: merge([], settings, action.settings)
       });
     case 'SETTING_CHANGED':
       return Object.assign({}, state, {settings: state.settings.map(
