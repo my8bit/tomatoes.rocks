@@ -83,7 +83,6 @@
   "scripts": {
     "build": "gulp",
     "deploy": "npm run build",
-    "postdeploy": "./lighthouse-ci.sh",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "jest": "jest --config .jest.json",
