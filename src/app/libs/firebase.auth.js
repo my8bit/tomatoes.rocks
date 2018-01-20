@@ -54,7 +54,6 @@ export const getSettings = () => {
     if (user) {
       database.ref(`users/${user.uid}`).once('value', snapshot => {
         res(snapshot.val() && snapshot.val().settings || settings);
-        // TODO fix this
       });
     } else {
       res(JSON.parse(localStorage.getItem('settings')) || settings);
@@ -66,7 +65,6 @@ export const setSettings = (settings, startTime) => {
   return new Promise(() => {
     const {currentUser: user} = firebase.auth();
     if (user) {
-      console.log(settings);
       database.ref(`users/${user.uid}`).update({
         settings,
         startTime
