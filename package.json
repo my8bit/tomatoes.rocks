@@ -55,7 +55,6 @@
     "json-loader": "^0.5.4",
     "lighthouse": "^2.7.0",
     "lighthouse-ci": "github:ebidel/lighthouse-ci",
-    "netlify-cli": "github:my8bit/netlify-cli",
     "node-sass": "^3.4.2",
     "offline-plugin": "^3.4.2",
     "postcss-loader": "^0.8.0",
