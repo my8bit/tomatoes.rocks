@@ -5,10 +5,13 @@ const {currentTimerLength, breakTime} = timerOptions;
 
 export const settingsReducer = (state = {settings}, action) => {
   switch (action.type) {
-    case 'SETTINGS_UPDATED':
+    case 'ANONYMOUS':
     case 'AUTHORIZED':
       return Object.assign({}, state, {
-        settings: merge([], settings, action.settings)
+        settings: !console.log('Merged settings on \n', action.type,
+          'from settings \n', settings,
+          'from action.settings \n', action.settings,
+          merge([], settings, action.settings)) && merge([], settings, action.settings)
       });
     case 'SETTING_CHANGED':
       return Object.assign({}, state, {settings: state.settings.map(
@@ -29,10 +32,9 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
       });
     case 'LOGOUT':
       return Object.assign({}, state, {
-        name: ''
+        name: '',
+        photo: ''
       });
-    case 'UNAUTHORIZED':
-      return state;
     default:
       return state;
   }

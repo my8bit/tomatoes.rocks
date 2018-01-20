@@ -1,7 +1,7 @@
 import {settingsReducer, timerReducer, userReducer} from '../reducers';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import {firebase, database} from '../libs/firebase.auth';
+import {setSettings} from '../libs/firebase.auth';
 
 const reducers = combineReducers({
   settingsReducer,
@@ -21,54 +21,12 @@ const logger = ({getState}) => {
     // Call the next dispatch method in the middleware chain.
     const returnValue = next(action);
     if (returnValue) {
-      const settings = getState().settingsReducer.settings;
-      const startTime = getState().timerReducer.startTime;
-      localStorage.setItem('settings', JSON.stringify(settings));
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          database.ref(`users/${user.uid}`).update({
-            settings,
-            startTime
-          });
-        }
-      });
+      const {
+        settingsReducer: {settings},
+        timerReducer: {startTime}
+      } = getState();
+      setSettings(settings, startTime);
     }
-/*
-    if (returnValue && returnValue.type === 'SETTING_CHANGED') {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          database.ref(`users/${user.uid}`).update({
-            settings: getState().settingsReducer.settings
-          });
-        }
-      });
-    }
-
-    if (returnValue && returnValue.type === 'FINISH') {
-      const {type} = returnValue;
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          database.ref(`users/${user.uid}`).update({
-            type
-          });
-        }
-      });
-    }
-
-    if (returnValue && (returnValue.type === 'START' || returnValue.type === 'RESET')) {
-      const {type, startTime} = returnValue;
-      console.log('type, startTime', type, startTime);
-      console.log(' getState() => type, startTime', getState());
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          database.ref(`users/${user.uid}`).update({
-            type,
-            startTime
-          });
-        }
-      });
-    }
-*/
 
     // console.log('state after dispatch', getState());
     // This will likely be the action itself, unless

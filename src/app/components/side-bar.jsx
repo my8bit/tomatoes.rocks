@@ -16,9 +16,9 @@ class SidebarList extends Component {
     dispatch(checkAuth());
   }
 
-  handleLogin() {
+  handleLogin(e) {
     const {dispatch} = this.props;
-    dispatch(loginAction());
+    dispatch(loginAction(e.currentTarget.id));
   }
 
   handleLogout() {
@@ -56,9 +56,17 @@ class SidebarList extends Component {
               </div>
             </div>
           </li> :
-          <li className="nav-item" onClick={this.handleLogin}>
-            <div className="logout">Sign in with Twitter <i className="fa icon-twitter right" aria-hidden="true"></i><Ink/></div>
-          </li>}
+          <li>
+            <ul>
+              <li id="twitter" className="nav-item" onClick={this.handleLogin}>
+                <div className="logout">Sign in with Twitter <i className="fa icon-twitter right" aria-hidden="true"></i><Ink/></div>
+              </li>
+              <li id="github" className="nav-item" onClick={this.handleLogin}>
+                <div className="logout">Sign in with Github <i className="fa icon-github-circled right" aria-hidden="true"></i><Ink/></div>
+              </li>
+            </ul>
+          </li>
+        }
         {this.menuItem('Timer', 'icon-stopwatch', '/')}
         {this.menuItem('Settings', 'icon-wrench', '/settings')}
         {/* this.menuItem('F.A.Q.', 'icon-help-circled', '/faq') */}
