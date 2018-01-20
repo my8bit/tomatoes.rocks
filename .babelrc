@@ -5,7 +5,7 @@
   ],
   "plugins": [
     ["babel-plugin-webpack-aliases", {
-      "config": "./conf/webpack.conf.js",
+      "config": "./conf/webpack-dist.conf.js",
     }]
   ]
 }

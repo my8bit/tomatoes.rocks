@@ -1,6 +1,6 @@
-// TODO: mock timerOptions} from 'config';
-
 const {timerReducer} = require('./index');
+import {timerOptions} from 'config';
+const {breakTime} = timerOptions;
 
 describe('timer reducer test', () => {
   test('after main timer finished the break timer is set up', () => {
@@ -12,7 +12,7 @@ describe('timer reducer test', () => {
       type: 'FINISH'
     });
     expect(finish).toEqual({
-      currentTimerLength: 300000, startTime: 0, isBreak: true
+      currentTimerLength: breakTime, startTime: 0, isBreak: true
     });
   });
 
@@ -29,7 +29,7 @@ describe('timer reducer test', () => {
       startTime: 2
     });
     expect(startAgain).toEqual({
-      currentTimerLength: 300000, startTime: 2, isBreak: true
+      currentTimerLength: breakTime, startTime: 2, isBreak: true
     });
   });
 });

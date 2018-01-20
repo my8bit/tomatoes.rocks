@@ -53,8 +53,7 @@ export const getSettings = () => {
     const {currentUser: user} = firebase.auth();
     if (user) {
       database.ref(`users/${user.uid}`).once('value', snapshot => {
-        res(snapshot.val() && snapshot.val().settings || {});
-        // TODO fix this
+        res(snapshot.val() && snapshot.val().settings || settings);
       });
     } else {
       res(JSON.parse(localStorage.getItem('settings')) || settings);
