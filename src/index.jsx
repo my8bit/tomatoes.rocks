@@ -16,6 +16,7 @@ import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listene
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/settings.jsx';
 import {UpdatesCmp} from './app/layout/faq.jsx';
+import {NotFound} from './app/layout/not-found.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
@@ -127,6 +128,7 @@ class Main extends Component {
               <Route exact path="/" component={HomeCmp}/>
               <Route exact path="/settings" component={AboutCmp}/>
               <Route exact path="/faq" component={UpdatesCmp}/>
+              <Route component={NotFound}/>
             </Swipe>
           </div>
         </Router>
