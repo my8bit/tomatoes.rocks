@@ -30,6 +30,30 @@ $button-size: $counter-size / 3;
   }
 }
 
+#about {
+  .container {
+    flex-flow: row;
+    height: 80vh;
+  }
+  .description {
+    h2 {
+      margin: 0;
+    }
+    font-size: 1em;
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+    }
+    margin: 0;
+    div {
+      padding: .25em;
+    }
+    .heart {
+      color: red;
+    }
+  }
+}
+
 #countdown {
   font-weight: 100;
   color: white; //margin-top: 20vh;

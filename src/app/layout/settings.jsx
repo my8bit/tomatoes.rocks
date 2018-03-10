@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {changeAction} from '../actions';
 import {colors} from 'config';
 
-export class Settings extends Component {
+class Settings extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -80,8 +80,10 @@ export class Settings extends Component {
   render() {
     const {settings} = this.props;
     return (
-      <section id="about" className="about site-wrap">
-        <div className="menu-background">Settings</div>
+      <section id="settings" className="about site-wrap">
+        <div className="menu-background dark">
+          <h1>Settings</h1>
+        </div>
         <div onChange={this.handleChange} className="settings-wraper">
           {settings.map((setting, idx) => {
             return (
@@ -106,5 +108,4 @@ const mapStateToProps = store => {
   return {settings};
 };
 
-export const AboutCmp = connect(mapStateToProps)(Settings);
-
+export const SettingsCmp = connect(mapStateToProps)(Settings);

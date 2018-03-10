@@ -14,7 +14,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 // import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
-import {AboutCmp} from './app/layout/settings.jsx';
+import {SettingsCmp} from './app/layout/settings.jsx';
+import {About} from './app/layout/about.jsx';
 import {UpdatesCmp} from './app/layout/faq.jsx';
 import {NotFound} from './app/layout/not-found.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
@@ -126,7 +127,8 @@ class Main extends Component {
               >
               <Route path="/" component={SidebarCmp}/>
               <Route exact path="/" component={HomeCmp}/>
-              <Route exact path="/settings" component={AboutCmp}/>
+              <Route exact path="/settings" component={SettingsCmp}/>
+              <Route exact path="/about" component={About}/>
               <Route exact path="/faq" component={UpdatesCmp}/>
               <Route component={NotFound}/>
             </Swipe>

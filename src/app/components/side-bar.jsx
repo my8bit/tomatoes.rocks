@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Ink from 'react-ink';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
 
@@ -29,11 +29,11 @@ class SidebarList extends Component {
   menuItem(name, icon, link) {
     return (
       <li className="nav-item">
-        <Link to={link}>
+        <NavLink exact to={link} activeClassName="active-menu">
           {name}
           <i className={`fa ${icon} right`} aria-hidden="true"></i>
           <Ink/>
-        </Link>
+        </NavLink>
       </li>
     );
   }
@@ -47,9 +47,7 @@ class SidebarList extends Component {
             <div className="login-container">
               <img className="avatar" src={photo}/>
               <div className="user-info">
-                <div className="user-name">
-                  {name}
-                </div>
+                <div className="user-name">{name}</div>
                 <div className="user-status">
                   Logout <i className="fa icon-logout right" aria-hidden="true"></i>
                 </div>
@@ -69,7 +67,11 @@ class SidebarList extends Component {
         }
         {this.menuItem('Timer', 'icon-stopwatch', '/')}
         {this.menuItem('Settings', 'icon-wrench', '/settings')}
-        {/* this.menuItem('F.A.Q.', 'icon-help-circled', '/faq') */}
+        {this.menuItem('About', 'icon-help-circled', '/about')}
+        {/* <li className="nav-item">
+          <div className="addthis_inline_share_toolbox"></div>
+        </li>
+        this.menuItem('F.A.Q.', 'icon-help-circled', '/faq') */}
       </ul>
     );
   }
