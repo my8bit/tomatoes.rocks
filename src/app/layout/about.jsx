@@ -10,8 +10,9 @@ export class About extends Component {
           <h1>About</h1>
         </div>
         <div className="container">
-          <div>
-            <img src="static/favicon-96x96.png"/>
+          <div itemScope itemType="http://schema.org/Organization">
+            <span itemProp="name" content="Tomatoes Work"></span>
+            <img itemProp="logo" title="tomatoew.work logo" alt="tomatoew.work logo" src="static/favicon-96x96.png"/>
           </div>
           <div className="description" itemScope itemType="http://schema.org/WebApplication">
             <div>

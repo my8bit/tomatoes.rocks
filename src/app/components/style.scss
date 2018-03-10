@@ -14,6 +14,13 @@ $button-size: $counter-size / 3;
   border-radius: 5px;
 }
 
+.logo-name {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .button:hover {
   transition: background-color .3s linear;
   background-color: rgba(95, 95, 95, 0.2);
@@ -32,8 +39,7 @@ $button-size: $counter-size / 3;
 
 #about {
   .container {
-    flex-flow: row;
-    height: 80vh;
+    flex-flow: column;
   }
   .description {
     h2 {
