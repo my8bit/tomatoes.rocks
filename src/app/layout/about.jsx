@@ -14,7 +14,12 @@ export class About extends Component {
             <img src="static/favicon-96x96.png"/>
           </div>
           <div className="description" itemScope itemType="http://schema.org/WebApplication">
-            <div><h2>Tomatoes Work</h2><small>123</small></div>
+            <div>
+              <h2>Tomatoes Work</h2>
+              <small>Online <span itemProp="applicationCategory">productivity</span> timer</small>
+              <span itemProp="operatingSystem" content="Linux, Windows, OSX, iOS, Android"></span>
+            </div>
+            <div>Online web application</div>
             <div><a href="https://icons8.com">Icon pack by Icons8</a></div>
             <div>Icons was processed at <a href="http://www.favicomatic.com/">favicomatic</a></div>
             <div>Crafted with <span className="heart">❤︎</span> in ✖✖✖ by <a href="https://github.com/my8bit">@my8bit</a></div>
