@@ -43,12 +43,31 @@ main {
   width: 100%;
   position: fixed;
   background: #333131;
-  height: 3em;
   color: white;
   z-index: 1;
-  line-height: 3em;
-  font-size: 1.2em;
   text-align: center;
+}
+
+#home {
+  .menu-background {
+    background: none;
+  }
+}
+
+.menu-background h1 {
+  font-style: normal;
+  margin: 0;
+  font-size: 1.2em;
+  line-height: 3em;
+}
+
+.active-menu {
+  background-color: #212121;
+}
+
+.dark {
+  background-color: #333133;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 footer {

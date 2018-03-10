@@ -8,6 +8,9 @@ export class Home extends Component {
     const color = settings[0].value;
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
+        <div className="menu-background">
+          <h1>Tomatoes Work - online Pomodoro timer</h1>
+        </div>
         <Timer/>
       </section>
     );
