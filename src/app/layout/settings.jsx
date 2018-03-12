@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {changeAction} from '../actions';
 import {colors} from 'config';
+import Helmet from 'react-helmet';
+import {URL} from '../libs/common.js';
 
 class Settings extends Component {
   constructor(props) {
@@ -81,6 +83,10 @@ class Settings extends Component {
     const {settings} = this.props;
     return (
       <section id="settings" className="about site-wrap">
+        <Helmet
+          link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
+          title="Settings"
+          />
         <div className="menu-background dark">
           <h1>Settings</h1>
         </div>

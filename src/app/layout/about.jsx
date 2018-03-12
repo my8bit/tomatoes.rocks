@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Helmet from 'react-helmet';
+import {URL} from '../libs/common.js';
 // import {connect} from 'react-redux';
 // import {ColorPickerCmp} from '../components/color-picker.jsx';
 
@@ -6,6 +8,10 @@ export class About extends Component {
   render() {
     return (// eslint-disable-line no-return-assign
       <section id="about" className="about site-wrap">
+        <Helmet
+          link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
+          title="About"
+          />
         <div className="menu-background dark">
           <h1>About</h1>
         </div>
