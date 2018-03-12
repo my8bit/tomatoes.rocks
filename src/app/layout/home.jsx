@@ -9,7 +9,7 @@ export class Home extends Component {
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
         <div className="menu-background">
-          <h1>Tomatoes Work - online Pomodoro timer</h1>
+          <h1>Tomatoes Work</h1>
         </div>
         <Timer/>
       </section>
