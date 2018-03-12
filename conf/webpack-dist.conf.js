@@ -50,6 +50,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new CopyWebpackPlugin([
+      {from: path.resolve(__dirname, '../src/robots.txt')},
       {from: path.resolve(__dirname, '../src/sitemap.txt')},
       {from: path.resolve(__dirname, '../src/sitemap.xml')},
       {from: path.resolve(__dirname, '../src/_redirects')},
@@ -99,7 +100,7 @@ module.exports = {
     // new ExtractTextPlugin('/index-[contenthash].css'),
     new OfflinePlugin({
       AppCache: false,
-      excludes: ['_redirects', 'sitemap.txt']
+      excludes: ['_redirects', 'sitemap.txt', 'sitemap.xml', 'robots.txt']
     })
   ],
   postcss: () => [autoprefixer],
