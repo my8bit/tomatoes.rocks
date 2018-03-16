@@ -10,7 +10,7 @@ export class About extends Component {
       <section id="about" className="about site-wrap">
         <Helmet
           link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
-          title="About"
+          title="About - online Pomodoro timer"
           />
         <div className="menu-background dark">
           <h1>About</h1>

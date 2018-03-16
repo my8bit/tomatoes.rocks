@@ -1,6 +1,6 @@
 {
-  "name": "Tomatoes Timer",
-  "short_name": "Tomatoes ⌛",
+  "name": "Tomatoes Work",
+  "short_name": "Tomatoes Work",
   "icons": [{
       "src": "static/mstile-144x144.png",
       "sizes": "144x144",

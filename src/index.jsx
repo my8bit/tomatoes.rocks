@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 // import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {WindowResizeListener} from '@liveauctioneers/react-window-resize-listener';
 import {HomeCmp} from './app/layout/home.jsx';
@@ -49,7 +49,6 @@ class H extends Component {
 
   render() {
     const {settings, currentTimerLength, startTime} = this.props;
-
     const color = settings.find(el => el.name === 'Colors');
     return (
       <Helmet
@@ -126,11 +125,13 @@ class Main extends Component {
               onSwipeLeft={this.handleSwipeLeft}
               >
               <Route path="/" component={SidebarCmp}/>
-              <Route exact path="/" component={HomeCmp}/>
-              <Route exact path="/settings" component={SettingsCmp}/>
-              <Route exact path="/about" component={About}/>
-              <Route exact path="/faq" component={UpdatesCmp}/>
-              <Route component={NotFound}/>
+              <Switch>
+                <Route exact path="/" component={HomeCmp}/>
+                <Route exact path="/settings" component={SettingsCmp}/>
+                <Route exact path="/about" component={About}/>
+                <Route exact path="/faq" component={UpdatesCmp}/>
+                <Route component={NotFound}/>
+              </Switch>
             </Swipe>
           </div>
         </Router>
