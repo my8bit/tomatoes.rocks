@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@liveauctioneers/react-window-resize-listener": "github:LIVEauctioneers/react-window-resize-listener",
+    "babel-polyfill": "^6.26.0",
     "chromedriver": "^2.33.2",
     "firebase": "^3.9.0",
     "lodash": "^4.17.4",
