@@ -65,7 +65,8 @@ module.exports = {
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
       FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSEGING_SENDER_ID),
       IFTT_KEY: JSON.stringify(process.env.IFTT_KEY),
-      TRIGGER_NAME: JSON.stringify(process.env.TRIGGER_NAME)
+      TRIGGER_NAME: JSON.stringify(process.env.TRIGGER_NAME),
+      DOMAIN: JSON.stringify(process.env.URL)
     }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
