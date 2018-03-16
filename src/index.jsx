@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import Offline from 'offline-plugin/runtime';
 Offline.install();
 
