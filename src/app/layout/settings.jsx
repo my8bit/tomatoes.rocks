@@ -85,7 +85,7 @@ class Settings extends Component {
       <section id="settings" className="about site-wrap">
         <Helmet
           link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
-          title="Settings - online Pomodoro timer"
+          title="Settings - online Pomodoro time tracker"
           />
         <div className="menu-background dark">
           <h1>Settings</h1>

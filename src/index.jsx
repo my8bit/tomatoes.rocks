@@ -50,12 +50,11 @@ class H extends Component {
 
   render() {
     const {settings, currentTimerLength, startTime} = this.props;
-    const color = settings.find(el => el.name === 'Colors');
+    const color = settings.find(el => el.name === 'Colors').value;
     return (
       <Helmet
         title={startTime ? formatTime({currentTimerLength, startTime}) : textContent}
         meta={[
-          {name: 'description', content: textContent},
           {name: 'application-name', content: textContent},
           {name: 'msapplication-TileColor', content: color},
           {name: 'theme-color', content: color},
