@@ -4,9 +4,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const SplitByPathPlugin = require('webpack-split-by-path');
 const autoprefixer = require('autoprefixer');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 module.exports = {
   module: {
     preLoaders: [
@@ -69,6 +69,7 @@ module.exports = {
       },
       inject: true
     }),
+    new PreloadWebpackPlugin(),
     new webpack.DefinePlugin({
       isProduction: JSON.stringify(process.env.DEVELOPMENT) || false,
       FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
