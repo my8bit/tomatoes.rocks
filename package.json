@@ -27,7 +27,6 @@
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.0",
     "babel-plugin-webpack-aliases": "^1.0.3",
-    "babel-polyfill": "^6.7.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.16.0",
     "browser-sync": "^2.18.13",

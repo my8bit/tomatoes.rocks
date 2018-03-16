@@ -1,6 +1,6 @@
+import 'babel-polyfill';
 import Offline from 'offline-plugin/runtime';
 Offline.install();
-import 'babel-polyfill';
 
 // TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
 // TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
@@ -115,7 +115,7 @@ class Main extends Component {
         <Hd/>
         <WindowResizeListener onResize={this.handleResize}/>
         <Router>
-          <Switch>
+          <div>
             <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
             <label htmlFor="nav-trigger">
               <div id="close-icon"><span></span><span></span><span></span></div>
@@ -134,7 +134,7 @@ class Main extends Component {
                 <Route component={NotFound}/>
               </Switch>
             </Swipe>
-          </Switch>
+          </div>
         </Router>
       </main>
     );
