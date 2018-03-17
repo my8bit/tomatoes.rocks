@@ -8,6 +8,7 @@ const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
 const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
+const  ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 module.exports = {
   eslint: {
     rules: {
@@ -72,6 +73,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
       inject: 'body'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async'
     }),
     new PreloadWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),

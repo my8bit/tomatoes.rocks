@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const  ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 module.exports = {
   module: {
     preLoaders: [
@@ -68,6 +69,9 @@ module.exports = {
         removeEmptyAttributes: true
       },
       inject: 'body'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async'
     }),
     new PreloadWebpackPlugin(),
     new webpack.DefinePlugin({
