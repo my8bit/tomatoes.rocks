@@ -71,7 +71,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
-      inject: true
+      inject: 'body'
     }),
     new PreloadWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),

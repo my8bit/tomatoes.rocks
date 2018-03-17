@@ -67,7 +67,7 @@ module.exports = {
         removeComments: true,
         removeEmptyAttributes: true
       },
-      inject: true
+      inject: 'body'
     }),
     new PreloadWebpackPlugin(),
     new webpack.DefinePlugin({
