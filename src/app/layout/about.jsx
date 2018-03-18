@@ -29,7 +29,7 @@ export class About extends Component {
             <div><a href="https://icons8.com">Icon pack by Icons8</a></div>
             <div>Icons was processed at <a href="http://www.favicomatic.com/">favicomatic</a></div>
             <div>Crafted with <span className="heart">❤︎</span> in ✖✖✖ by <a href="https://github.com/my8bit">@my8bit</a></div>
-            <div><small>This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.</small></div>
+            <div><small>This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo. The Pomodoro Technique® and Pomodoro™ are registered trademarks by Francesco Cirillo.</small></div>
           </div>
         </div>
       </section>
