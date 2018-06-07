@@ -8,7 +8,7 @@ export class NotFound extends PureComponent {
     return (
       <section className="timer site-wrap" style={{backgroundColor: '#333131'}}>
         <Helmet
-          link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
+          link={[{rel: 'canonical', href: `${URL}${encodeURI(window.location.pathname)}`}]}
           title="Not found 404"
           />
         <div className="menu-background dark">

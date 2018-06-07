@@ -11,7 +11,7 @@ export class Home extends Component {
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
         <Helmet
-          link={[{rel: 'canonical', href: `${URL}${window.location.pathname}`}]}
+          link={[{rel: 'canonical', href: `${URL}${encodeURI(window.location.pathname)}`}]}
           />
         <div className="menu-background">
           <h1>Tomatoes Work</h1>
