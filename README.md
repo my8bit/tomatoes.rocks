@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="https://tomatoes.work">
-    <img alt="Tomatoes Work" src="https://i.imgur.com/1gLKIVS.gif">
+    <img alt="Tomatoes Work" src="https://i.imgur.com/C4nR4zz.gif">
   </a>
   <h1 style="text-align: center;" align="center">Tomatoes Work</h1>
   <p style="font-style: italic;" align="center">A simple online Pomodoro timer that allows you to concentrate on getting work done without distractions from your messengers.</p>
