@@ -3,6 +3,7 @@ import Ink from 'react-ink';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
+import {HelpCmp} from './help.jsx';
 
 class SidebarList extends Component {
   constructor() {
@@ -68,6 +69,7 @@ class SidebarList extends Component {
         {this.menuItem('Timer', 'icon-stopwatch', '/')}
         {this.menuItem('Settings', 'icon-wrench', '/settings')}
         {this.menuItem('About', 'icon-help-circled', '/about')}
+        <HelpCmp/>
         {/* <li className="nav-item">
           <div className="addthis_inline_share_toolbox"></div>
         </li>

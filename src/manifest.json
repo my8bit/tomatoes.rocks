@@ -1,6 +1,7 @@
 {
   "name": "Tomatoes Work",
   "short_name": "TomatoesWork",
+  "description": "Tomatoes Work is online Pomodoro time tracker and timer that syncs with IFTTT.",
   "icons": [{
       "src": "static/mstile-144x144.png",
       "sizes": "144x144",

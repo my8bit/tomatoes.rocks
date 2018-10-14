@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Tomatoes Work Timer - online Pomodoro time tracker</title>
+  <title>Tomatoes Work Timer - online Pomodoro time tracker and timer</title>
   <meta name="fragment" content="!" />
   <meta name="description" content="Tomatoes Work is online Pomodoro time tracker timer that managing presence status for your Messengers and in sync with IFTTT. This tool allows you to be more productive during your work or study by muting messenger and send notifications.">
   <meta property="og:url" content="https://tomatoes.work/" />
@@ -17,7 +17,6 @@
   <meta name="twitter:description" content="Tomatoes Work is online Pomodoro time tracker timer that managing presence status for your Messengers and in sync with IFTTT." />
   <link rel="manifest" href="/manifest.json" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="google-site-verification" content="w0LInyyElAxtA29PMA1ivgszct026HNjKYQLxMf3wRQ" />
   <meta name="msvalidate.01" content="153D53EA793611E9BF9398BAF3E1BB47" />
   <link rel="icon" href="static/apple-touch-icon-60x60.png" sizes="32x32" type="image/png" />
@@ -41,43 +40,59 @@
   <link rel="icon" type="image/png" href="static/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="static/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="static/favicon-128.png" sizes="128x128" />
+  <link rel="stylesheet" type="text/css" href="static/help.css" />
 </head>
 
 <body>
-  <style>
-    /* TODO: refactor this this */
-
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    noscript,
-    .splash {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(51, 49, 49);
-      color: white;
-    }
-
-    noscript h1,
-    .splash h1,
-    noscript h2 {
-      font-family: 'Helvetica Neue', 'Roboto', sans-serif;
-      font-weight: 100;
-    }
-  </style>
   <noscript>
     <h1>Tomatoes doesn't Works with JavaScript disabled :-(</h1>
     <h2>Please turn on Javascript and come back!</h2>
   </noscript>
+  <div id="description" class="invisible">
+    <div id="description-close" class="close-icon"><span></span><span></span><span></span></div>
+    <div id="description-content">
+      <h1>Help: Tomatoes Work</h1>
+
+      <h2>What is Tomatoes Work?</h2>
+      <p>Tomatoes Works is a free online timer that based the Pomodoro Technique® that allows you to concentrate on getting things done and being more productive and eliminate distraction. Please bear in mind - This application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo. The Pomodoro Technique® and Pomodoro™ are registered trademarks by Francesco Cirillo.</p>
+
+      <h2>And what is Pomodoro Technique®?</h2>
+      <p>It's a time management technique for breaking down your activities into 25 minutes intervals with 5 minutes break in order to stay productive and focused. You can find more about <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Technique®</a> in this Wikipedia article.</p>
+
+      <h2>How to use Tomatoes Work?</h2>
+      <p>Choose your task on which you will be working on. Start 25 minutes timer by pressing START button. Work until the timer expires. On the first time using Tomatoes Work it requires you to give it permission to send you notifications. If You accept this permission you get the desktop (or mobile in case you use it from phone) notification. In the desktop version, you can see your progress in the title of the page as well.<!-- If yoy want to connect TomatoesWork to other services please find information in answers below --><!--Using online timer is simple. In the hompage just press the button and Follow this link to the guided tour to application.--></p>
+
+<!--       <h2>How to use it together with HipChat?</h2>
+      <p>Please take a look at this tutorial with detailed explanation.</p>
+
+      <h2>How to use it together with IFTTT?</h2>
+      <p>Please take a look at this tutorial with detailed explanation.</p>
+ -->
+      <h2>What makes it unique?</h2>
+      <p>
+        There are a few unique features that make Tomatoes Works timer unique:
+        <ul>
+          <li>Tomatoes Work is a <a href="https://developers.google.com/web/progressive-web-apps/">PWA</a> web application, which means that you can use the same experience on your desktop browser as well as using it as a native application in your mobile phone if you install it. <!-- Read more about how to instal a PWA to your mobile phone-->
+          </li>
+          <li>It's connected to <i>IoT</i> network (Internet fo Tnihgs) through the <i>IFTTT</i> integration channel. This means that you can have </li>
+          <li>Your Pomodoro timer can be synchronized with your HipChat messenger account. When you set the timer and focused on getting things done your status is changed for <i>Do Not Disturb</i> which prevents you from interruptions on message notifications.And it automatically switches back to <i>Online</i> status when the timer expires.</li>
+          <li>This application is Open Source and licensed using MIT license. This means that everyone can contribute to the <a href="https://github.com/my8bit/tomatoes.work">source</a> repository</li>
+        </ul>
+      </p>
+
+      <h2>Do I need to do login?</h2>
+      <p>In order to use the timer, you do not need to be logged in. But in case you want to sync your settings across your devices it wise to log in using GitHub or Twitter integrations.</p>
+
+      <h2>Credits</h2>
+      <p>You can find more information <a href="/about">about</a> application in <i>About</i> section.</p>
+      <br>
+    </div>
+  </div>
   <div id="app">
     <div class="splash">
     </div>
   </div>
+  <script>document.getElementById("description-close").addEventListener("click",function(){document.getElementById("description").classList.add("invisible")});</script>
   <!--
     <script type="text/javascript">
       wpac_init = window.wpac_init || [];

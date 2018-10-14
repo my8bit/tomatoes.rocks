@@ -1,0 +1,89 @@
+/* TODO: refactor this this */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+noscript,
+.splash {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(51, 49, 49);
+  color: white;
+}
+
+noscript h1,
+.splash h1,
+noscript h2 {
+  font-family: 'Helvetica Neue', 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+/* Refactor this to separate css file or maybe even scss*/
+#description.invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#description {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+
+  display: flex;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(51, 49, 49);
+  color: white;
+  justify-content: center;
+  overflow: scroll;
+}
+#description a {
+  color: white;
+  text-decoration: none;
+}
+#description a:hover {
+  text-decoration: underline;
+}
+#description-close {
+  position: fixed;
+  color: white;
+  display: block;
+  right: 1em;
+  top: 1em;
+}
+#description-content {
+  max-width: 90%;
+  line-height: 1.4;
+  display: block;
+}
+@media (min-width: 640px) {
+  #description-content {
+    max-width: 90%;
+  }
+}
+@media (min-width: 768px) {
+  #description-content {
+    max-width: 65%;
+  }
+}
+#description-close.close-icon span:nth-child(1) {
+  top: 10px;
+  transform: rotate(135deg);
+}
+#description-close.close-icon span:nth-child(2) {
+  opacity: 0;
+  left: 60px;
+}
+#description-close.close-icon span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-135deg);
+}
