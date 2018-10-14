@@ -117,7 +117,7 @@ class Main extends Component {
           <div>
             <input type="checkbox" id="nav-trigger" checked={this.state.isSideBarOpen} onChange={this.handleChecked} className="nav-trigger"/>
             <label htmlFor="nav-trigger">
-              <div id="close-icon"><span></span><span></span><span></span></div>
+              <div className="close-icon"><span></span><span></span><span></span></div>
             </label>
             <Swipe
               className="swipe-container"

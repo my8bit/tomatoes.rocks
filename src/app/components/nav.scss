@@ -200,45 +200,65 @@ label[for="nav-trigger"] {
   position: relative;
   top: 50px;
   height: 5em;
-  label {
-    position: absolute;
-    top: -35px;
-    left: 15px;
-    color: #999;
+
+  .color-container {    
+  /* Hide the browser's default radio button */
+    input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 30;
+      box-sizing: border-box;
+      left: 30;
+      padding: -4px;
+      height: 54px;
+      width: 54px;
+      border-radius: 5%;
+      cursor: pointer;
+    }
+
+    /* On mouse-over, add a grey background color */
+    input ~ .checkmark {
+        background-color: red;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+    /* Show the indicator (dot/circle) when checked */
+    input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+      content: "25";
+      position: absolute;
+      display: none;
+      top: 18px;
+      left: 18px;
+      color: white;
+    }
+    .checkmark:hover:after {
+      // top: 18px;
+      // transition: 0.2s ease all;
+    }
+    .checkmark:hover {
+      // height: 56px;
+      // width: 56px;
+      padding-bottom: 10px;
+      // top: 10px;
+      // left: 10px;
+      transition: 0.2s ease all;
+      // border-bottom: 40px solid #5264AE;
+      border-radius: 0 0 0 50%;
+    }
   }
-}
-
-.input-color {
-  cursor: inherit;
-  outline: none;
-}
-
-.input-color:before {
-  position: relative;
-  display: block;
-  border-radius: 5px;
-  content: "";
-  width: .75em;
-  height: .75em;
-  font-size: 1em;
-  padding: 1em 1.6em 1.6em 1em;
-  right: 1.2em;
-  bottom: 1.2em;
-  background-color: inherit;
-  color: white;
-}
-
-.input-color:checked:before {
-  content: "20";
-}
-
-.input-color:checked {
-  animation: argh-my-eyes 1s;
-}
-
-.color-container:hover {
-  position: relative;
-  animation: buzz 1s;
 }
 
 @keyframes buzz {
@@ -254,7 +274,7 @@ label[for="nav-trigger"] {
   50% { opacity: 1; }
 }
 
-#close-icon {
+.close-icon {
   width: 30px;
   transform: rotate(0deg);
   transition: .5s ease-in-out;
@@ -271,11 +291,6 @@ label[for="nav-trigger"] {
     transform: rotate(0deg);
     transition: .25s ease-in-out;
   }
-}
-
-// TODO: refactor, for using look
-
-#close-icon {
   span:nth-child(1) {
     top: 0px;
   }
@@ -287,7 +302,8 @@ label[for="nav-trigger"] {
   }
 }
 
-#nav-trigger:checked + label #close-icon {
+// TODO: refactor, for using look
+#nav-trigger:checked + label .close-icon {
   span:nth-child(1) {
     top: 10px;
     transform: rotate(135deg);

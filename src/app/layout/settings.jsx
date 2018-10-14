@@ -58,7 +58,7 @@ class Settings extends Component {
             <label>{name}</label>
             {colors.map((currentColor, index) => {
               return (
-                <div key={index} className="color-container">
+                <label key={index} className="color-container">
                   <input
                     className="input-color"
                     readOnly
@@ -66,10 +66,10 @@ class Settings extends Component {
                     type="radio"
                     name="color"
                     data-id={idx}
-                    style={{backgroundColor: currentColor}}
                     value={currentColor}
                     />
-                </div>
+                  <span className="checkmark" style={{backgroundColor: currentColor}}></span>
+                </label>
               );
             })}
           </form>
