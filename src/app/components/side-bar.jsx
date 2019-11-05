@@ -70,6 +70,7 @@ class SidebarList extends Component {
         {this.menuItem('Settings', 'icon-wrench', '/settings')}
         {this.menuItem('About', 'icon-help-circled', '/about')}
         <HelpCmp/>
+        <div id="codefund"></div>
         {/* <li className="nav-item">
           <div className="addthis_inline_share_toolbox"></div>
         </li>
