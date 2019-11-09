@@ -46,6 +46,17 @@ main {
   color: white;
   z-index: 1;
   text-align: center;
+  a {
+    color: white;
+  }
+}
+
+.footer-background {
+  position: fixed;
+  color: white;
+  bottom: 0;
+  z-index: 1;
+  background: none;
 }
 
 #home {
