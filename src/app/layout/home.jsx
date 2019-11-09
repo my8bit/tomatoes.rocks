@@ -14,7 +14,7 @@ export class Home extends Component {
           link={[{rel: 'canonical', href: `${URL}${encodeURI(window.location.pathname)}`}]}
           />
         <div className="menu-background">
-          <h1>{window.location.hostname === 'tomatoes.work' ? `Tomatoes moved to another domain: ${<a href="https://tomatoes.rocks">https://tomatoes.rocks</a>}` : 'Tomatoes Rocks'}</h1>
+          {window.location.hostname === 'tomatoes.work' ? <h1>Tomatoes moved to another domain <a href="https://tomatoes.rocks">https://tomatoes.rocks</a></h1> : <h1>Tomatoes Rocks</h1>}
         </div>
         <Timer/>
         <div className="footer-background">
