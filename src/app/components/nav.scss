@@ -158,11 +158,13 @@ label[for="nav-trigger"] {
 .container {
   transition: margin-right 0.2s;
 }
-.menu-background {
-  h1 {
+.menu-background,
+.footer-background {
+  h1, div {
     transition: margin-right 0.2s;
   }
 }
+
 .nav-trigger:checked + label {
   left: $sidebar-width + 15px;
   z-index: 3;
@@ -201,7 +203,7 @@ label[for="nav-trigger"] {
   top: 50px;
   height: 5em;
 
-  .color-container {    
+  .color-container {
   /* Hide the browser's default radio button */
     input {
       position: absolute;
