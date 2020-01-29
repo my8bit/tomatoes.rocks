@@ -18,11 +18,12 @@ export class About extends Component {
         <div className="container">
           <div itemScope itemType="http://schema.org/Organization">
             <span itemProp="name" content="Tomatoes Work"></span>
-            <img itemProp="logo" title="tomatoew.work logo" alt="tomatoew.work logo" src="static/favicon-96x96.png"/>
+            <a itemProp="url" href="https://tomatoes.rocks">
+              <img itemProp="logo" title="tomatoew.rocks logo" alt="tomatoes.rocks logo" src="static/favicon-96x96.png"/>
+            </a>
           </div>
           <div className="description" itemScope itemType="http://schema.org/WebApplication">
             <div>
-              <h2><a itemProp="url" href="https://tomatoes.rocks">Tomatoes Rocks 🤘</a></h2>
               <small>Online <span itemProp="applicationCategory">productivity</span> timer</small>
               <span itemProp="operatingSystem" content="Linux, Windows, OSX, iOS, Android"></span>
             </div>
