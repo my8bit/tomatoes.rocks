@@ -22,7 +22,7 @@ export class About extends Component {
           </div>
           <div className="description" itemScope itemType="http://schema.org/WebApplication">
             <div>
-              <h2>Tomatoes Work</h2>
+              <h2><a itemProp="url" href="https://tomatoes.rocks">Tomatoes Rocks 🤘</a></h2>
               <small>Online <span itemProp="applicationCategory">productivity</span> timer</small>
               <span itemProp="operatingSystem" content="Linux, Windows, OSX, iOS, Android"></span>
             </div>
