@@ -24,8 +24,8 @@ jobs:
         - run: npm run jest
           env:
             CI: true
-        - name: Archive code coverage results
-          uses: actions/upload-artifact@v1
+        - name: Upload results as an artifact
+          uses: actions/upload-artifact@master
           with:
-            name: lighthouse-coverage-report
-            path: /github/workspace/report/https___deploy_preview_40__tomatoes_netlify_com.report.html
+            name: report
+            path: './report'
