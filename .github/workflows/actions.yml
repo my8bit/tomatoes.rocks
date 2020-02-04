@@ -15,12 +15,17 @@ jobs:
   test:
       runs-on: ubuntu-latest
       steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: 6.x
-      - run: npm install
-      - run: npm run jest
-        env:
-          CI: true
+        - uses: actions/checkout@v2
+        - name: Use Node.js 6.x
+          uses: actions/setup-node@v1
+          with:
+            node-version: 6.x
+        - run: npm install
+        - run: npm run jest
+          env:
+            CI: true
+        - name: Archive code coverage results
+          uses: actions/upload-artifact@v1
+          with:
+            name: lighthouse-coverage-report
+            path: /github/workspace/report/https___deploy_preview_40__tomatoes_netlify_com.report.html
