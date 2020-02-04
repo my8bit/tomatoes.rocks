@@ -7,6 +7,7 @@
   <p style="font-style: italic;" align="center">A simple online Pomodoro timer that allows you to concentrate on getting work done without distractions from your messengers.</p>
 </p>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b7e48daf-9e36-4174-b042-ea4b3db8a600/deploy-status)](https://app.netlify.com/sites/tomatoes/deploys)
 
 How often where you distracted by some chats when you were immersed in some important task during the day? If you consider that too often for you then Tomatoes Rocks might help you to deal with that! It keeps well known [Pomodoro Technique®](https://en.wikipedia.org/wiki/Pomodoro_Technique) in sync with your messengers* API's that allows to automatically set the not distracting statuses in your messengers. 
 
