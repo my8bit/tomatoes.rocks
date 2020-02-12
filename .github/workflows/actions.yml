@@ -1,0 +1,31 @@
+name: Actions
+on: pull_request
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audit Netlify deploy preview
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          netlify_site: 'tomatoes.netlify.com'
+      - name: Audit Netlify deploy preview
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          netlify_site: 'tomatoes.netlify.com'
+  test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Use Node.js 6.x
+          uses: actions/setup-node@v1
+          with:
+            node-version: 6.x
+        - run: npm install
+        - run: npm run jest
+          env:
+            CI: true
+        - name: Upload results as an artifact
+          uses: actions/upload-artifact@master
+          with:
+            name: report
+            path: './report'
