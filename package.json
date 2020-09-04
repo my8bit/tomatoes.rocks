@@ -55,7 +55,7 @@
     "json-loader": "^0.5.4",
     "lighthouse": "^2.7.0",
     "lighthouse-ci": "github:ebidel/lighthouse-ci",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.13.1",
     "offline-plugin": "^3.4.2",
     "postcss-loader": "^0.8.0",
     "preload-webpack-plugin": "^2.3.0",
