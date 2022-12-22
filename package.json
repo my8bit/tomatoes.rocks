@@ -3,7 +3,7 @@
     "@liveauctioneers/react-window-resize-listener": "github:LIVEauctioneers/react-window-resize-listener",
     "babel-polyfill": "^6.26.0",
     "chromedriver": "^2.33.2",
-    "firebase": "^3.9.0",
+    "firebase": "^9.15.0",
     "lodash": "^4.17.4",
     "moment": "^2.15.1",
     "moment-duration-format": "^1.3.0",
